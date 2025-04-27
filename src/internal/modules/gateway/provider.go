@@ -7,6 +7,7 @@ import (
 
 func NewProvider() fx.Option {
 	return fx.Options(
+		fx.Invoke(routers.RegisterRoutes),
 		fx.Invoke(routers.RegisterHandler),
 	)
 }
