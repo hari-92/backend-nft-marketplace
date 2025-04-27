@@ -1,7 +1,7 @@
 package bootstrap
 
 import (
-	"gitlab.com/hari-92/nft-market-server/libs/key_mutex"
+	"gitlab.com/hari-92/nft-market-server/pkg/key_mutex"
 	"go.uber.org/fx"
 )
 

@@ -1,7 +1,7 @@
 package bootstrap
 
 import (
-	"gitlab.com/hari-92/nft-market-server/libs/distributed_lock"
+	"gitlab.com/hari-92/nft-market-server/pkg/distributed_lock"
 	"go.uber.org/fx"
 )
 
