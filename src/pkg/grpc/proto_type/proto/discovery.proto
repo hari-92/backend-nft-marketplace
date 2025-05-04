@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package discovery;
+
+option go_package = "./";
+
+// User service definition
+service DiscoveryProtoService {
+}
+
+// Request message for HelloWorld
+
+// Response message for HelloWorld

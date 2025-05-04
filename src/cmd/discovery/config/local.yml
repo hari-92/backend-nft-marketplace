@@ -1,0 +1,11 @@
+app:
+  port: 7899
+  host: 0.0.0.0
+
+  services:
+    "gateway":
+      host: gateway
+      port: 7979
+    "user":
+      host: user
+      port: 7900

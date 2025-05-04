@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./";
+
+// User service definition
+service UserProtoService {
+  // HelloWorld API endpoint
+  rpc HelloWorld (HelloWorldRequest) returns (HelloWorldResponse) {}
+}
+
+// Request message for HelloWorld
+message HelloWorldRequest {
+  string name = 1;
+}
+
+// Response message for HelloWorld
+message HelloWorldResponse {
+  string message = 1;
+}
