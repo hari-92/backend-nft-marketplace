@@ -6,8 +6,16 @@ option go_package = "./";
 
 // User service definition
 service DiscoveryProtoService {
+  rpc Discovery (DiscoveryServiceRequest) returns (DiscoveryServiceResponse) {}
 }
 
 // Request message for HelloWorld
+message DiscoveryServiceRequest {
+  string ServiceID = 1;
+}
 
 // Response message for HelloWorld
+message DiscoveryServiceResponse {
+  string Host = 1;
+  uint64 Port = 2;
+}

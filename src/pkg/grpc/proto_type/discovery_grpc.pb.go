@@ -7,7 +7,10 @@
 package __
 
 import (
+	context "context"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -15,12 +18,17 @@ import (
 // Requires gRPC-Go v1.64.0 or later.
 const _ = grpc.SupportPackageIsVersion9
 
+const (
+	DiscoveryProtoService_Discovery_FullMethodName = "/discovery.DiscoveryProtoService/Discovery"
+)
+
 // DiscoveryProtoServiceClient is the client API for DiscoveryProtoService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
 // User service definition
 type DiscoveryProtoServiceClient interface {
+	Discovery(ctx context.Context, in *DiscoveryServiceRequest, opts ...grpc.CallOption) (*DiscoveryServiceResponse, error)
 }
 
 type discoveryProtoServiceClient struct {
@@ -31,12 +39,23 @@ func NewDiscoveryProtoServiceClient(cc grpc.ClientConnInterface) DiscoveryProtoS
 	return &discoveryProtoServiceClient{cc}
 }
 
+func (c *discoveryProtoServiceClient) Discovery(ctx context.Context, in *DiscoveryServiceRequest, opts ...grpc.CallOption) (*DiscoveryServiceResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DiscoveryServiceResponse)
+	err := c.cc.Invoke(ctx, DiscoveryProtoService_Discovery_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DiscoveryProtoServiceServer is the server API for DiscoveryProtoService service.
 // All implementations must embed UnimplementedDiscoveryProtoServiceServer
 // for forward compatibility.
 //
 // User service definition
 type DiscoveryProtoServiceServer interface {
+	Discovery(context.Context, *DiscoveryServiceRequest) (*DiscoveryServiceResponse, error)
 	mustEmbedUnimplementedDiscoveryProtoServiceServer()
 }
 
@@ -47,6 +66,9 @@ type DiscoveryProtoServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDiscoveryProtoServiceServer struct{}
 
+func (UnimplementedDiscoveryProtoServiceServer) Discovery(context.Context, *DiscoveryServiceRequest) (*DiscoveryServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Discovery not implemented")
+}
 func (UnimplementedDiscoveryProtoServiceServer) mustEmbedUnimplementedDiscoveryProtoServiceServer() {}
 func (UnimplementedDiscoveryProtoServiceServer) testEmbeddedByValue()                               {}
 
@@ -68,13 +90,36 @@ func RegisterDiscoveryProtoServiceServer(s grpc.ServiceRegistrar, srv DiscoveryP
 	s.RegisterService(&DiscoveryProtoService_ServiceDesc, srv)
 }
 
+func _DiscoveryProtoService_Discovery_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DiscoveryServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DiscoveryProtoServiceServer).Discovery(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DiscoveryProtoService_Discovery_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DiscoveryProtoServiceServer).Discovery(ctx, req.(*DiscoveryServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DiscoveryProtoService_ServiceDesc is the grpc.ServiceDesc for DiscoveryProtoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DiscoveryProtoService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "discovery.DiscoveryProtoService",
 	HandlerType: (*DiscoveryProtoServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "discovery.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Discovery",
+			Handler:    _DiscoveryProtoService_Discovery_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "discovery.proto",
 }

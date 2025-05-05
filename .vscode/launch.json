@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Gateway Service",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/src/cmd/gateway/main.go",
+      "env": {
+        "ENV": "debug"
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/src/cmd/gateway"
+    }
+  ]
+} 
