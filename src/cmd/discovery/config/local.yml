@@ -1,11 +1,14 @@
 app:
   port: 7899
   host: 0.0.0.0
+  grpcServer:
+    host: localhost
+    port: 9999
 
   services:
     "gateway":
-      host: gateway
-      port: 7979
+      host: localhost
+      port: 9001
     "user":
-      host: user
-      port: 7900
+      host: localhost
+      port: 9002

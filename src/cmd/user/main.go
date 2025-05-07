@@ -10,6 +10,7 @@ func main() {
 	fx.New(
 		bootstrap.WithDefaultOptions(),
 		bootstrap.WithApi(),
+		bootstrap.WithGrpcServer(),
 		user.NewProvider(),
 	).Run()
 }

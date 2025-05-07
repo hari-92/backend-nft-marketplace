@@ -117,3 +117,5 @@ src/tmp/*
 .aider*
 
 .devcontainer/docker-compose.yml
+
+src/cmd/*/*debug_bin*

@@ -12,6 +12,30 @@
       },
       "args": [],
       "cwd": "${workspaceFolder}/src/cmd/gateway"
+    },
+    {
+      "name": "Debug Discovery Service",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/src/cmd/discovery/main.go",
+      "env": {
+        "ENV": "debug"
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/src/cmd/discovery"
+    },
+    {
+      "name": "Debug User Service",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/src/cmd/user/main.go",
+      "env": {
+        "ENV": "debug"
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}/src/cmd/user"
     }
   ]
 } 
