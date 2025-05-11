@@ -1,7 +1,6 @@
 package user
 
 import (
-	"gitlab.com/hari-92/nft-market-server/internal/modules/discovery/grpc"
 	userGrpc "gitlab.com/hari-92/nft-market-server/internal/modules/user/grpc"
 	userRouters "gitlab.com/hari-92/nft-market-server/internal/modules/user/routers"
 	"go.uber.org/fx"
@@ -14,6 +13,6 @@ func NewProvider() fx.Option {
 
 		fx.Provide(userGrpc.NewGrpcHandler),
 		fx.Provide(userGrpc.NewGrpcServer),
-		fx.Invoke(func(s *grpc.Server) {}),
+		fx.Invoke(func(s *userGrpc.Server) {}),
 	)
 }
