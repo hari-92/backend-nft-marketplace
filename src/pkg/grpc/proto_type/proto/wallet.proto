@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package wallet;
+
+option go_package = "./";
+
+// Wallet service definition
+service WalletProtoService {
+
+}
