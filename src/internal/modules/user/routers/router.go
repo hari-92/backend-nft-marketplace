@@ -1,4 +1,4 @@
-package routers
+package user_routers
 
 import (
 	"github.com/gin-gonic/gin"

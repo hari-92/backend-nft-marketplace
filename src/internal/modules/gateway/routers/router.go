@@ -1,4 +1,4 @@
-package routers
+package gateway_routers
 
 import (
 	"github.com/gin-gonic/gin"
@@ -6,7 +6,7 @@ import (
 	golibgin "github.com/golibs-starter/golib-gin"
 	"github.com/golibs-starter/golib/log"
 	"github.com/golibs-starter/golib/web/actuator"
-	"gitlab.com/hari-92/nft-market-server/internal/modules/gateway/controllers"
+	gatewayControllers "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/controllers"
 	"go.uber.org/fx"
 )
 
@@ -15,7 +15,8 @@ type RegisterRoutersIn struct {
 	App            *golib.App
 	Engine         *gin.Engine
 	Actuator       *actuator.Endpoint
-	UserController *controllers.UserController
+	UserController *gatewayControllers.UserController
+	AuthController *gatewayControllers.AuthController
 }
 
 func RegisterHandler(app *golib.App, engine *gin.Engine) {
@@ -35,4 +36,5 @@ func RegisterRoutes(p RegisterRoutersIn) {
 	group.GET("/actuator/info", gin.WrapF(p.Actuator.Info))
 
 	p.RegisterUserRoutes()
+	p.RegisterAuthRoutes()
 }

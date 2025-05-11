@@ -1,4 +1,4 @@
-package discovery_grpc
+package gateway_grpc
 
 import (
 	"fmt"
@@ -13,8 +13,8 @@ type Server struct {
 }
 
 func NewGrpcServer(g *bootstrap.GrpcServer, handler *Handler) *Server {
-	fmt.Println("NewGrpcServer")
-	pb.RegisterDiscoveryProtoServiceServer(g.Server, handler)
+	fmt.Println("NewGrpcServer gateway_grpc")
+	pb.RegisterGatewayProtoServiceServer(g.Server, handler)
 
 	return &Server{
 		GrpcServer: g,

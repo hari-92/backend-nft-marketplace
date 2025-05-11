@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package gateway;
+
+option go_package = "./";
+
+// Gateway service definition
+service GatewayProtoService {
+}

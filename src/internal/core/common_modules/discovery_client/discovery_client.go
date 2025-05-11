@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"gitlab.com/hari-92/nft-market-server/internal/core/common_modules/discovery_client/properties"
+	discoveryClientProperties "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/discovery_client/properties"
 	"gitlab.com/hari-92/nft-market-server/internal/core/constant"
 	pb "gitlab.com/hari-92/nft-market-server/pkg/grpc/proto_type"
 	"google.golang.org/grpc"
@@ -21,7 +21,7 @@ type DiscoveryGrpcClient struct {
 	clientManager map[constant.ServiceID]interface{}
 }
 
-func NewDiscoveryClient(properties *properties.GrpcServerDiscoveryProperties) IDiscoveryGrpcClient {
+func NewDiscoveryClient(properties *discoveryClientProperties.GrpcServerDiscoveryProperties) IDiscoveryGrpcClient {
 	var conn *grpc.ClientConn
 	address := fmt.Sprintf("%s:%d", properties.Host, properties.Port)
 	conn, err := grpc.NewClient(address, grpc.WithTransportCredentials(insecure.NewCredentials()))

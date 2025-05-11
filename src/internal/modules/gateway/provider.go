@@ -1,18 +1,31 @@
 package gateway
 
 import (
-	"gitlab.com/hari-92/nft-market-server/internal/modules/gateway/controllers"
-	"gitlab.com/hari-92/nft-market-server/internal/modules/gateway/instance"
-	"gitlab.com/hari-92/nft-market-server/internal/modules/gateway/routers"
+	gatewayControllers "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/controllers"
+	gatewayGrpc "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/grpc"
+	gatewayInstance "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/instance"
+	gatewayRouters "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/routers"
+	gatewayServices "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/services"
 	"go.uber.org/fx"
 )
 
 func NewProvider() fx.Option {
 	return fx.Options(
-		fx.Provide(controllers.NewUserController),
-		fx.Invoke(routers.RegisterRoutes),
-		fx.Invoke(routers.RegisterHandler),
+		// Provide controllers
+		fx.Provide(gatewayControllers.NewUserController),
+		fx.Provide(gatewayControllers.NewAuthController),
 
-		fx.Invoke(instance.NewGatewayInstanceVars),
+		// Provide service
+		fx.Provide(gatewayServices.NewAuthService),
+
+		// Provide router handler
+		fx.Invoke(gatewayRouters.RegisterRoutes),
+		fx.Invoke(gatewayRouters.RegisterHandler),
+
+		fx.Provide(gatewayGrpc.NewGrpcHandler),
+		fx.Provide(gatewayGrpc.NewGrpcServer),
+		fx.Invoke(func(s *gatewayGrpc.Server) {}),
+
+		fx.Invoke(gatewayInstance.NewGatewayInstanceVars),
 	)
 }

@@ -1,4 +1,4 @@
-package properties
+package discovery_properties
 
 import (
 	"fmt"

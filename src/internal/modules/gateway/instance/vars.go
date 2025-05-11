@@ -1,4 +1,4 @@
-package instance
+package gateway_instance
 
 import (
 	"sync"

@@ -1,4 +1,4 @@
-package properties
+package discovery_client_properties
 
 import "github.com/golibs-starter/golib/config"
 

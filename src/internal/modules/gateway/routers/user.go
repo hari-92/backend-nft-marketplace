@@ -1,4 +1,4 @@
-package routers
+package gateway_routers
 
 func (p RegisterRoutersIn) RegisterUserRoutes() {
 	userRouter := p.Engine.Group("/user")
