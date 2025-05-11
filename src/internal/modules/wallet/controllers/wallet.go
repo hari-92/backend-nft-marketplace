@@ -2,7 +2,7 @@ package wallet_controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	wallet_requests "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/requests"
+	walletRequests "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/requests"
 	walletServices "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/services"
 )
 
@@ -15,7 +15,7 @@ func NewWalletController() *WalletController {
 }
 
 func (w *WalletController) GetBalances(ctx *gin.Context) {
-	res, err := w.walletService.GetBalances(&wallet_requests.GetBalances{})
+	res, err := w.walletService.GetBalances(&walletRequests.GetBalances{})
 	if err != nil {
 		ctx.JSON(500, gin.H{"message": "Server Internal Error", "error": err.Error()})
 		return
