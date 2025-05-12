@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package pnl;
+
+option go_package = "./";
+
+// Pnl service definition
+service PnlProtoService {
+    // Add your pnl service methods here
+}
