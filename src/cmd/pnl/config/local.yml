@@ -1,5 +1,5 @@
 app:
-  port: 7903
+  port: 7904
   grpcServerDiscovery:
     host: 0.0.0.0
     port: 9999

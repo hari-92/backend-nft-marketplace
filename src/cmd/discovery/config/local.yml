@@ -8,10 +8,26 @@ app:
   services:
     "gateway":
       host: localhost
-      port: 9001
+      port: 9000
     "user":
       host: localhost
+      port: 9001
+    "candle_stick":
+      host: localhost
       port: 9002
+    "order":
+      host: localhost
+      port: 9003
     "pnl":
       host: localhost
       port: 9004
+    "token":
+      host: localhost
+      port: 9005
+    "trading_pair":
+      host: localhost
+      port: 9006
+    "wallet":
+      host: localhost
+      port: 9007
+

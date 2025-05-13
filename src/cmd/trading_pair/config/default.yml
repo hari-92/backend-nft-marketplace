@@ -1,3 +1,4 @@
 app:
-  port: 7904
+  port: 7906
   name: trading_pair
+
