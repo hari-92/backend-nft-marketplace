@@ -1,0 +1,27 @@
+package wallet_services
+
+import (
+	walletModels "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/models"
+	walletRepositories "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/repositories"
+)
+
+type IWalletService interface {
+	GetBalances(userID uint32) ([]*walletModels.Wallet, error)
+}
+
+func NewWalletService() IWalletService {
+	return &WalletService{}
+}
+
+type WalletService struct {
+	walletRepository walletRepositories.IWalletRepository
+}
+
+func (w *WalletService) GetBalances(userID uint32) ([]*walletModels.Wallet, error) {
+	wallets, err := w.walletRepository.GetBalances(userID)
+	if err != nil {
+		return nil, err
+	}
+
+	return wallets, nil
+}
