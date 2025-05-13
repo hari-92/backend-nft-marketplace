@@ -12,11 +12,12 @@ import (
 
 type RegisterRoutersIn struct {
 	fx.In
-	App            *golib.App
-	Engine         *gin.Engine
-	Actuator       *actuator.Endpoint
-	UserController *gatewayControllers.UserController
-	AuthController *gatewayControllers.AuthController
+	App              *golib.App
+	Engine           *gin.Engine
+	Actuator         *actuator.Endpoint
+	UserController   *gatewayControllers.UserController
+	AuthController   *gatewayControllers.AuthController
+	WalletController *gatewayControllers.WalletController
 }
 
 func RegisterHandler(app *golib.App, engine *gin.Engine) {
@@ -37,4 +38,5 @@ func RegisterRoutes(p RegisterRoutersIn) {
 
 	p.RegisterUserRoutes()
 	p.RegisterAuthRoutes()
+	p.RegisterWalletRoutes()
 }

@@ -9,7 +9,8 @@ import (
 type ServiceID string
 
 const (
-	User ServiceID = "user"
+	User   ServiceID = "user"
+	Wallet ServiceID = "wallet"
 )
 
 func (s ServiceID) String() string {
@@ -20,6 +21,11 @@ func UserClient(cc grpc.ClientConnInterface) interface{} {
 	return pb.NewUserProtoServiceClient(cc)
 }
 
+func WalletClient(cc grpc.ClientConnInterface) interface{} {
+	return pb.NewWalletProtoServiceClient(cc)
+}
+
 var RegisterGrpcClient = map[ServiceID]func(cc grpc.ClientConnInterface) interface{}{
-	User: UserClient,
+	User:   UserClient,
+	Wallet: WalletClient,
 }

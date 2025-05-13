@@ -6,7 +6,8 @@ import (
 )
 
 var (
-	userClient pb.UserProtoServiceClient
+	userClient   pb.UserProtoServiceClient
+	walletClient pb.WalletProtoServiceClient
 )
 
 func GetUserClient() pb.UserProtoServiceClient {
@@ -21,4 +22,18 @@ func GetUserClient() pb.UserProtoServiceClient {
 
 	userClient = client.(pb.UserProtoServiceClient)
 	return userClient
+}
+
+func GetWalletClient() pb.WalletProtoServiceClient {
+	if walletClient != nil {
+		return walletClient
+	}
+
+	client, err := discoveryGrpcClient.GetClient(constant.Wallet)
+	if err != nil {
+		panic(err)
+	}
+
+	walletClient = client.(pb.WalletProtoServiceClient)
+	return walletClient
 }
