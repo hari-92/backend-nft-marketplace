@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v6.30.2
-// source: wallet.proto
+// source: token.proto
 
 package __
 
@@ -20,15 +20,15 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-var File_wallet_proto protoreflect.FileDescriptor
+var File_token_proto protoreflect.FileDescriptor
 
-const file_wallet_proto_rawDesc = "" +
+const file_token_proto_rawDesc = "" +
 	"\n" +
-	"\fwallet.proto\x12\x06wallet2\x14\n" +
-	"\x12WalletProtoServiceB\x04Z\x02./b\x06proto3"
+	"\vtoken.proto\x12\x05token2\x13\n" +
+	"\x11TokenProtoServiceB\x04Z\x02./b\x06proto3"
 
-var file_wallet_proto_goTypes = []any{}
-var file_wallet_proto_depIdxs = []int32{
+var file_token_proto_goTypes = []any{}
+var file_token_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -36,25 +36,25 @@ var file_wallet_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_wallet_proto_init() }
-func file_wallet_proto_init() {
-	if File_wallet_proto != nil {
+func init() { file_token_proto_init() }
+func file_token_proto_init() {
+	if File_token_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_wallet_proto_rawDesc), len(file_wallet_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_token_proto_rawDesc), len(file_token_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_wallet_proto_goTypes,
-		DependencyIndexes: file_wallet_proto_depIdxs,
+		GoTypes:           file_token_proto_goTypes,
+		DependencyIndexes: file_token_proto_depIdxs,
 	}.Build()
-	File_wallet_proto = out.File
-	file_wallet_proto_goTypes = nil
-	file_wallet_proto_depIdxs = nil
+	File_token_proto = out.File
+	file_token_proto_goTypes = nil
+	file_token_proto_depIdxs = nil
 }
