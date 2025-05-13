@@ -9,8 +9,12 @@ type IWalletService interface {
 	GetBalances(userID uint32) ([]*walletModels.Wallet, error)
 }
 
-func NewWalletService() IWalletService {
-	return &WalletService{}
+func NewWalletService(
+	walletRepository walletRepositories.IWalletRepository,
+) IWalletService {
+	return &WalletService{
+		walletRepository: walletRepository,
+	}
 }
 
 type WalletService struct {
