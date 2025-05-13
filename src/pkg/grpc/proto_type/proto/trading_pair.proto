@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package trading_pair;
+
+option go_package = "./";
+
+// TradingPair service definition
+service TradingPairProtoService {
+    // Add your trading pair service methods here
+}

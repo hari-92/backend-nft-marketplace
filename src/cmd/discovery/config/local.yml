@@ -12,3 +12,6 @@ app:
     "user":
       host: localhost
       port: 9002
+    "pnl":
+      host: localhost
+      port: 9004
