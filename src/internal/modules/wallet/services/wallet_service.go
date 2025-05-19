@@ -6,7 +6,7 @@ import (
 )
 
 type IWalletService interface {
-	GetBalances(userID uint32) ([]*walletModels.Wallet, error)
+	GetBalance(userID uint32) ([]*walletModels.Wallet, error)
 }
 
 func NewWalletService(
@@ -21,8 +21,8 @@ type WalletService struct {
 	walletRepository walletRepositories.IWalletRepository
 }
 
-func (w *WalletService) GetBalances(userID uint32) ([]*walletModels.Wallet, error) {
-	wallets, err := w.walletRepository.GetBalances(userID)
+func (w *WalletService) GetBalance(userID uint32) ([]*walletModels.Wallet, error) {
+	wallets, err := w.walletRepository.GetBalance(userID)
 	if err != nil {
 		return nil, err
 	}
