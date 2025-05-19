@@ -2,17 +2,23 @@ package wallet_repositories
 
 import (
 	wallet_models "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/models"
+	"gorm.io/gorm"
 )
 
 type IWalletRepository interface {
 	GetBalances(userID uint32) ([]*wallet_models.Wallet, error)
 }
 
-func NewWalletRepository() IWalletRepository {
-	return &WalletRepository{}
+func NewWalletRepository(
+	db *gorm.DB,
+) IWalletRepository {
+	return &WalletRepository{
+		db: db,
+	}
 }
 
 type WalletRepository struct {
+	db *gorm.DB
 }
 
 func (w *WalletRepository) GetBalances(userID uint32) ([]*wallet_models.Wallet, error) {

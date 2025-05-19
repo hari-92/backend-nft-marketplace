@@ -10,7 +10,7 @@ services:
       timeout: 5s
       retries: 5
     environment:
-      - MYSQL_DATABASE=db
+      - MYSQL_DATABASE=trading
     ports:
       - "3306:3306"
     volumes:
@@ -25,7 +25,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: secret
-      MONGO_INITDB_DATABASE: dbz
+      MONGO_INITDB_DATABASE: trading
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
       interval: 30s
@@ -44,11 +44,11 @@ services:
       - "6379:6379"
 
   gateway:
-#    depends_on:
-#      mysql:
-#        condition: service_healthy
-#      mongo:
-#        condition: service_healthy
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
     build:
       context: .
       dockerfile: Dockerfile
