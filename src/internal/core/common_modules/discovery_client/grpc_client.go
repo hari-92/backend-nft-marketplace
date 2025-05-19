@@ -8,6 +8,7 @@ import (
 var (
 	userClient   pb.UserProtoServiceClient
 	walletClient pb.WalletProtoServiceClient
+	tokenClient  pb.TokenProtoServiceClient
 )
 
 func GetUserClient() pb.UserProtoServiceClient {
@@ -36,4 +37,18 @@ func GetWalletClient() pb.WalletProtoServiceClient {
 
 	walletClient = client.(pb.WalletProtoServiceClient)
 	return walletClient
+}
+
+func GetTokenClient() pb.TokenProtoServiceClient {
+	if tokenClient != nil {
+		return tokenClient
+	}
+
+	client, err := discoveryGrpcClient.GetClient(constant.Token)
+	if err != nil {
+		panic(err)
+	}
+
+	tokenClient = client.(pb.TokenProtoServiceClient)
+	return tokenClient
 }

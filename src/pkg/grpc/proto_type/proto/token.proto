@@ -6,5 +6,58 @@ option go_package = "./";
 
 // Token service definition
 service TokenProtoService {
+    rpc GetTokens(GetTokensRequest) returns (GetTokensResponse) {}
+    rpc GetToken(GetTokenRequest) returns (GetTokenResponse) {}
+    rpc PostToken(PostTokenRequest) returns (PostTokenResponse) {}
+    rpc PutToken(PutTokenRequest) returns (PutTokenResponse) {}
+    rpc DeleteToken(DeleteTokenRequest) returns (DeleteTokenResponse) {}
+    rpc PostValidateToken(PostValidateTokenRequest) returns (PostValidateTokenResponse) {}
+}
 
+message GetTokensRequest {
+    string token_id = 1;
+}
+
+message GetTokensResponse {
+    string token_id = 1;
+}
+
+message GetTokenRequest {
+    string token_id = 1;
+}
+
+message GetTokenResponse {
+    string token_id = 1;
+}
+
+message PostTokenRequest {
+    string token_id = 1;
+}
+
+message PostTokenResponse {
+    string token_id = 1;
+}
+
+message PutTokenRequest {
+    string token_id = 1;
+}
+
+message PutTokenResponse {
+    string token_id = 1;
+}
+
+message DeleteTokenRequest {
+    string token_id = 1;
+}
+
+message DeleteTokenResponse {
+    string token_id = 1;
+}
+
+message PostValidateTokenRequest {
+    string token_id = 1;
+}
+
+message PostValidateTokenResponse {
+    string token_id = 1;
 }

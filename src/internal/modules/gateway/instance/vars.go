@@ -7,14 +7,16 @@ import (
 )
 
 var (
+	once                 sync.Once
 	UserRpcPortGateway   rpc_ports.IUserRpcPorts
 	WalletRpcPortGateway rpc_ports.IWalletRpcPorts
-	once                 sync.Once
+	TokenRpcPortGateway  rpc_ports.ITokenRpcPorts
 )
 
 func NewGatewayInstanceVars() {
 	once.Do(func() {
 		UserRpcPortGateway = rpc_ports.NewUserRpcPorts()
 		WalletRpcPortGateway = rpc_ports.NewWalletRpcPorts()
+		TokenRpcPortGateway = rpc_ports.NewTokenRpcPorts()
 	})
 }

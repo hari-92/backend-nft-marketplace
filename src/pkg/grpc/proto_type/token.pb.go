@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -20,20 +21,616 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type GetTokensRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTokensRequest) Reset() {
+	*x = GetTokensRequest{}
+	mi := &file_token_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTokensRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTokensRequest) ProtoMessage() {}
+
+func (x *GetTokensRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTokensRequest.ProtoReflect.Descriptor instead.
+func (*GetTokensRequest) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *GetTokensRequest) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type GetTokensResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTokensResponse) Reset() {
+	*x = GetTokensResponse{}
+	mi := &file_token_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTokensResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTokensResponse) ProtoMessage() {}
+
+func (x *GetTokensResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTokensResponse.ProtoReflect.Descriptor instead.
+func (*GetTokensResponse) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetTokensResponse) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type GetTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTokenRequest) Reset() {
+	*x = GetTokenRequest{}
+	mi := &file_token_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTokenRequest) ProtoMessage() {}
+
+func (x *GetTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTokenRequest.ProtoReflect.Descriptor instead.
+func (*GetTokenRequest) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetTokenRequest) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type GetTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetTokenResponse) Reset() {
+	*x = GetTokenResponse{}
+	mi := &file_token_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTokenResponse) ProtoMessage() {}
+
+func (x *GetTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTokenResponse.ProtoReflect.Descriptor instead.
+func (*GetTokenResponse) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetTokenResponse) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type PostTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostTokenRequest) Reset() {
+	*x = PostTokenRequest{}
+	mi := &file_token_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostTokenRequest) ProtoMessage() {}
+
+func (x *PostTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostTokenRequest.ProtoReflect.Descriptor instead.
+func (*PostTokenRequest) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *PostTokenRequest) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type PostTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostTokenResponse) Reset() {
+	*x = PostTokenResponse{}
+	mi := &file_token_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostTokenResponse) ProtoMessage() {}
+
+func (x *PostTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostTokenResponse.ProtoReflect.Descriptor instead.
+func (*PostTokenResponse) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *PostTokenResponse) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type PutTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PutTokenRequest) Reset() {
+	*x = PutTokenRequest{}
+	mi := &file_token_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutTokenRequest) ProtoMessage() {}
+
+func (x *PutTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutTokenRequest.ProtoReflect.Descriptor instead.
+func (*PutTokenRequest) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *PutTokenRequest) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type PutTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PutTokenResponse) Reset() {
+	*x = PutTokenResponse{}
+	mi := &file_token_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PutTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PutTokenResponse) ProtoMessage() {}
+
+func (x *PutTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PutTokenResponse.ProtoReflect.Descriptor instead.
+func (*PutTokenResponse) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *PutTokenResponse) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type DeleteTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteTokenRequest) Reset() {
+	*x = DeleteTokenRequest{}
+	mi := &file_token_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteTokenRequest) ProtoMessage() {}
+
+func (x *DeleteTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteTokenRequest.ProtoReflect.Descriptor instead.
+func (*DeleteTokenRequest) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *DeleteTokenRequest) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type DeleteTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteTokenResponse) Reset() {
+	*x = DeleteTokenResponse{}
+	mi := &file_token_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteTokenResponse) ProtoMessage() {}
+
+func (x *DeleteTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteTokenResponse.ProtoReflect.Descriptor instead.
+func (*DeleteTokenResponse) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *DeleteTokenResponse) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type PostValidateTokenRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostValidateTokenRequest) Reset() {
+	*x = PostValidateTokenRequest{}
+	mi := &file_token_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostValidateTokenRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostValidateTokenRequest) ProtoMessage() {}
+
+func (x *PostValidateTokenRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostValidateTokenRequest.ProtoReflect.Descriptor instead.
+func (*PostValidateTokenRequest) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *PostValidateTokenRequest) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
+type PostValidateTokenResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostValidateTokenResponse) Reset() {
+	*x = PostValidateTokenResponse{}
+	mi := &file_token_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostValidateTokenResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostValidateTokenResponse) ProtoMessage() {}
+
+func (x *PostValidateTokenResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_token_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostValidateTokenResponse.ProtoReflect.Descriptor instead.
+func (*PostValidateTokenResponse) Descriptor() ([]byte, []int) {
+	return file_token_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *PostValidateTokenResponse) GetTokenId() string {
+	if x != nil {
+		return x.TokenId
+	}
+	return ""
+}
+
 var File_token_proto protoreflect.FileDescriptor
 
 const file_token_proto_rawDesc = "" +
 	"\n" +
-	"\vtoken.proto\x12\x05token2\x13\n" +
-	"\x11TokenProtoServiceB\x04Z\x02./b\x06proto3"
+	"\vtoken.proto\x12\x05token\"-\n" +
+	"\x10GetTokensRequest\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\".\n" +
+	"\x11GetTokensResponse\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\",\n" +
+	"\x0fGetTokenRequest\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\"-\n" +
+	"\x10GetTokenResponse\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\"-\n" +
+	"\x10PostTokenRequest\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\".\n" +
+	"\x11PostTokenResponse\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\",\n" +
+	"\x0fPutTokenRequest\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\"-\n" +
+	"\x10PutTokenResponse\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\"/\n" +
+	"\x12DeleteTokenRequest\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\"0\n" +
+	"\x13DeleteTokenResponse\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\"5\n" +
+	"\x18PostValidateTokenRequest\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\"6\n" +
+	"\x19PostValidateTokenResponse\x12\x19\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId2\xb7\x03\n" +
+	"\x11TokenProtoService\x12@\n" +
+	"\tGetTokens\x12\x17.token.GetTokensRequest\x1a\x18.token.GetTokensResponse\"\x00\x12=\n" +
+	"\bGetToken\x12\x16.token.GetTokenRequest\x1a\x17.token.GetTokenResponse\"\x00\x12@\n" +
+	"\tPostToken\x12\x17.token.PostTokenRequest\x1a\x18.token.PostTokenResponse\"\x00\x12=\n" +
+	"\bPutToken\x12\x16.token.PutTokenRequest\x1a\x17.token.PutTokenResponse\"\x00\x12F\n" +
+	"\vDeleteToken\x12\x19.token.DeleteTokenRequest\x1a\x1a.token.DeleteTokenResponse\"\x00\x12X\n" +
+	"\x11PostValidateToken\x12\x1f.token.PostValidateTokenRequest\x1a .token.PostValidateTokenResponse\"\x00B\x04Z\x02./b\x06proto3"
 
-var file_token_proto_goTypes = []any{}
+var (
+	file_token_proto_rawDescOnce sync.Once
+	file_token_proto_rawDescData []byte
+)
+
+func file_token_proto_rawDescGZIP() []byte {
+	file_token_proto_rawDescOnce.Do(func() {
+		file_token_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_token_proto_rawDesc), len(file_token_proto_rawDesc)))
+	})
+	return file_token_proto_rawDescData
+}
+
+var file_token_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_token_proto_goTypes = []any{
+	(*GetTokensRequest)(nil),          // 0: token.GetTokensRequest
+	(*GetTokensResponse)(nil),         // 1: token.GetTokensResponse
+	(*GetTokenRequest)(nil),           // 2: token.GetTokenRequest
+	(*GetTokenResponse)(nil),          // 3: token.GetTokenResponse
+	(*PostTokenRequest)(nil),          // 4: token.PostTokenRequest
+	(*PostTokenResponse)(nil),         // 5: token.PostTokenResponse
+	(*PutTokenRequest)(nil),           // 6: token.PutTokenRequest
+	(*PutTokenResponse)(nil),          // 7: token.PutTokenResponse
+	(*DeleteTokenRequest)(nil),        // 8: token.DeleteTokenRequest
+	(*DeleteTokenResponse)(nil),       // 9: token.DeleteTokenResponse
+	(*PostValidateTokenRequest)(nil),  // 10: token.PostValidateTokenRequest
+	(*PostValidateTokenResponse)(nil), // 11: token.PostValidateTokenResponse
+}
 var file_token_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: token.TokenProtoService.GetTokens:input_type -> token.GetTokensRequest
+	2,  // 1: token.TokenProtoService.GetToken:input_type -> token.GetTokenRequest
+	4,  // 2: token.TokenProtoService.PostToken:input_type -> token.PostTokenRequest
+	6,  // 3: token.TokenProtoService.PutToken:input_type -> token.PutTokenRequest
+	8,  // 4: token.TokenProtoService.DeleteToken:input_type -> token.DeleteTokenRequest
+	10, // 5: token.TokenProtoService.PostValidateToken:input_type -> token.PostValidateTokenRequest
+	1,  // 6: token.TokenProtoService.GetTokens:output_type -> token.GetTokensResponse
+	3,  // 7: token.TokenProtoService.GetToken:output_type -> token.GetTokenResponse
+	5,  // 8: token.TokenProtoService.PostToken:output_type -> token.PostTokenResponse
+	7,  // 9: token.TokenProtoService.PutToken:output_type -> token.PutTokenResponse
+	9,  // 10: token.TokenProtoService.DeleteToken:output_type -> token.DeleteTokenResponse
+	11, // 11: token.TokenProtoService.PostValidateToken:output_type -> token.PostValidateTokenResponse
+	6,  // [6:12] is the sub-list for method output_type
+	0,  // [0:6] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_token_proto_init() }
@@ -47,12 +644,13 @@ func file_token_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_token_proto_rawDesc), len(file_token_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_token_proto_goTypes,
 		DependencyIndexes: file_token_proto_depIdxs,
+		MessageInfos:      file_token_proto_msgTypes,
 	}.Build()
 	File_token_proto = out.File
 	file_token_proto_goTypes = nil
