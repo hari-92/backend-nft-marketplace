@@ -8,7 +8,7 @@ import (
 )
 
 type IWalletRpcPorts interface {
-	GetBalances(ctx context.Context, userID uint32) ([]*pb.Wallet, error)
+	GetBalance(ctx context.Context, userID uint32) ([]*pb.Wallet, error)
 }
 
 type walletRpcPorts struct {
@@ -18,8 +18,8 @@ func NewWalletRpcPorts() IWalletRpcPorts {
 	return &walletRpcPorts{}
 }
 
-func (w *walletRpcPorts) GetBalances(ctx context.Context, userID uint32) ([]*pb.Wallet, error) {
-	res, err := discovery_client.GetWalletClient().GetBalances(ctx, &pb.GetBalancesRequest{UserId: userID})
+func (w *walletRpcPorts) GetBalance(ctx context.Context, userID uint32) ([]*pb.Wallet, error) {
+	res, err := discovery_client.GetWalletClient().GetBalance(ctx, &pb.GetBalanceRequest{UserId: userID})
 	if err != nil {
 		return nil, err
 	}

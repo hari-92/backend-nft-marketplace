@@ -6,7 +6,7 @@ import (
 )
 
 type IWalletRepository interface {
-	GetBalances(userID uint32) ([]*wallet_models.Wallet, error)
+	GetBalance(userID uint32) ([]*wallet_models.Wallet, error)
 }
 
 func NewWalletRepository(
@@ -21,7 +21,7 @@ type WalletRepository struct {
 	db *gorm.DB
 }
 
-func (w *WalletRepository) GetBalances(userID uint32) ([]*wallet_models.Wallet, error) {
+func (w *WalletRepository) GetBalance(userID uint32) ([]*wallet_models.Wallet, error) {
 	// Create mock data with 10 different tokens
 	mockWallets := []*wallet_models.Wallet{
 		{

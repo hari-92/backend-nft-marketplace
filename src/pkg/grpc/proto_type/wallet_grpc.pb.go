@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	WalletProtoService_GetBalances_FullMethodName = "/wallet.WalletProtoService/GetBalances"
+	WalletProtoService_GetBalance_FullMethodName = "/wallet.WalletProtoService/GetBalance"
 )
 
 // WalletProtoServiceClient is the client API for WalletProtoService service.
@@ -28,7 +28,7 @@ const (
 //
 // Wallet service definition
 type WalletProtoServiceClient interface {
-	GetBalances(ctx context.Context, in *GetBalancesRequest, opts ...grpc.CallOption) (*GetBalancesResponse, error)
+	GetBalance(ctx context.Context, in *GetBalanceRequest, opts ...grpc.CallOption) (*GetBalanceResponse, error)
 }
 
 type walletProtoServiceClient struct {
@@ -39,10 +39,10 @@ func NewWalletProtoServiceClient(cc grpc.ClientConnInterface) WalletProtoService
 	return &walletProtoServiceClient{cc}
 }
 
-func (c *walletProtoServiceClient) GetBalances(ctx context.Context, in *GetBalancesRequest, opts ...grpc.CallOption) (*GetBalancesResponse, error) {
+func (c *walletProtoServiceClient) GetBalance(ctx context.Context, in *GetBalanceRequest, opts ...grpc.CallOption) (*GetBalanceResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBalancesResponse)
-	err := c.cc.Invoke(ctx, WalletProtoService_GetBalances_FullMethodName, in, out, cOpts...)
+	out := new(GetBalanceResponse)
+	err := c.cc.Invoke(ctx, WalletProtoService_GetBalance_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +55,7 @@ func (c *walletProtoServiceClient) GetBalances(ctx context.Context, in *GetBalan
 //
 // Wallet service definition
 type WalletProtoServiceServer interface {
-	GetBalances(context.Context, *GetBalancesRequest) (*GetBalancesResponse, error)
+	GetBalance(context.Context, *GetBalanceRequest) (*GetBalanceResponse, error)
 	mustEmbedUnimplementedWalletProtoServiceServer()
 }
 
@@ -66,8 +66,8 @@ type WalletProtoServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedWalletProtoServiceServer struct{}
 
-func (UnimplementedWalletProtoServiceServer) GetBalances(context.Context, *GetBalancesRequest) (*GetBalancesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBalances not implemented")
+func (UnimplementedWalletProtoServiceServer) GetBalance(context.Context, *GetBalanceRequest) (*GetBalanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBalance not implemented")
 }
 func (UnimplementedWalletProtoServiceServer) mustEmbedUnimplementedWalletProtoServiceServer() {}
 func (UnimplementedWalletProtoServiceServer) testEmbeddedByValue()                            {}
@@ -90,20 +90,20 @@ func RegisterWalletProtoServiceServer(s grpc.ServiceRegistrar, srv WalletProtoSe
 	s.RegisterService(&WalletProtoService_ServiceDesc, srv)
 }
 
-func _WalletProtoService_GetBalances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBalancesRequest)
+func _WalletProtoService_GetBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBalanceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(WalletProtoServiceServer).GetBalances(ctx, in)
+		return srv.(WalletProtoServiceServer).GetBalance(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: WalletProtoService_GetBalances_FullMethodName,
+		FullMethod: WalletProtoService_GetBalance_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletProtoServiceServer).GetBalances(ctx, req.(*GetBalancesRequest))
+		return srv.(WalletProtoServiceServer).GetBalance(ctx, req.(*GetBalanceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -116,8 +116,8 @@ var WalletProtoService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*WalletProtoServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetBalances",
-			Handler:    _WalletProtoService_GetBalances_Handler,
+			MethodName: "GetBalance",
+			Handler:    _WalletProtoService_GetBalance_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

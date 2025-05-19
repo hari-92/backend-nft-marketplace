@@ -19,12 +19,12 @@ func NewGrpcHandler(walletService walletServices.IWalletService) *Handler {
 	}
 }
 
-func (h *Handler) GetBalances(ctx context.Context, req *pb.GetBalancesRequest) (*pb.GetBalancesResponse, error) {
-	wallets, err := h.walletService.GetBalances(req.UserId)
+func (h *Handler) GetBalance(ctx context.Context, req *pb.GetBalanceRequest) (*pb.GetBalanceResponse, error) {
+	wallets, err := h.walletService.GetBalance(req.UserId)
 	if err != nil {
 		return nil, err
 	}
-	return &pb.GetBalancesResponse{
+	return &pb.GetBalanceResponse{
 		Wallets: walletConverters.ToWalletProtoList(wallets),
 	}, nil
 }

@@ -6,7 +6,7 @@ option go_package = "./";
 
 // Wallet service definition
 service WalletProtoService {
-    rpc GetBalances(GetBalancesRequest) returns (GetBalancesResponse) {}
+    rpc GetBalance(GetBalanceRequest) returns (GetBalanceResponse) {}
 }
 
 message Wallet {
@@ -16,10 +16,10 @@ message Wallet {
     double balance = 4;
 }
 
-message GetBalancesRequest {
+message GetBalanceRequest {
     uint32 user_id = 1;
 }
 
-message GetBalancesResponse {
+message GetBalanceResponse {
     repeated Wallet wallets = 1;
 }
