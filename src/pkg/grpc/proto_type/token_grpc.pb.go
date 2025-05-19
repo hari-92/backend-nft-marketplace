@@ -7,7 +7,10 @@
 package __
 
 import (
+	context "context"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -15,12 +18,27 @@ import (
 // Requires gRPC-Go v1.64.0 or later.
 const _ = grpc.SupportPackageIsVersion9
 
+const (
+	TokenProtoService_GetTokens_FullMethodName         = "/token.TokenProtoService/GetTokens"
+	TokenProtoService_GetToken_FullMethodName          = "/token.TokenProtoService/GetToken"
+	TokenProtoService_PostToken_FullMethodName         = "/token.TokenProtoService/PostToken"
+	TokenProtoService_PutToken_FullMethodName          = "/token.TokenProtoService/PutToken"
+	TokenProtoService_DeleteToken_FullMethodName       = "/token.TokenProtoService/DeleteToken"
+	TokenProtoService_PostValidateToken_FullMethodName = "/token.TokenProtoService/PostValidateToken"
+)
+
 // TokenProtoServiceClient is the client API for TokenProtoService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
 // Token service definition
 type TokenProtoServiceClient interface {
+	GetTokens(ctx context.Context, in *GetTokensRequest, opts ...grpc.CallOption) (*GetTokensResponse, error)
+	GetToken(ctx context.Context, in *GetTokenRequest, opts ...grpc.CallOption) (*GetTokenResponse, error)
+	PostToken(ctx context.Context, in *PostTokenRequest, opts ...grpc.CallOption) (*PostTokenResponse, error)
+	PutToken(ctx context.Context, in *PutTokenRequest, opts ...grpc.CallOption) (*PutTokenResponse, error)
+	DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error)
+	PostValidateToken(ctx context.Context, in *PostValidateTokenRequest, opts ...grpc.CallOption) (*PostValidateTokenResponse, error)
 }
 
 type tokenProtoServiceClient struct {
@@ -31,12 +49,78 @@ func NewTokenProtoServiceClient(cc grpc.ClientConnInterface) TokenProtoServiceCl
 	return &tokenProtoServiceClient{cc}
 }
 
+func (c *tokenProtoServiceClient) GetTokens(ctx context.Context, in *GetTokensRequest, opts ...grpc.CallOption) (*GetTokensResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTokensResponse)
+	err := c.cc.Invoke(ctx, TokenProtoService_GetTokens_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tokenProtoServiceClient) GetToken(ctx context.Context, in *GetTokenRequest, opts ...grpc.CallOption) (*GetTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTokenResponse)
+	err := c.cc.Invoke(ctx, TokenProtoService_GetToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tokenProtoServiceClient) PostToken(ctx context.Context, in *PostTokenRequest, opts ...grpc.CallOption) (*PostTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PostTokenResponse)
+	err := c.cc.Invoke(ctx, TokenProtoService_PostToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tokenProtoServiceClient) PutToken(ctx context.Context, in *PutTokenRequest, opts ...grpc.CallOption) (*PutTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PutTokenResponse)
+	err := c.cc.Invoke(ctx, TokenProtoService_PutToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tokenProtoServiceClient) DeleteToken(ctx context.Context, in *DeleteTokenRequest, opts ...grpc.CallOption) (*DeleteTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteTokenResponse)
+	err := c.cc.Invoke(ctx, TokenProtoService_DeleteToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tokenProtoServiceClient) PostValidateToken(ctx context.Context, in *PostValidateTokenRequest, opts ...grpc.CallOption) (*PostValidateTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PostValidateTokenResponse)
+	err := c.cc.Invoke(ctx, TokenProtoService_PostValidateToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TokenProtoServiceServer is the server API for TokenProtoService service.
 // All implementations must embed UnimplementedTokenProtoServiceServer
 // for forward compatibility.
 //
 // Token service definition
 type TokenProtoServiceServer interface {
+	GetTokens(context.Context, *GetTokensRequest) (*GetTokensResponse, error)
+	GetToken(context.Context, *GetTokenRequest) (*GetTokenResponse, error)
+	PostToken(context.Context, *PostTokenRequest) (*PostTokenResponse, error)
+	PutToken(context.Context, *PutTokenRequest) (*PutTokenResponse, error)
+	DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error)
+	PostValidateToken(context.Context, *PostValidateTokenRequest) (*PostValidateTokenResponse, error)
 	mustEmbedUnimplementedTokenProtoServiceServer()
 }
 
@@ -47,6 +131,24 @@ type TokenProtoServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTokenProtoServiceServer struct{}
 
+func (UnimplementedTokenProtoServiceServer) GetTokens(context.Context, *GetTokensRequest) (*GetTokensResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTokens not implemented")
+}
+func (UnimplementedTokenProtoServiceServer) GetToken(context.Context, *GetTokenRequest) (*GetTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetToken not implemented")
+}
+func (UnimplementedTokenProtoServiceServer) PostToken(context.Context, *PostTokenRequest) (*PostTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostToken not implemented")
+}
+func (UnimplementedTokenProtoServiceServer) PutToken(context.Context, *PutTokenRequest) (*PutTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PutToken not implemented")
+}
+func (UnimplementedTokenProtoServiceServer) DeleteToken(context.Context, *DeleteTokenRequest) (*DeleteTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteToken not implemented")
+}
+func (UnimplementedTokenProtoServiceServer) PostValidateToken(context.Context, *PostValidateTokenRequest) (*PostValidateTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostValidateToken not implemented")
+}
 func (UnimplementedTokenProtoServiceServer) mustEmbedUnimplementedTokenProtoServiceServer() {}
 func (UnimplementedTokenProtoServiceServer) testEmbeddedByValue()                           {}
 
@@ -68,13 +170,146 @@ func RegisterTokenProtoServiceServer(s grpc.ServiceRegistrar, srv TokenProtoServ
 	s.RegisterService(&TokenProtoService_ServiceDesc, srv)
 }
 
+func _TokenProtoService_GetTokens_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTokensRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TokenProtoServiceServer).GetTokens(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TokenProtoService_GetTokens_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TokenProtoServiceServer).GetTokens(ctx, req.(*GetTokensRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TokenProtoService_GetToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TokenProtoServiceServer).GetToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TokenProtoService_GetToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TokenProtoServiceServer).GetToken(ctx, req.(*GetTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TokenProtoService_PostToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TokenProtoServiceServer).PostToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TokenProtoService_PostToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TokenProtoServiceServer).PostToken(ctx, req.(*PostTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TokenProtoService_PutToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TokenProtoServiceServer).PutToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TokenProtoService_PutToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TokenProtoServiceServer).PutToken(ctx, req.(*PutTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TokenProtoService_DeleteToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TokenProtoServiceServer).DeleteToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TokenProtoService_DeleteToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TokenProtoServiceServer).DeleteToken(ctx, req.(*DeleteTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TokenProtoService_PostValidateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostValidateTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TokenProtoServiceServer).PostValidateToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TokenProtoService_PostValidateToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TokenProtoServiceServer).PostValidateToken(ctx, req.(*PostValidateTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TokenProtoService_ServiceDesc is the grpc.ServiceDesc for TokenProtoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TokenProtoService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "token.TokenProtoService",
 	HandlerType: (*TokenProtoServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "token.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetTokens",
+			Handler:    _TokenProtoService_GetTokens_Handler,
+		},
+		{
+			MethodName: "GetToken",
+			Handler:    _TokenProtoService_GetToken_Handler,
+		},
+		{
+			MethodName: "PostToken",
+			Handler:    _TokenProtoService_PostToken_Handler,
+		},
+		{
+			MethodName: "PutToken",
+			Handler:    _TokenProtoService_PutToken_Handler,
+		},
+		{
+			MethodName: "DeleteToken",
+			Handler:    _TokenProtoService_DeleteToken_Handler,
+		},
+		{
+			MethodName: "PostValidateToken",
+			Handler:    _TokenProtoService_PostValidateToken_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "token.proto",
 }
