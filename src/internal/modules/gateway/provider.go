@@ -16,6 +16,7 @@ func NewProvider() fx.Option {
 		fx.Provide(gatewayControllers.NewAuthController),
 		fx.Provide(gatewayControllers.NewWalletController),
 		fx.Provide(gatewayControllers.NewTokenController),
+		fx.Provide(gatewayControllers.NewPairController),
 		// Provide service
 		fx.Provide(gatewayServices.NewAuthService),
 

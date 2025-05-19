@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package pair;
+
+option go_package = "./";
+
+// Pair service definition
+service PairProtoService {
+    // Add your trading pair service methods here
+    rpc GetPairs(GetPairsRequest) returns (GetPairsResponse) {}
+    rpc GetPair(GetPairRequest) returns (GetPairResponse) {}
+    rpc PostPair(PostPairRequest) returns (PostPairResponse) {}
+    rpc PutPair(PutPairRequest) returns (PutPairResponse) {}
+    rpc DeletePair(DeletePairRequest) returns (DeletePairResponse) {}
+    rpc PostValidatePair(PostValidatePairRequest) returns (PostValidatePairResponse) {}
+}
+
+message Pair {
+    string id = 1;
+}
+
+message GetPairsRequest {
+    string token_id = 1;
+}
+
+message GetPairsResponse {
+    repeated Pair pairs = 1;
+}
+
+message GetPairRequest {
+    string pair_id = 1;
+}
+
+message GetPairResponse {
+    Pair pair = 1;
+}
+
+message PostPairRequest {
+    Pair pair = 1;
+}
+
+message PostPairResponse {
+    Pair pair = 1;
+}
+
+message PutPairRequest {
+    Pair pair = 1;
+}
+
+message PutPairResponse {
+    Pair pair = 1;
+}
+
+message DeletePairRequest {
+    string pair_id = 1;
+}
+
+message DeletePairResponse {
+    bool success = 1;
+}
+
+message PostValidatePairRequest {
+    Pair pair = 1;
+}
+
+message PostValidatePairResponse {
+    bool success = 1;
+}

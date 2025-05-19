@@ -1,9 +1,9 @@
-package trading_pair_grpc
+package pair_grpc
 
 import pb "gitlab.com/hari-92/nft-market-server/pkg/grpc/proto_type"
 
 type Handler struct {
-	pb.UnimplementedTradingPairProtoServiceServer
+	pb.UnimplementedPairProtoServiceServer
 }
 
 func NewGrpcHandler() *Handler {
