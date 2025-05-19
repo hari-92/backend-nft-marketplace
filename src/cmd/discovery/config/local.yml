@@ -24,7 +24,7 @@ app:
     "token":
       host: localhost
       port: 9005
-    "trading_pair":
+    "pair":
       host: localhost
       port: 9006
     "wallet":

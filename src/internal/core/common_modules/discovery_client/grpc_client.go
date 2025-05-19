@@ -9,6 +9,7 @@ var (
 	userClient   pb.UserProtoServiceClient
 	walletClient pb.WalletProtoServiceClient
 	tokenClient  pb.TokenProtoServiceClient
+	pairClient   pb.PairProtoServiceClient
 )
 
 func GetUserClient() pb.UserProtoServiceClient {
@@ -51,4 +52,18 @@ func GetTokenClient() pb.TokenProtoServiceClient {
 
 	tokenClient = client.(pb.TokenProtoServiceClient)
 	return tokenClient
+}
+
+func GetPairClient() pb.PairProtoServiceClient {
+	if pairClient != nil {
+		return pairClient
+	}
+
+	client, err := discoveryGrpcClient.GetClient(constant.Pair)
+	if err != nil {
+		panic(err)
+	}
+
+	pairClient = client.(pb.PairProtoServiceClient)
+	return pairClient
 }

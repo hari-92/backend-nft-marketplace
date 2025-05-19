@@ -1,4 +1,4 @@
-package trading_pair_grpc
+package pair_grpc
 
 import (
 	"fmt"
@@ -14,8 +14,8 @@ type Server struct {
 }
 
 func NewGrpcServer(grpcServer *bootstrap.GrpcServer, grpcHandler *Handler) *Server {
-	fmt.Println("NewGrpcServer trading_pair_grpc")
-	pb.RegisterTradingPairProtoServiceServer(grpcServer.Server, grpcHandler)
+	fmt.Println("NewGrpcServer pair_grpc")
+	pb.RegisterPairProtoServiceServer(grpcServer.Server, grpcHandler)
 
 	return &Server{
 		GrpcServer: grpcServer,
