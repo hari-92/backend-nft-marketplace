@@ -1,4 +1,4 @@
-package candle_stick
+package candle
 
 import (
 	candleControllers "gitlab.com/hari-92/nft-market-server/internal/modules/candle/controllers"
