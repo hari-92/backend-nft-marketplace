@@ -6,5 +6,113 @@ option go_package = "./";
 
 // Order service definition
 service OrderProtoService {
+    rpc GetOrders(GetOrdersRequest) returns (GetOrdersResponse) {}
+    rpc GetOrder(GetOrderRequest) returns (GetOrderResponse) {}
+    rpc PostOrder(PostOrderRequest) returns (PostOrderResponse) {}
+    rpc DeleteOrder(DeleteOrderRequest) returns (DeleteOrderResponse) {}
+    rpc DeleteOrders(DeleteOrdersRequest) returns (DeleteOrdersResponse) {}
+    rpc PostValidateOrder(PostValidateOrderRequest) returns (PostValidateOrderResponse) {}
+    rpc GetHistory(GetHistoryRequest) returns (GetHistoryResponse) {}
+    rpc PostAdminCancel(PostAdminCancelRequest) returns (PostAdminCancelResponse) {}
 }
 
+message GetOrdersRequest {
+    string user_id = 1;
+    int32 page = 2;
+    int32 limit = 3;
+}
+
+message GetOrdersResponse {
+    repeated Order orders = 1;
+}
+
+message GetOrderRequest {
+    string order_id = 1;
+}
+
+message GetOrderResponse {
+    Order order = 1;
+}
+
+message PostOrderRequest {
+    string user_id = 1;
+    string pair_id = 2;
+    string side = 3;
+    string type = 4;
+    string price = 5;
+    string quantity = 6;
+}
+
+message PostOrderResponse {
+    string order_id = 1;
+}
+
+message DeleteOrderRequest {
+    string order_id = 1;
+}
+
+message DeleteOrderResponse {
+    string message = 1;
+}
+
+message DeleteOrdersRequest {
+    string user_id = 1;
+}
+
+message DeleteOrdersResponse {
+    string message = 1;
+}
+
+message PostValidateOrderRequest {
+    string user_id = 1;
+    string pair_id = 2;
+
+    string side = 3;
+    string type = 4;
+    string price = 5;
+    string quantity = 6;
+}
+
+message PostValidateOrderResponse {
+    string message = 1;
+}
+
+message GetHistoryRequest {
+    string user_id = 1;
+    int32 page = 2;
+
+    string start_date = 3;
+    string end_date = 4;
+}
+
+message GetHistoryResponse {
+    repeated Order orders = 1;
+}
+
+message PostAdminCancelRequest {
+    string order_id = 1;
+}
+
+message PostAdminCancelResponse {
+    string message = 1;
+}
+
+message Order {
+    string order_id = 1;
+    string user_id = 2;
+    string pair_id = 3;
+    string side = 4;
+    string type = 5;
+    string price = 6;
+    string quantity = 7;
+    string status = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
+
+enum OrderStatus {
+    ORDER_STATUS_UNSPECIFIED = 0;
+    ORDER_STATUS_PENDING = 1;
+    ORDER_STATUS_FILLED = 2;
+    ORDER_STATUS_CANCELED = 3;
+}
