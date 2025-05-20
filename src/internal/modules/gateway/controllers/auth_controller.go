@@ -44,3 +44,13 @@ func (c *AuthController) Logout(ctx *gin.Context) {
 	}
 	ctx.JSON(200, gin.H{"message": "Logout successfully", "data": res})
 }
+
+// GoogleCallback callback from google oauth (GET /auth/callback/google)
+func (c *AuthController) GoogleCallback(ctx *gin.Context) {
+	res, err := c.authService.GoogleCallback(&gatewayRequest.GoogleCallbackRequest{})
+	if err != nil {
+		ctx.JSON(500, gin.H{"message": "Server Internal Error", "error": err.Error()})
+		return
+	}
+	ctx.JSON(200, gin.H{"message": "Google Callback successfully", "data": res})
+}

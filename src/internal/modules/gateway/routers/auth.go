@@ -5,4 +5,7 @@ func (p RegisterRoutersIn) RegisterAuthRoutes() {
 	group.POST("/login", p.AuthController.Login)
 	group.POST("/register", p.AuthController.Register)
 	group.POST("/logout", p.AuthController.Logout)
+
+	// Callback
+	group.POST("/callback/google", p.AuthController.GoogleCallback)
 }

@@ -9,6 +9,7 @@ type AuthService interface {
 	Login(request *gatewayRequest.Login) (response *gatewayResponse.Login, err error)
 	Register(request *gatewayRequest.Register) (response *gatewayResponse.Register, err error)
 	Logout(request *gatewayRequest.Logout) (response *gatewayResponse.Logout, err error)
+	GoogleCallback(request *gatewayRequest.GoogleCallbackRequest) (response *gatewayResponse.GoogleCallbackResponse, err error)
 }
 
 func NewAuthService() AuthService {
@@ -30,4 +31,8 @@ func (s *authService) Register(request *gatewayRequest.Register) (response *gate
 
 func (s *authService) Logout(request *gatewayRequest.Logout) (response *gatewayResponse.Logout, err error) {
 	return &gatewayResponse.Logout{}, nil
+}
+
+func (s *authService) GoogleCallback(request *gatewayRequest.GoogleCallbackRequest) (response *gatewayResponse.GoogleCallbackResponse, err error) {
+	return &gatewayResponse.GoogleCallbackResponse{}, nil
 }
