@@ -41,7 +41,7 @@ type OrderProtoServiceClient interface {
 	DeleteOrder(ctx context.Context, in *DeleteOrderRequest, opts ...grpc.CallOption) (*DeleteOrderResponse, error)
 	DeleteOrders(ctx context.Context, in *DeleteOrdersRequest, opts ...grpc.CallOption) (*DeleteOrdersResponse, error)
 	PostValidateOrder(ctx context.Context, in *PostValidateOrderRequest, opts ...grpc.CallOption) (*PostValidateOrderResponse, error)
-	GetHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error)
+	GetHistory(ctx context.Context, in *GetOrderHistoryRequest, opts ...grpc.CallOption) (*GetOrderHistoryResponse, error)
 	PostAdminCancel(ctx context.Context, in *PostAdminCancelRequest, opts ...grpc.CallOption) (*PostAdminCancelResponse, error)
 }
 
@@ -113,9 +113,9 @@ func (c *orderProtoServiceClient) PostValidateOrder(ctx context.Context, in *Pos
 	return out, nil
 }
 
-func (c *orderProtoServiceClient) GetHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error) {
+func (c *orderProtoServiceClient) GetHistory(ctx context.Context, in *GetOrderHistoryRequest, opts ...grpc.CallOption) (*GetOrderHistoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetHistoryResponse)
+	out := new(GetOrderHistoryResponse)
 	err := c.cc.Invoke(ctx, OrderProtoService_GetHistory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -145,7 +145,7 @@ type OrderProtoServiceServer interface {
 	DeleteOrder(context.Context, *DeleteOrderRequest) (*DeleteOrderResponse, error)
 	DeleteOrders(context.Context, *DeleteOrdersRequest) (*DeleteOrdersResponse, error)
 	PostValidateOrder(context.Context, *PostValidateOrderRequest) (*PostValidateOrderResponse, error)
-	GetHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error)
+	GetHistory(context.Context, *GetOrderHistoryRequest) (*GetOrderHistoryResponse, error)
 	PostAdminCancel(context.Context, *PostAdminCancelRequest) (*PostAdminCancelResponse, error)
 	mustEmbedUnimplementedOrderProtoServiceServer()
 }
@@ -175,7 +175,7 @@ func (UnimplementedOrderProtoServiceServer) DeleteOrders(context.Context, *Delet
 func (UnimplementedOrderProtoServiceServer) PostValidateOrder(context.Context, *PostValidateOrderRequest) (*PostValidateOrderResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostValidateOrder not implemented")
 }
-func (UnimplementedOrderProtoServiceServer) GetHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error) {
+func (UnimplementedOrderProtoServiceServer) GetHistory(context.Context, *GetOrderHistoryRequest) (*GetOrderHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHistory not implemented")
 }
 func (UnimplementedOrderProtoServiceServer) PostAdminCancel(context.Context, *PostAdminCancelRequest) (*PostAdminCancelResponse, error) {
@@ -311,7 +311,7 @@ func _OrderProtoService_PostValidateOrder_Handler(srv interface{}, ctx context.C
 }
 
 func _OrderProtoService_GetHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetHistoryRequest)
+	in := new(GetOrderHistoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -323,7 +323,7 @@ func _OrderProtoService_GetHistory_Handler(srv interface{}, ctx context.Context,
 		FullMethod: OrderProtoService_GetHistory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrderProtoServiceServer).GetHistory(ctx, req.(*GetHistoryRequest))
+		return srv.(OrderProtoServiceServer).GetHistory(ctx, req.(*GetOrderHistoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

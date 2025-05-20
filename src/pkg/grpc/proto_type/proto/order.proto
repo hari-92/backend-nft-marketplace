@@ -12,7 +12,7 @@ service OrderProtoService {
     rpc DeleteOrder(DeleteOrderRequest) returns (DeleteOrderResponse) {}
     rpc DeleteOrders(DeleteOrdersRequest) returns (DeleteOrdersResponse) {}
     rpc PostValidateOrder(PostValidateOrderRequest) returns (PostValidateOrderResponse) {}
-    rpc GetHistory(GetHistoryRequest) returns (GetHistoryResponse) {}
+    rpc GetHistory(GetOrderHistoryRequest) returns (GetOrderHistoryResponse) {}
     rpc PostAdminCancel(PostAdminCancelRequest) returns (PostAdminCancelResponse) {}
 }
 
@@ -77,7 +77,7 @@ message PostValidateOrderResponse {
     string message = 1;
 }
 
-message GetHistoryRequest {
+message GetOrderHistoryRequest {
     string user_id = 1;
     int32 page = 2;
 
@@ -85,7 +85,7 @@ message GetHistoryRequest {
     string end_date = 4;
 }
 
-message GetHistoryResponse {
+message GetOrderHistoryResponse {
     repeated Order orders = 1;
 }
 

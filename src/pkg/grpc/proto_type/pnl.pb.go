@@ -493,27 +493,27 @@ func (x *PostRecalculateResponse) GetMessage() string {
 	return ""
 }
 
-type GetHistoryRequest struct {
+type GetPnlHistoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetHistoryRequest) Reset() {
-	*x = GetHistoryRequest{}
+func (x *GetPnlHistoryRequest) Reset() {
+	*x = GetPnlHistoryRequest{}
 	mi := &file_pnl_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetHistoryRequest) String() string {
+func (x *GetPnlHistoryRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetHistoryRequest) ProtoMessage() {}
+func (*GetPnlHistoryRequest) ProtoMessage() {}
 
-func (x *GetHistoryRequest) ProtoReflect() protoreflect.Message {
+func (x *GetPnlHistoryRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_pnl_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -525,39 +525,39 @@ func (x *GetHistoryRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetHistoryRequest.ProtoReflect.Descriptor instead.
-func (*GetHistoryRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetPnlHistoryRequest.ProtoReflect.Descriptor instead.
+func (*GetPnlHistoryRequest) Descriptor() ([]byte, []int) {
 	return file_pnl_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *GetHistoryRequest) GetUserId() string {
+func (x *GetPnlHistoryRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-type GetHistoryResponse struct {
+type GetPnlHistoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	History       []*PnlHistory          `protobuf:"bytes,1,rep,name=history,proto3" json:"history,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetHistoryResponse) Reset() {
-	*x = GetHistoryResponse{}
+func (x *GetPnlHistoryResponse) Reset() {
+	*x = GetPnlHistoryResponse{}
 	mi := &file_pnl_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetHistoryResponse) String() string {
+func (x *GetPnlHistoryResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetHistoryResponse) ProtoMessage() {}
+func (*GetPnlHistoryResponse) ProtoMessage() {}
 
-func (x *GetHistoryResponse) ProtoReflect() protoreflect.Message {
+func (x *GetPnlHistoryResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pnl_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -569,12 +569,12 @@ func (x *GetHistoryResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetHistoryResponse.ProtoReflect.Descriptor instead.
-func (*GetHistoryResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetPnlHistoryResponse.ProtoReflect.Descriptor instead.
+func (*GetPnlHistoryResponse) Descriptor() ([]byte, []int) {
 	return file_pnl_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *GetHistoryResponse) GetHistory() []*PnlHistory {
+func (x *GetPnlHistoryResponse) GetHistory() []*PnlHistory {
 	if x != nil {
 		return x.History
 	}
@@ -965,10 +965,10 @@ const file_pnl_proto_rawDesc = "" +
 	"\x16PostRecalculateRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"3\n" +
 	"\x17PostRecalculateResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\",\n" +
-	"\x11GetHistoryRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"?\n" +
-	"\x12GetHistoryResponse\x12)\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"/\n" +
+	"\x14GetPnlHistoryRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"B\n" +
+	"\x15GetPnlHistoryResponse\x12)\n" +
 	"\ahistory\x18\x01 \x03(\v2\x0f.pnl.PnlHistoryR\ahistory\"\xb7\x01\n" +
 	"\n" +
 	"PnlHistory\x12\x0e\n" +
@@ -991,16 +991,16 @@ const file_pnl_proto_rawDesc = "" +
 	"\x10GetExportRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"-\n" +
 	"\x11GetExportResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\xff\x03\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\x85\x04\n" +
 	"\x0fPnlProtoService\x12B\n" +
 	"\vGetRealized\x12\x17.pnl.GetRealizedRequest\x1a\x18.pnl.GetRealizedResponse\"\x00\x12H\n" +
 	"\rGetUnrealized\x12\x19.pnl.GetUnrealizedRequest\x1a\x1a.pnl.GetUnrealizedResponse\"\x00\x12?\n" +
 	"\n" +
 	"GetSummary\x12\x16.pnl.GetSummaryRequest\x1a\x17.pnl.GetSummaryResponse\"\x00\x12E\n" +
 	"\fGetPortfolio\x12\x18.pnl.GetPortfolioRequest\x1a\x19.pnl.GetPortfolioResponse\"\x00\x12N\n" +
-	"\x0fPostRecalculate\x12\x1b.pnl.PostRecalculateRequest\x1a\x1c.pnl.PostRecalculateResponse\"\x00\x12?\n" +
+	"\x0fPostRecalculate\x12\x1b.pnl.PostRecalculateRequest\x1a\x1c.pnl.PostRecalculateResponse\"\x00\x12E\n" +
 	"\n" +
-	"GetHistory\x12\x16.pnl.GetHistoryRequest\x1a\x17.pnl.GetHistoryResponse\"\x00\x12E\n" +
+	"GetHistory\x12\x19.pnl.GetPnlHistoryRequest\x1a\x1a.pnl.GetPnlHistoryResponse\"\x00\x12E\n" +
 	"\fPostValidate\x12\x18.pnl.PostValidateRequest\x1a\x19.pnl.PostValidateResponse\"\x00B\x04Z\x02./b\x06proto3"
 
 var (
@@ -1027,8 +1027,8 @@ var file_pnl_proto_goTypes = []any{
 	(*GetPortfolioResponse)(nil),    // 7: pnl.GetPortfolioResponse
 	(*PostRecalculateRequest)(nil),  // 8: pnl.PostRecalculateRequest
 	(*PostRecalculateResponse)(nil), // 9: pnl.PostRecalculateResponse
-	(*GetHistoryRequest)(nil),       // 10: pnl.GetHistoryRequest
-	(*GetHistoryResponse)(nil),      // 11: pnl.GetHistoryResponse
+	(*GetPnlHistoryRequest)(nil),    // 10: pnl.GetPnlHistoryRequest
+	(*GetPnlHistoryResponse)(nil),   // 11: pnl.GetPnlHistoryResponse
 	(*PnlHistory)(nil),              // 12: pnl.PnlHistory
 	(*PostValidateRequest)(nil),     // 13: pnl.PostValidateRequest
 	(*PostValidateResponse)(nil),    // 14: pnl.PostValidateResponse
@@ -1038,20 +1038,20 @@ var file_pnl_proto_goTypes = []any{
 	(*GetExportResponse)(nil),       // 18: pnl.GetExportResponse
 }
 var file_pnl_proto_depIdxs = []int32{
-	12, // 0: pnl.GetHistoryResponse.history:type_name -> pnl.PnlHistory
+	12, // 0: pnl.GetPnlHistoryResponse.history:type_name -> pnl.PnlHistory
 	0,  // 1: pnl.PnlProtoService.GetRealized:input_type -> pnl.GetRealizedRequest
 	2,  // 2: pnl.PnlProtoService.GetUnrealized:input_type -> pnl.GetUnrealizedRequest
 	4,  // 3: pnl.PnlProtoService.GetSummary:input_type -> pnl.GetSummaryRequest
 	6,  // 4: pnl.PnlProtoService.GetPortfolio:input_type -> pnl.GetPortfolioRequest
 	8,  // 5: pnl.PnlProtoService.PostRecalculate:input_type -> pnl.PostRecalculateRequest
-	10, // 6: pnl.PnlProtoService.GetHistory:input_type -> pnl.GetHistoryRequest
+	10, // 6: pnl.PnlProtoService.GetHistory:input_type -> pnl.GetPnlHistoryRequest
 	13, // 7: pnl.PnlProtoService.PostValidate:input_type -> pnl.PostValidateRequest
 	1,  // 8: pnl.PnlProtoService.GetRealized:output_type -> pnl.GetRealizedResponse
 	3,  // 9: pnl.PnlProtoService.GetUnrealized:output_type -> pnl.GetUnrealizedResponse
 	5,  // 10: pnl.PnlProtoService.GetSummary:output_type -> pnl.GetSummaryResponse
 	7,  // 11: pnl.PnlProtoService.GetPortfolio:output_type -> pnl.GetPortfolioResponse
 	9,  // 12: pnl.PnlProtoService.PostRecalculate:output_type -> pnl.PostRecalculateResponse
-	11, // 13: pnl.PnlProtoService.GetHistory:output_type -> pnl.GetHistoryResponse
+	11, // 13: pnl.PnlProtoService.GetHistory:output_type -> pnl.GetPnlHistoryResponse
 	14, // 14: pnl.PnlProtoService.PostValidate:output_type -> pnl.PostValidateResponse
 	8,  // [8:15] is the sub-list for method output_type
 	1,  // [1:8] is the sub-list for method input_type

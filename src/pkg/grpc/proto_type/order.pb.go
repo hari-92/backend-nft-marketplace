@@ -697,7 +697,7 @@ func (x *PostValidateOrderResponse) GetMessage() string {
 	return ""
 }
 
-type GetHistoryRequest struct {
+type GetOrderHistoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
@@ -707,20 +707,20 @@ type GetHistoryRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetHistoryRequest) Reset() {
-	*x = GetHistoryRequest{}
+func (x *GetOrderHistoryRequest) Reset() {
+	*x = GetOrderHistoryRequest{}
 	mi := &file_order_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetHistoryRequest) String() string {
+func (x *GetOrderHistoryRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetHistoryRequest) ProtoMessage() {}
+func (*GetOrderHistoryRequest) ProtoMessage() {}
 
-func (x *GetHistoryRequest) ProtoReflect() protoreflect.Message {
+func (x *GetOrderHistoryRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_order_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -732,60 +732,60 @@ func (x *GetHistoryRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetHistoryRequest.ProtoReflect.Descriptor instead.
-func (*GetHistoryRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetOrderHistoryRequest.ProtoReflect.Descriptor instead.
+func (*GetOrderHistoryRequest) Descriptor() ([]byte, []int) {
 	return file_order_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *GetHistoryRequest) GetUserId() string {
+func (x *GetOrderHistoryRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *GetHistoryRequest) GetPage() int32 {
+func (x *GetOrderHistoryRequest) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *GetHistoryRequest) GetStartDate() string {
+func (x *GetOrderHistoryRequest) GetStartDate() string {
 	if x != nil {
 		return x.StartDate
 	}
 	return ""
 }
 
-func (x *GetHistoryRequest) GetEndDate() string {
+func (x *GetOrderHistoryRequest) GetEndDate() string {
 	if x != nil {
 		return x.EndDate
 	}
 	return ""
 }
 
-type GetHistoryResponse struct {
+type GetOrderHistoryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Orders        []*Order               `protobuf:"bytes,1,rep,name=orders,proto3" json:"orders,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetHistoryResponse) Reset() {
-	*x = GetHistoryResponse{}
+func (x *GetOrderHistoryResponse) Reset() {
+	*x = GetOrderHistoryResponse{}
 	mi := &file_order_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetHistoryResponse) String() string {
+func (x *GetOrderHistoryResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetHistoryResponse) ProtoMessage() {}
+func (*GetOrderHistoryResponse) ProtoMessage() {}
 
-func (x *GetHistoryResponse) ProtoReflect() protoreflect.Message {
+func (x *GetOrderHistoryResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_order_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -797,12 +797,12 @@ func (x *GetHistoryResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetHistoryResponse.ProtoReflect.Descriptor instead.
-func (*GetHistoryResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetOrderHistoryResponse.ProtoReflect.Descriptor instead.
+func (*GetOrderHistoryResponse) Descriptor() ([]byte, []int) {
 	return file_order_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *GetHistoryResponse) GetOrders() []*Order {
+func (x *GetOrderHistoryResponse) GetOrders() []*Order {
 	if x != nil {
 		return x.Orders
 	}
@@ -1053,14 +1053,14 @@ const file_order_proto_rawDesc = "" +
 	"\x05price\x18\x05 \x01(\tR\x05price\x12\x1a\n" +
 	"\bquantity\x18\x06 \x01(\tR\bquantity\"5\n" +
 	"\x19PostValidateOrderResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage\"z\n" +
-	"\x11GetHistoryRequest\x12\x17\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"\x7f\n" +
+	"\x16GetOrderHistoryRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1d\n" +
 	"\n" +
 	"start_date\x18\x03 \x01(\tR\tstartDate\x12\x19\n" +
-	"\bend_date\x18\x04 \x01(\tR\aendDate\":\n" +
-	"\x12GetHistoryResponse\x12$\n" +
+	"\bend_date\x18\x04 \x01(\tR\aendDate\"?\n" +
+	"\x17GetOrderHistoryResponse\x12$\n" +
 	"\x06orders\x18\x01 \x03(\v2\f.order.OrderR\x06orders\"3\n" +
 	"\x16PostAdminCancelRequest\x12\x19\n" +
 	"\border_id\x18\x01 \x01(\tR\aorderId\"3\n" +
@@ -1084,16 +1084,16 @@ const file_order_proto_rawDesc = "" +
 	"\x18ORDER_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14ORDER_STATUS_PENDING\x10\x01\x12\x17\n" +
 	"\x13ORDER_STATUS_FILLED\x10\x02\x12\x19\n" +
-	"\x15ORDER_STATUS_CANCELED\x10\x032\xdc\x04\n" +
+	"\x15ORDER_STATUS_CANCELED\x10\x032\xe6\x04\n" +
 	"\x11OrderProtoService\x12@\n" +
 	"\tGetOrders\x12\x17.order.GetOrdersRequest\x1a\x18.order.GetOrdersResponse\"\x00\x12=\n" +
 	"\bGetOrder\x12\x16.order.GetOrderRequest\x1a\x17.order.GetOrderResponse\"\x00\x12@\n" +
 	"\tPostOrder\x12\x17.order.PostOrderRequest\x1a\x18.order.PostOrderResponse\"\x00\x12F\n" +
 	"\vDeleteOrder\x12\x19.order.DeleteOrderRequest\x1a\x1a.order.DeleteOrderResponse\"\x00\x12I\n" +
 	"\fDeleteOrders\x12\x1a.order.DeleteOrdersRequest\x1a\x1b.order.DeleteOrdersResponse\"\x00\x12X\n" +
-	"\x11PostValidateOrder\x12\x1f.order.PostValidateOrderRequest\x1a .order.PostValidateOrderResponse\"\x00\x12C\n" +
+	"\x11PostValidateOrder\x12\x1f.order.PostValidateOrderRequest\x1a .order.PostValidateOrderResponse\"\x00\x12M\n" +
 	"\n" +
-	"GetHistory\x12\x18.order.GetHistoryRequest\x1a\x19.order.GetHistoryResponse\"\x00\x12R\n" +
+	"GetHistory\x12\x1d.order.GetOrderHistoryRequest\x1a\x1e.order.GetOrderHistoryResponse\"\x00\x12R\n" +
 	"\x0fPostAdminCancel\x12\x1d.order.PostAdminCancelRequest\x1a\x1e.order.PostAdminCancelResponse\"\x00B\x04Z\x02./b\x06proto3"
 
 var (
@@ -1124,8 +1124,8 @@ var file_order_proto_goTypes = []any{
 	(*DeleteOrdersResponse)(nil),      // 10: order.DeleteOrdersResponse
 	(*PostValidateOrderRequest)(nil),  // 11: order.PostValidateOrderRequest
 	(*PostValidateOrderResponse)(nil), // 12: order.PostValidateOrderResponse
-	(*GetHistoryRequest)(nil),         // 13: order.GetHistoryRequest
-	(*GetHistoryResponse)(nil),        // 14: order.GetHistoryResponse
+	(*GetOrderHistoryRequest)(nil),    // 13: order.GetOrderHistoryRequest
+	(*GetOrderHistoryResponse)(nil),   // 14: order.GetOrderHistoryResponse
 	(*PostAdminCancelRequest)(nil),    // 15: order.PostAdminCancelRequest
 	(*PostAdminCancelResponse)(nil),   // 16: order.PostAdminCancelResponse
 	(*Order)(nil),                     // 17: order.Order
@@ -1133,14 +1133,14 @@ var file_order_proto_goTypes = []any{
 var file_order_proto_depIdxs = []int32{
 	17, // 0: order.GetOrdersResponse.orders:type_name -> order.Order
 	17, // 1: order.GetOrderResponse.order:type_name -> order.Order
-	17, // 2: order.GetHistoryResponse.orders:type_name -> order.Order
+	17, // 2: order.GetOrderHistoryResponse.orders:type_name -> order.Order
 	1,  // 3: order.OrderProtoService.GetOrders:input_type -> order.GetOrdersRequest
 	3,  // 4: order.OrderProtoService.GetOrder:input_type -> order.GetOrderRequest
 	5,  // 5: order.OrderProtoService.PostOrder:input_type -> order.PostOrderRequest
 	7,  // 6: order.OrderProtoService.DeleteOrder:input_type -> order.DeleteOrderRequest
 	9,  // 7: order.OrderProtoService.DeleteOrders:input_type -> order.DeleteOrdersRequest
 	11, // 8: order.OrderProtoService.PostValidateOrder:input_type -> order.PostValidateOrderRequest
-	13, // 9: order.OrderProtoService.GetHistory:input_type -> order.GetHistoryRequest
+	13, // 9: order.OrderProtoService.GetHistory:input_type -> order.GetOrderHistoryRequest
 	15, // 10: order.OrderProtoService.PostAdminCancel:input_type -> order.PostAdminCancelRequest
 	2,  // 11: order.OrderProtoService.GetOrders:output_type -> order.GetOrdersResponse
 	4,  // 12: order.OrderProtoService.GetOrder:output_type -> order.GetOrderResponse
@@ -1148,7 +1148,7 @@ var file_order_proto_depIdxs = []int32{
 	8,  // 14: order.OrderProtoService.DeleteOrder:output_type -> order.DeleteOrderResponse
 	10, // 15: order.OrderProtoService.DeleteOrders:output_type -> order.DeleteOrdersResponse
 	12, // 16: order.OrderProtoService.PostValidateOrder:output_type -> order.PostValidateOrderResponse
-	14, // 17: order.OrderProtoService.GetHistory:output_type -> order.GetHistoryResponse
+	14, // 17: order.OrderProtoService.GetHistory:output_type -> order.GetOrderHistoryResponse
 	16, // 18: order.OrderProtoService.PostAdminCancel:output_type -> order.PostAdminCancelResponse
 	11, // [11:19] is the sub-list for method output_type
 	3,  // [3:11] is the sub-list for method input_type

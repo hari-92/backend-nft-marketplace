@@ -11,7 +11,7 @@ service PnlProtoService {
     rpc GetSummary(GetSummaryRequest) returns (GetSummaryResponse) {}
     rpc GetPortfolio(GetPortfolioRequest) returns (GetPortfolioResponse) {}
     rpc PostRecalculate(PostRecalculateRequest) returns (PostRecalculateResponse) {}
-    rpc GetHistory(GetHistoryRequest) returns (GetHistoryResponse) {}
+    rpc GetHistory(GetPnlHistoryRequest) returns (GetPnlHistoryResponse) {}
     rpc PostValidate(PostValidateRequest) returns (PostValidateResponse) {}
 }
 
@@ -59,11 +59,11 @@ message PostRecalculateResponse {
     string message = 1;
 }
 
-message GetHistoryRequest {
+message GetPnlHistoryRequest {
     string user_id = 1;
 }
 
-message GetHistoryResponse {
+message GetPnlHistoryResponse {
     repeated PnlHistory history = 1;
 }
 
