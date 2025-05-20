@@ -22,6 +22,7 @@ type RegisterRoutersIn struct {
 	PairController   *gatewayControllers.PairController
 	PnlController    *gatewayControllers.PnlController
 	OrderController  *gatewayControllers.OrderController
+	CandleController *gatewayControllers.CandleController
 }
 
 func RegisterHandler(app *golib.App, engine *gin.Engine) {
@@ -47,4 +48,5 @@ func RegisterRoutes(p RegisterRoutersIn) {
 	p.RegisterPairRoutes()
 	p.RegisterPnlRoutes()
 	p.RegisterOrderRoutes()
+	p.RegisterCandleRoutes()
 }

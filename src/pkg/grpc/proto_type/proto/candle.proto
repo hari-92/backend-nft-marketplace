@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package candle;
+
+option go_package = "./";
+
+// Candle service definition
+service CandleProtoService {
+    rpc GetCandles(GetCandlesRequest) returns (GetCandlesResponse) {}
+    rpc GetCandleStats(GetCandleStatsRequest) returns (GetCandleStatsResponse) {}
+    rpc GetCandleLatest(GetCandleLatestRequest) returns (GetCandleLatestResponse) {}
+    rpc PostCandleValidate(PostCandleValidateRequest) returns (PostCandleValidateResponse) {}
+    rpc GetCandlesAggregate(GetCandlesAggregateRequest) returns (GetCandlesAggregateResponse) {}
+}
+
+message Candle {
+    string pair = 1;
+    string time_frame = 2;
+    string open = 3;
+    string high = 4;
+    string low = 5;
+    string close = 6;
+}
+
+message GetCandlesRequest {
+    string pair = 1;
+    string time_frame = 2;
+}
+
+message GetCandlesResponse {
+    repeated Candle candles = 1;
+}
+
+message GetCandleStatsRequest {
+    string pair = 1;
+    string time_frame = 2;
+}
+
+message GetCandleStatsResponse {
+    repeated Candle candles = 1;
+}
+
+message GetCandleLatestRequest {
+    string pair = 1;
+    string time_frame = 2;
+}
+
+message GetCandleLatestResponse {
+    Candle candle = 1;
+}
+
+message PostCandleValidateRequest {
+    Candle candle = 1;
+}
+
+message PostCandleValidateResponse {
+    bool is_valid = 1;
+}
+
+message GetCandlesAggregateRequest {
+    string pair = 1;
+}
+
+message GetCandlesAggregateResponse {
+    repeated Candle candles = 1;
+}

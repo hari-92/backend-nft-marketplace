@@ -14,6 +14,7 @@ var (
 	PairRpcPortGateway   rpc_ports.IPairRpcPorts
 	PnlRpcPortGateway    rpc_ports.IPnlRpcPorts
 	OrderRpcPortGateway  rpc_ports.IOrderRpcPorts
+	CandleRpcPortGateway rpc_ports.ICandleRpcPorts
 )
 
 func NewGatewayInstanceVars() {
@@ -24,5 +25,6 @@ func NewGatewayInstanceVars() {
 		PairRpcPortGateway = rpc_ports.NewPairRpcPorts()
 		PnlRpcPortGateway = rpc_ports.NewPnlRpcPorts()
 		OrderRpcPortGateway = rpc_ports.NewOrderRpcPorts()
+		CandleRpcPortGateway = rpc_ports.NewCandleRpcPorts()
 	})
 }

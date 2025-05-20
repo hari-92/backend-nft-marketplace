@@ -15,6 +15,7 @@ const (
 	Pair   ServiceID = "pair"
 	Pnl    ServiceID = "pnl"
 	Order  ServiceID = "order"
+	Candle ServiceID = "candle"
 )
 
 func (s ServiceID) String() string {
@@ -45,6 +46,10 @@ func OrderClient(cc grpc.ClientConnInterface) interface{} {
 	return pb.NewOrderProtoServiceClient(cc)
 }
 
+func CandleClient(cc grpc.ClientConnInterface) interface{} {
+	return pb.NewCandleProtoServiceClient(cc)
+}
+
 var RegisterGrpcClient = map[ServiceID]func(cc grpc.ClientConnInterface) interface{}{
 	User:   UserClient,
 	Wallet: WalletClient,
@@ -52,4 +57,5 @@ var RegisterGrpcClient = map[ServiceID]func(cc grpc.ClientConnInterface) interfa
 	Pair:   PairClient,
 	Pnl:    PnlClient,
 	Order:  OrderClient,
+	Candle: CandleClient,
 }

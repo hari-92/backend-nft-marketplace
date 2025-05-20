@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package candle_stick;
-
-option go_package = "./";
-
-// CandleStick service definition
-service CandleStickProtoService {
-}

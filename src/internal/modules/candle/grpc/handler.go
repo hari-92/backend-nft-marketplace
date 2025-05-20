@@ -1,9 +1,9 @@
-package candle_stick_grpc
+package candle_grpc
 
 import pb "gitlab.com/hari-92/nft-market-server/pkg/grpc/proto_type"
 
 type Handler struct {
-	pb.UnimplementedCandleStickProtoServiceServer
+	pb.UnimplementedCandleProtoServiceServer
 }
 
 func NewGrpcHandler() *Handler {
