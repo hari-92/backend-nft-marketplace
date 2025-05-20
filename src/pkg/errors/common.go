@@ -13,7 +13,7 @@ const (
 	BaseErrorCodeOrder
 	BaseErrorCodePnl
 	BaseErrorCodeTradingPair
-	BaseErrorCodeCandleStick
+	BaseErrorCodeCandle
 )
 
 func (e ErrorCode) GetRangeName() string {
@@ -32,10 +32,10 @@ func (e ErrorCode) GetRangeName() string {
 		return "Order"
 	case e >= BaseErrorCodePnl && e < BaseErrorCodeTradingPair:
 		return "Pnl"
-	case e >= BaseErrorCodeTradingPair && e < BaseErrorCodeCandleStick:
+	case e >= BaseErrorCodeTradingPair && e < BaseErrorCodeCandle:
 		return "TradingPair"
-	case e >= BaseErrorCodeCandleStick:
-		return "CandleStick"
+	case e >= BaseErrorCodeCandle:
+		return "Candle"
 	default:
 		return "Unknown"
 	}

@@ -11,6 +11,7 @@ var (
 	tokenClient  pb.TokenProtoServiceClient
 	pairClient   pb.PairProtoServiceClient
 	pnlClient    pb.PnlProtoServiceClient
+	candleClient pb.CandleProtoServiceClient
 )
 
 func GetUserClient() pb.UserProtoServiceClient {
@@ -81,4 +82,18 @@ func GetPnlClient() pb.PnlProtoServiceClient {
 
 	pnlClient = client.(pb.PnlProtoServiceClient)
 	return pnlClient
+}
+
+func GetCandleClient() pb.CandleProtoServiceClient {
+	if candleClient != nil {
+		return candleClient
+	}
+
+	client, err := discoveryGrpcClient.GetClient(constant.Candle)
+	if err != nil {
+		panic(err)
+	}
+
+	candleClient = client.(pb.CandleProtoServiceClient)
+	return candleClient
 }

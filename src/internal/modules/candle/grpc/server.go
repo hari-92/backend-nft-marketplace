@@ -1,4 +1,4 @@
-package candle_stick_grpc
+package candle_grpc
 
 import (
 	"fmt"
@@ -14,8 +14,8 @@ type Server struct {
 }
 
 func NewGrpcServer(g *bootstrap.GrpcServer, handler *Handler) *Server {
-	fmt.Println("NewGrpcServer candle_stick_grpc")
-	pb.RegisterCandleStickProtoServiceServer(g.Server, handler)
+	fmt.Println("NewGrpcServer candle_grpc")
+	pb.RegisterCandleProtoServiceServer(g.Server, handler)
 
 	return &Server{
 		GrpcServer: g,
