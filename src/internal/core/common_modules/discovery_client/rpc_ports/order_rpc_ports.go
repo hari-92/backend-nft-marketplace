@@ -13,7 +13,7 @@ type IOrderRpcPorts interface {
 	DeleteOrder(ctx context.Context, request *pb.DeleteOrderRequest) (*pb.DeleteOrderResponse, error)
 	DeleteOrders(ctx context.Context, request *pb.DeleteOrdersRequest) (*pb.DeleteOrdersResponse, error)
 	PostValidateOrder(ctx context.Context, request *pb.PostValidateOrderRequest) (*pb.PostValidateOrderResponse, error)
-	GetHistory(ctx context.Context, request *pb.GetHistoryRequest) (*pb.GetHistoryResponse, error)
+	GetHistory(ctx context.Context, request *pb.GetOrderHistoryRequest) (*pb.GetOrderHistoryResponse, error)
 	PostAdminCancel(ctx context.Context, request *pb.PostAdminCancelRequest) (*pb.PostAdminCancelResponse, error)
 }
 
@@ -54,7 +54,7 @@ func (p *orderRpcPorts) PostValidateOrder(ctx context.Context, request *pb.PostV
 	return nil, nil
 }
 
-func (p *orderRpcPorts) GetHistory(ctx context.Context, request *pb.GetHistoryRequest) (*pb.GetHistoryResponse, error) {
+func (p *orderRpcPorts) GetHistory(ctx context.Context, request *pb.GetOrderHistoryRequest) (*pb.GetOrderHistoryResponse, error) {
 	// TODO: Implement this
 	return nil, nil
 }

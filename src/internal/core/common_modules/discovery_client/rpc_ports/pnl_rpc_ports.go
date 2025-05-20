@@ -13,7 +13,7 @@ type IPnlRpcPorts interface {
 	GetSummary(ctx context.Context, in *pb.GetSummaryRequest, opts ...grpc.CallOption) (*pb.GetSummaryResponse, error)
 	GetPortfolio(ctx context.Context, in *pb.GetPortfolioRequest, opts ...grpc.CallOption) (*pb.GetPortfolioResponse, error)
 	PostRecalculate(ctx context.Context, in *pb.PostRecalculateRequest, opts ...grpc.CallOption) (*pb.PostRecalculateResponse, error)
-	GetHistory(ctx context.Context, in *pb.GetHistoryRequest, opts ...grpc.CallOption) (*pb.GetHistoryResponse, error)
+	GetHistory(ctx context.Context, in *pb.GetPnlHistoryRequest, opts ...grpc.CallOption) (*pb.GetPnlHistoryResponse, error)
 	PostValidate(ctx context.Context, in *pb.PostValidateRequest, opts ...grpc.CallOption) (*pb.PostValidateResponse, error)
 }
 
@@ -49,7 +49,7 @@ func (p *pnlRpcPorts) PostRecalculate(ctx context.Context, in *pb.PostRecalculat
 	return nil, nil
 }
 
-func (p *pnlRpcPorts) GetHistory(ctx context.Context, in *pb.GetHistoryRequest, opts ...grpc.CallOption) (*pb.GetHistoryResponse, error) {
+func (p *pnlRpcPorts) GetHistory(ctx context.Context, in *pb.GetPnlHistoryRequest, opts ...grpc.CallOption) (*pb.GetPnlHistoryResponse, error) {
 	// TODO: Implement this
 	return nil, nil
 }
