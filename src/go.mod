@@ -1,6 +1,8 @@
 module gitlab.com/hari-92/nft-market-server
 
-go 1.23.4
+go 1.23.0
+
+toolchain go1.23.4
 
 require (
 	ariga.io/atlas-provider-gorm v0.5.1
