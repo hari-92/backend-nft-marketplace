@@ -29,16 +29,16 @@ func (o *OrderController) PostOrder(ctx *gin.Context) {
 	ctx.JSON(200, gin.H{"message": "Post Order"})
 }
 
-// DeleteOrder: Delete an order by id (DELETE /orders/:order_id)
-func (o *OrderController) DeleteOrder(ctx *gin.Context) {
+// CancelOrder: Cancel an order by id (DELETE /orders/:order_id)
+func (o *OrderController) CancelOrder(ctx *gin.Context) {
 	// TODO: Implement this
-	ctx.JSON(200, gin.H{"message": "Delete Order"})
+	ctx.JSON(200, gin.H{"message": "Cancel a order"})
 }
 
-// DeleteOrders: Delete all orders of a user (DELETE /orders)
-func (o *OrderController) DeleteOrders(ctx *gin.Context) {
+// BulkCancelOrders: Bulk cancel orders of a user (DELETE /orders/bulk)
+func (o *OrderController) BulkCancelOrders(ctx *gin.Context) {
 	// TODO: Implement this
-	ctx.JSON(200, gin.H{"message": "Delete Orders"})
+	ctx.JSON(200, gin.H{"message": "Bulk cancel orders"})
 }
 
 // PostValidateOrder: Validate an order (POST /orders/validate)
