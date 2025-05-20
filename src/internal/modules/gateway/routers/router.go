@@ -20,6 +20,7 @@ type RegisterRoutersIn struct {
 	WalletController *gatewayControllers.WalletController
 	TokenController  *gatewayControllers.TokenController
 	PairController   *gatewayControllers.PairController
+	PnlController    *gatewayControllers.PnlController
 }
 
 func RegisterHandler(app *golib.App, engine *gin.Engine) {
@@ -43,4 +44,5 @@ func RegisterRoutes(p RegisterRoutersIn) {
 	p.RegisterWalletRoutes()
 	p.RegisterTokenRoutes()
 	p.RegisterPairRoutes()
+	p.RegisterPnlRoutes()
 }

@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -20,20 +21,1043 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type GetRealizedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRealizedRequest) Reset() {
+	*x = GetRealizedRequest{}
+	mi := &file_pnl_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRealizedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRealizedRequest) ProtoMessage() {}
+
+func (x *GetRealizedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRealizedRequest.ProtoReflect.Descriptor instead.
+func (*GetRealizedRequest) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *GetRealizedRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetRealizedResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RealizedPnl   float64                `protobuf:"fixed64,1,opt,name=realized_pnl,json=realizedPnl,proto3" json:"realized_pnl,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRealizedResponse) Reset() {
+	*x = GetRealizedResponse{}
+	mi := &file_pnl_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRealizedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRealizedResponse) ProtoMessage() {}
+
+func (x *GetRealizedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRealizedResponse.ProtoReflect.Descriptor instead.
+func (*GetRealizedResponse) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetRealizedResponse) GetRealizedPnl() float64 {
+	if x != nil {
+		return x.RealizedPnl
+	}
+	return 0
+}
+
+type GetUnrealizedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUnrealizedRequest) Reset() {
+	*x = GetUnrealizedRequest{}
+	mi := &file_pnl_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUnrealizedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUnrealizedRequest) ProtoMessage() {}
+
+func (x *GetUnrealizedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUnrealizedRequest.ProtoReflect.Descriptor instead.
+func (*GetUnrealizedRequest) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetUnrealizedRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetUnrealizedResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UnrealizedPnl float64                `protobuf:"fixed64,1,opt,name=unrealized_pnl,json=unrealizedPnl,proto3" json:"unrealized_pnl,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUnrealizedResponse) Reset() {
+	*x = GetUnrealizedResponse{}
+	mi := &file_pnl_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUnrealizedResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUnrealizedResponse) ProtoMessage() {}
+
+func (x *GetUnrealizedResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUnrealizedResponse.ProtoReflect.Descriptor instead.
+func (*GetUnrealizedResponse) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetUnrealizedResponse) GetUnrealizedPnl() float64 {
+	if x != nil {
+		return x.UnrealizedPnl
+	}
+	return 0
+}
+
+type GetSummaryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSummaryRequest) Reset() {
+	*x = GetSummaryRequest{}
+	mi := &file_pnl_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSummaryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSummaryRequest) ProtoMessage() {}
+
+func (x *GetSummaryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSummaryRequest.ProtoReflect.Descriptor instead.
+func (*GetSummaryRequest) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetSummaryRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetSummaryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TotalPnl      float64                `protobuf:"fixed64,1,opt,name=total_pnl,json=totalPnl,proto3" json:"total_pnl,omitempty"`
+	RealizedPnl   float64                `protobuf:"fixed64,2,opt,name=realized_pnl,json=realizedPnl,proto3" json:"realized_pnl,omitempty"`
+	UnrealizedPnl float64                `protobuf:"fixed64,3,opt,name=unrealized_pnl,json=unrealizedPnl,proto3" json:"unrealized_pnl,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSummaryResponse) Reset() {
+	*x = GetSummaryResponse{}
+	mi := &file_pnl_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSummaryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSummaryResponse) ProtoMessage() {}
+
+func (x *GetSummaryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSummaryResponse.ProtoReflect.Descriptor instead.
+func (*GetSummaryResponse) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetSummaryResponse) GetTotalPnl() float64 {
+	if x != nil {
+		return x.TotalPnl
+	}
+	return 0
+}
+
+func (x *GetSummaryResponse) GetRealizedPnl() float64 {
+	if x != nil {
+		return x.RealizedPnl
+	}
+	return 0
+}
+
+func (x *GetSummaryResponse) GetUnrealizedPnl() float64 {
+	if x != nil {
+		return x.UnrealizedPnl
+	}
+	return 0
+}
+
+type GetPortfolioRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPortfolioRequest) Reset() {
+	*x = GetPortfolioRequest{}
+	mi := &file_pnl_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPortfolioRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPortfolioRequest) ProtoMessage() {}
+
+func (x *GetPortfolioRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPortfolioRequest.ProtoReflect.Descriptor instead.
+func (*GetPortfolioRequest) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetPortfolioRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetPortfolioResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TotalPnl      float64                `protobuf:"fixed64,1,opt,name=total_pnl,json=totalPnl,proto3" json:"total_pnl,omitempty"`
+	RealizedPnl   float64                `protobuf:"fixed64,2,opt,name=realized_pnl,json=realizedPnl,proto3" json:"realized_pnl,omitempty"`
+	UnrealizedPnl float64                `protobuf:"fixed64,3,opt,name=unrealized_pnl,json=unrealizedPnl,proto3" json:"unrealized_pnl,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPortfolioResponse) Reset() {
+	*x = GetPortfolioResponse{}
+	mi := &file_pnl_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPortfolioResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPortfolioResponse) ProtoMessage() {}
+
+func (x *GetPortfolioResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPortfolioResponse.ProtoReflect.Descriptor instead.
+func (*GetPortfolioResponse) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetPortfolioResponse) GetTotalPnl() float64 {
+	if x != nil {
+		return x.TotalPnl
+	}
+	return 0
+}
+
+func (x *GetPortfolioResponse) GetRealizedPnl() float64 {
+	if x != nil {
+		return x.RealizedPnl
+	}
+	return 0
+}
+
+func (x *GetPortfolioResponse) GetUnrealizedPnl() float64 {
+	if x != nil {
+		return x.UnrealizedPnl
+	}
+	return 0
+}
+
+type PostRecalculateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostRecalculateRequest) Reset() {
+	*x = PostRecalculateRequest{}
+	mi := &file_pnl_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostRecalculateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostRecalculateRequest) ProtoMessage() {}
+
+func (x *PostRecalculateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostRecalculateRequest.ProtoReflect.Descriptor instead.
+func (*PostRecalculateRequest) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *PostRecalculateRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type PostRecalculateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostRecalculateResponse) Reset() {
+	*x = PostRecalculateResponse{}
+	mi := &file_pnl_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostRecalculateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostRecalculateResponse) ProtoMessage() {}
+
+func (x *PostRecalculateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostRecalculateResponse.ProtoReflect.Descriptor instead.
+func (*PostRecalculateResponse) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *PostRecalculateResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type GetHistoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetHistoryRequest) Reset() {
+	*x = GetHistoryRequest{}
+	mi := &file_pnl_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetHistoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetHistoryRequest) ProtoMessage() {}
+
+func (x *GetHistoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetHistoryRequest.ProtoReflect.Descriptor instead.
+func (*GetHistoryRequest) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetHistoryRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetHistoryResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	History       []*PnlHistory          `protobuf:"bytes,1,rep,name=history,proto3" json:"history,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetHistoryResponse) Reset() {
+	*x = GetHistoryResponse{}
+	mi := &file_pnl_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetHistoryResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetHistoryResponse) ProtoMessage() {}
+
+func (x *GetHistoryResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetHistoryResponse.ProtoReflect.Descriptor instead.
+func (*GetHistoryResponse) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetHistoryResponse) GetHistory() []*PnlHistory {
+	if x != nil {
+		return x.History
+	}
+	return nil
+}
+
+type PnlHistory struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	PairId        string                 `protobuf:"bytes,3,opt,name=pair_id,json=pairId,proto3" json:"pair_id,omitempty"`
+	RealizedPnl   float64                `protobuf:"fixed64,4,opt,name=realized_pnl,json=realizedPnl,proto3" json:"realized_pnl,omitempty"`
+	UnrealizedPnl float64                `protobuf:"fixed64,5,opt,name=unrealized_pnl,json=unrealizedPnl,proto3" json:"unrealized_pnl,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PnlHistory) Reset() {
+	*x = PnlHistory{}
+	mi := &file_pnl_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PnlHistory) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PnlHistory) ProtoMessage() {}
+
+func (x *PnlHistory) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PnlHistory.ProtoReflect.Descriptor instead.
+func (*PnlHistory) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *PnlHistory) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PnlHistory) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *PnlHistory) GetPairId() string {
+	if x != nil {
+		return x.PairId
+	}
+	return ""
+}
+
+func (x *PnlHistory) GetRealizedPnl() float64 {
+	if x != nil {
+		return x.RealizedPnl
+	}
+	return 0
+}
+
+func (x *PnlHistory) GetUnrealizedPnl() float64 {
+	if x != nil {
+		return x.UnrealizedPnl
+	}
+	return 0
+}
+
+func (x *PnlHistory) GetCreatedAt() string {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return ""
+}
+
+type PostValidateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostValidateRequest) Reset() {
+	*x = PostValidateRequest{}
+	mi := &file_pnl_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostValidateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostValidateRequest) ProtoMessage() {}
+
+func (x *PostValidateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostValidateRequest.ProtoReflect.Descriptor instead.
+func (*PostValidateRequest) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *PostValidateRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type PostValidateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PostValidateResponse) Reset() {
+	*x = PostValidateResponse{}
+	mi := &file_pnl_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostValidateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostValidateResponse) ProtoMessage() {}
+
+func (x *PostValidateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostValidateResponse.ProtoReflect.Descriptor instead.
+func (*PostValidateResponse) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *PostValidateResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type GetPnlPairRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PairId        string                 `protobuf:"bytes,1,opt,name=pair_id,json=pairId,proto3" json:"pair_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPnlPairRequest) Reset() {
+	*x = GetPnlPairRequest{}
+	mi := &file_pnl_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPnlPairRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPnlPairRequest) ProtoMessage() {}
+
+func (x *GetPnlPairRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPnlPairRequest.ProtoReflect.Descriptor instead.
+func (*GetPnlPairRequest) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetPnlPairRequest) GetPairId() string {
+	if x != nil {
+		return x.PairId
+	}
+	return ""
+}
+
+type GetPnlPairResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RealizedPnl   float64                `protobuf:"fixed64,1,opt,name=realized_pnl,json=realizedPnl,proto3" json:"realized_pnl,omitempty"`
+	UnrealizedPnl float64                `protobuf:"fixed64,2,opt,name=unrealized_pnl,json=unrealizedPnl,proto3" json:"unrealized_pnl,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPnlPairResponse) Reset() {
+	*x = GetPnlPairResponse{}
+	mi := &file_pnl_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPnlPairResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPnlPairResponse) ProtoMessage() {}
+
+func (x *GetPnlPairResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPnlPairResponse.ProtoReflect.Descriptor instead.
+func (*GetPnlPairResponse) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetPnlPairResponse) GetRealizedPnl() float64 {
+	if x != nil {
+		return x.RealizedPnl
+	}
+	return 0
+}
+
+func (x *GetPnlPairResponse) GetUnrealizedPnl() float64 {
+	if x != nil {
+		return x.UnrealizedPnl
+	}
+	return 0
+}
+
+type GetExportRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetExportRequest) Reset() {
+	*x = GetExportRequest{}
+	mi := &file_pnl_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetExportRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetExportRequest) ProtoMessage() {}
+
+func (x *GetExportRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetExportRequest.ProtoReflect.Descriptor instead.
+func (*GetExportRequest) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *GetExportRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+type GetExportResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetExportResponse) Reset() {
+	*x = GetExportResponse{}
+	mi := &file_pnl_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetExportResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetExportResponse) ProtoMessage() {}
+
+func (x *GetExportResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_pnl_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetExportResponse.ProtoReflect.Descriptor instead.
+func (*GetExportResponse) Descriptor() ([]byte, []int) {
+	return file_pnl_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *GetExportResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_pnl_proto protoreflect.FileDescriptor
 
 const file_pnl_proto_rawDesc = "" +
 	"\n" +
-	"\tpnl.proto\x12\x03pnl2\x11\n" +
-	"\x0fPnlProtoServiceB\x04Z\x02./b\x06proto3"
+	"\tpnl.proto\x12\x03pnl\"-\n" +
+	"\x12GetRealizedRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"8\n" +
+	"\x13GetRealizedResponse\x12!\n" +
+	"\frealized_pnl\x18\x01 \x01(\x01R\vrealizedPnl\"/\n" +
+	"\x14GetUnrealizedRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\">\n" +
+	"\x15GetUnrealizedResponse\x12%\n" +
+	"\x0eunrealized_pnl\x18\x01 \x01(\x01R\runrealizedPnl\",\n" +
+	"\x11GetSummaryRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"{\n" +
+	"\x12GetSummaryResponse\x12\x1b\n" +
+	"\ttotal_pnl\x18\x01 \x01(\x01R\btotalPnl\x12!\n" +
+	"\frealized_pnl\x18\x02 \x01(\x01R\vrealizedPnl\x12%\n" +
+	"\x0eunrealized_pnl\x18\x03 \x01(\x01R\runrealizedPnl\".\n" +
+	"\x13GetPortfolioRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"}\n" +
+	"\x14GetPortfolioResponse\x12\x1b\n" +
+	"\ttotal_pnl\x18\x01 \x01(\x01R\btotalPnl\x12!\n" +
+	"\frealized_pnl\x18\x02 \x01(\x01R\vrealizedPnl\x12%\n" +
+	"\x0eunrealized_pnl\x18\x03 \x01(\x01R\runrealizedPnl\"1\n" +
+	"\x16PostRecalculateRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"3\n" +
+	"\x17PostRecalculateResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\",\n" +
+	"\x11GetHistoryRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"?\n" +
+	"\x12GetHistoryResponse\x12)\n" +
+	"\ahistory\x18\x01 \x03(\v2\x0f.pnl.PnlHistoryR\ahistory\"\xb7\x01\n" +
+	"\n" +
+	"PnlHistory\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x17\n" +
+	"\apair_id\x18\x03 \x01(\tR\x06pairId\x12!\n" +
+	"\frealized_pnl\x18\x04 \x01(\x01R\vrealizedPnl\x12%\n" +
+	"\x0eunrealized_pnl\x18\x05 \x01(\x01R\runrealizedPnl\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\x06 \x01(\tR\tcreatedAt\".\n" +
+	"\x13PostValidateRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"0\n" +
+	"\x14PostValidateResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\",\n" +
+	"\x11GetPnlPairRequest\x12\x17\n" +
+	"\apair_id\x18\x01 \x01(\tR\x06pairId\"^\n" +
+	"\x12GetPnlPairResponse\x12!\n" +
+	"\frealized_pnl\x18\x01 \x01(\x01R\vrealizedPnl\x12%\n" +
+	"\x0eunrealized_pnl\x18\x02 \x01(\x01R\runrealizedPnl\"+\n" +
+	"\x10GetExportRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"-\n" +
+	"\x11GetExportResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\xff\x03\n" +
+	"\x0fPnlProtoService\x12B\n" +
+	"\vGetRealized\x12\x17.pnl.GetRealizedRequest\x1a\x18.pnl.GetRealizedResponse\"\x00\x12H\n" +
+	"\rGetUnrealized\x12\x19.pnl.GetUnrealizedRequest\x1a\x1a.pnl.GetUnrealizedResponse\"\x00\x12?\n" +
+	"\n" +
+	"GetSummary\x12\x16.pnl.GetSummaryRequest\x1a\x17.pnl.GetSummaryResponse\"\x00\x12E\n" +
+	"\fGetPortfolio\x12\x18.pnl.GetPortfolioRequest\x1a\x19.pnl.GetPortfolioResponse\"\x00\x12N\n" +
+	"\x0fPostRecalculate\x12\x1b.pnl.PostRecalculateRequest\x1a\x1c.pnl.PostRecalculateResponse\"\x00\x12?\n" +
+	"\n" +
+	"GetHistory\x12\x16.pnl.GetHistoryRequest\x1a\x17.pnl.GetHistoryResponse\"\x00\x12E\n" +
+	"\fPostValidate\x12\x18.pnl.PostValidateRequest\x1a\x19.pnl.PostValidateResponse\"\x00B\x04Z\x02./b\x06proto3"
 
-var file_pnl_proto_goTypes = []any{}
+var (
+	file_pnl_proto_rawDescOnce sync.Once
+	file_pnl_proto_rawDescData []byte
+)
+
+func file_pnl_proto_rawDescGZIP() []byte {
+	file_pnl_proto_rawDescOnce.Do(func() {
+		file_pnl_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_pnl_proto_rawDesc), len(file_pnl_proto_rawDesc)))
+	})
+	return file_pnl_proto_rawDescData
+}
+
+var file_pnl_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_pnl_proto_goTypes = []any{
+	(*GetRealizedRequest)(nil),      // 0: pnl.GetRealizedRequest
+	(*GetRealizedResponse)(nil),     // 1: pnl.GetRealizedResponse
+	(*GetUnrealizedRequest)(nil),    // 2: pnl.GetUnrealizedRequest
+	(*GetUnrealizedResponse)(nil),   // 3: pnl.GetUnrealizedResponse
+	(*GetSummaryRequest)(nil),       // 4: pnl.GetSummaryRequest
+	(*GetSummaryResponse)(nil),      // 5: pnl.GetSummaryResponse
+	(*GetPortfolioRequest)(nil),     // 6: pnl.GetPortfolioRequest
+	(*GetPortfolioResponse)(nil),    // 7: pnl.GetPortfolioResponse
+	(*PostRecalculateRequest)(nil),  // 8: pnl.PostRecalculateRequest
+	(*PostRecalculateResponse)(nil), // 9: pnl.PostRecalculateResponse
+	(*GetHistoryRequest)(nil),       // 10: pnl.GetHistoryRequest
+	(*GetHistoryResponse)(nil),      // 11: pnl.GetHistoryResponse
+	(*PnlHistory)(nil),              // 12: pnl.PnlHistory
+	(*PostValidateRequest)(nil),     // 13: pnl.PostValidateRequest
+	(*PostValidateResponse)(nil),    // 14: pnl.PostValidateResponse
+	(*GetPnlPairRequest)(nil),       // 15: pnl.GetPnlPairRequest
+	(*GetPnlPairResponse)(nil),      // 16: pnl.GetPnlPairResponse
+	(*GetExportRequest)(nil),        // 17: pnl.GetExportRequest
+	(*GetExportResponse)(nil),       // 18: pnl.GetExportResponse
+}
 var file_pnl_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	12, // 0: pnl.GetHistoryResponse.history:type_name -> pnl.PnlHistory
+	0,  // 1: pnl.PnlProtoService.GetRealized:input_type -> pnl.GetRealizedRequest
+	2,  // 2: pnl.PnlProtoService.GetUnrealized:input_type -> pnl.GetUnrealizedRequest
+	4,  // 3: pnl.PnlProtoService.GetSummary:input_type -> pnl.GetSummaryRequest
+	6,  // 4: pnl.PnlProtoService.GetPortfolio:input_type -> pnl.GetPortfolioRequest
+	8,  // 5: pnl.PnlProtoService.PostRecalculate:input_type -> pnl.PostRecalculateRequest
+	10, // 6: pnl.PnlProtoService.GetHistory:input_type -> pnl.GetHistoryRequest
+	13, // 7: pnl.PnlProtoService.PostValidate:input_type -> pnl.PostValidateRequest
+	1,  // 8: pnl.PnlProtoService.GetRealized:output_type -> pnl.GetRealizedResponse
+	3,  // 9: pnl.PnlProtoService.GetUnrealized:output_type -> pnl.GetUnrealizedResponse
+	5,  // 10: pnl.PnlProtoService.GetSummary:output_type -> pnl.GetSummaryResponse
+	7,  // 11: pnl.PnlProtoService.GetPortfolio:output_type -> pnl.GetPortfolioResponse
+	9,  // 12: pnl.PnlProtoService.PostRecalculate:output_type -> pnl.PostRecalculateResponse
+	11, // 13: pnl.PnlProtoService.GetHistory:output_type -> pnl.GetHistoryResponse
+	14, // 14: pnl.PnlProtoService.PostValidate:output_type -> pnl.PostValidateResponse
+	8,  // [8:15] is the sub-list for method output_type
+	1,  // [1:8] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_pnl_proto_init() }
@@ -47,12 +1071,13 @@ func file_pnl_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_pnl_proto_rawDesc), len(file_pnl_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   0,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_pnl_proto_goTypes,
 		DependencyIndexes: file_pnl_proto_depIdxs,
+		MessageInfos:      file_pnl_proto_msgTypes,
 	}.Build()
 	File_pnl_proto = out.File
 	file_pnl_proto_goTypes = nil
