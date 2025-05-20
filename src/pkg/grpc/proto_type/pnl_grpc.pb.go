@@ -39,7 +39,7 @@ type PnlProtoServiceClient interface {
 	GetSummary(ctx context.Context, in *GetSummaryRequest, opts ...grpc.CallOption) (*GetSummaryResponse, error)
 	GetPortfolio(ctx context.Context, in *GetPortfolioRequest, opts ...grpc.CallOption) (*GetPortfolioResponse, error)
 	PostRecalculate(ctx context.Context, in *PostRecalculateRequest, opts ...grpc.CallOption) (*PostRecalculateResponse, error)
-	GetHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error)
+	GetHistory(ctx context.Context, in *GetPnlHistoryRequest, opts ...grpc.CallOption) (*GetPnlHistoryResponse, error)
 	PostValidate(ctx context.Context, in *PostValidateRequest, opts ...grpc.CallOption) (*PostValidateResponse, error)
 }
 
@@ -101,9 +101,9 @@ func (c *pnlProtoServiceClient) PostRecalculate(ctx context.Context, in *PostRec
 	return out, nil
 }
 
-func (c *pnlProtoServiceClient) GetHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error) {
+func (c *pnlProtoServiceClient) GetHistory(ctx context.Context, in *GetPnlHistoryRequest, opts ...grpc.CallOption) (*GetPnlHistoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetHistoryResponse)
+	out := new(GetPnlHistoryResponse)
 	err := c.cc.Invoke(ctx, PnlProtoService_GetHistory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -132,7 +132,7 @@ type PnlProtoServiceServer interface {
 	GetSummary(context.Context, *GetSummaryRequest) (*GetSummaryResponse, error)
 	GetPortfolio(context.Context, *GetPortfolioRequest) (*GetPortfolioResponse, error)
 	PostRecalculate(context.Context, *PostRecalculateRequest) (*PostRecalculateResponse, error)
-	GetHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error)
+	GetHistory(context.Context, *GetPnlHistoryRequest) (*GetPnlHistoryResponse, error)
 	PostValidate(context.Context, *PostValidateRequest) (*PostValidateResponse, error)
 	mustEmbedUnimplementedPnlProtoServiceServer()
 }
@@ -159,7 +159,7 @@ func (UnimplementedPnlProtoServiceServer) GetPortfolio(context.Context, *GetPort
 func (UnimplementedPnlProtoServiceServer) PostRecalculate(context.Context, *PostRecalculateRequest) (*PostRecalculateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostRecalculate not implemented")
 }
-func (UnimplementedPnlProtoServiceServer) GetHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error) {
+func (UnimplementedPnlProtoServiceServer) GetHistory(context.Context, *GetPnlHistoryRequest) (*GetPnlHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetHistory not implemented")
 }
 func (UnimplementedPnlProtoServiceServer) PostValidate(context.Context, *PostValidateRequest) (*PostValidateResponse, error) {
@@ -277,7 +277,7 @@ func _PnlProtoService_PostRecalculate_Handler(srv interface{}, ctx context.Conte
 }
 
 func _PnlProtoService_GetHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetHistoryRequest)
+	in := new(GetPnlHistoryRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -289,7 +289,7 @@ func _PnlProtoService_GetHistory_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: PnlProtoService_GetHistory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PnlProtoServiceServer).GetHistory(ctx, req.(*GetHistoryRequest))
+		return srv.(PnlProtoServiceServer).GetHistory(ctx, req.(*GetPnlHistoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
