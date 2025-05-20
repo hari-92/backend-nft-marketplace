@@ -13,6 +13,7 @@ var (
 	TokenRpcPortGateway  rpc_ports.ITokenRpcPorts
 	PairRpcPortGateway   rpc_ports.IPairRpcPorts
 	PnlRpcPortGateway    rpc_ports.IPnlRpcPorts
+	OrderRpcPortGateway  rpc_ports.IOrderRpcPorts
 )
 
 func NewGatewayInstanceVars() {
@@ -22,5 +23,6 @@ func NewGatewayInstanceVars() {
 		TokenRpcPortGateway = rpc_ports.NewTokenRpcPorts()
 		PairRpcPortGateway = rpc_ports.NewPairRpcPorts()
 		PnlRpcPortGateway = rpc_ports.NewPnlRpcPorts()
+		OrderRpcPortGateway = rpc_ports.NewOrderRpcPorts()
 	})
 }

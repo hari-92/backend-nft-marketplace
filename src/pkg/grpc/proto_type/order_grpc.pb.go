@@ -7,7 +7,10 @@
 package __
 
 import (
+	context "context"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -15,12 +18,31 @@ import (
 // Requires gRPC-Go v1.64.0 or later.
 const _ = grpc.SupportPackageIsVersion9
 
+const (
+	OrderProtoService_GetOrders_FullMethodName         = "/order.OrderProtoService/GetOrders"
+	OrderProtoService_GetOrder_FullMethodName          = "/order.OrderProtoService/GetOrder"
+	OrderProtoService_PostOrder_FullMethodName         = "/order.OrderProtoService/PostOrder"
+	OrderProtoService_DeleteOrder_FullMethodName       = "/order.OrderProtoService/DeleteOrder"
+	OrderProtoService_DeleteOrders_FullMethodName      = "/order.OrderProtoService/DeleteOrders"
+	OrderProtoService_PostValidateOrder_FullMethodName = "/order.OrderProtoService/PostValidateOrder"
+	OrderProtoService_GetHistory_FullMethodName        = "/order.OrderProtoService/GetHistory"
+	OrderProtoService_PostAdminCancel_FullMethodName   = "/order.OrderProtoService/PostAdminCancel"
+)
+
 // OrderProtoServiceClient is the client API for OrderProtoService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
 // Order service definition
 type OrderProtoServiceClient interface {
+	GetOrders(ctx context.Context, in *GetOrdersRequest, opts ...grpc.CallOption) (*GetOrdersResponse, error)
+	GetOrder(ctx context.Context, in *GetOrderRequest, opts ...grpc.CallOption) (*GetOrderResponse, error)
+	PostOrder(ctx context.Context, in *PostOrderRequest, opts ...grpc.CallOption) (*PostOrderResponse, error)
+	DeleteOrder(ctx context.Context, in *DeleteOrderRequest, opts ...grpc.CallOption) (*DeleteOrderResponse, error)
+	DeleteOrders(ctx context.Context, in *DeleteOrdersRequest, opts ...grpc.CallOption) (*DeleteOrdersResponse, error)
+	PostValidateOrder(ctx context.Context, in *PostValidateOrderRequest, opts ...grpc.CallOption) (*PostValidateOrderResponse, error)
+	GetHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error)
+	PostAdminCancel(ctx context.Context, in *PostAdminCancelRequest, opts ...grpc.CallOption) (*PostAdminCancelResponse, error)
 }
 
 type orderProtoServiceClient struct {
@@ -31,12 +53,100 @@ func NewOrderProtoServiceClient(cc grpc.ClientConnInterface) OrderProtoServiceCl
 	return &orderProtoServiceClient{cc}
 }
 
+func (c *orderProtoServiceClient) GetOrders(ctx context.Context, in *GetOrdersRequest, opts ...grpc.CallOption) (*GetOrdersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOrdersResponse)
+	err := c.cc.Invoke(ctx, OrderProtoService_GetOrders_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderProtoServiceClient) GetOrder(ctx context.Context, in *GetOrderRequest, opts ...grpc.CallOption) (*GetOrderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOrderResponse)
+	err := c.cc.Invoke(ctx, OrderProtoService_GetOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderProtoServiceClient) PostOrder(ctx context.Context, in *PostOrderRequest, opts ...grpc.CallOption) (*PostOrderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PostOrderResponse)
+	err := c.cc.Invoke(ctx, OrderProtoService_PostOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderProtoServiceClient) DeleteOrder(ctx context.Context, in *DeleteOrderRequest, opts ...grpc.CallOption) (*DeleteOrderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteOrderResponse)
+	err := c.cc.Invoke(ctx, OrderProtoService_DeleteOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderProtoServiceClient) DeleteOrders(ctx context.Context, in *DeleteOrdersRequest, opts ...grpc.CallOption) (*DeleteOrdersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteOrdersResponse)
+	err := c.cc.Invoke(ctx, OrderProtoService_DeleteOrders_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderProtoServiceClient) PostValidateOrder(ctx context.Context, in *PostValidateOrderRequest, opts ...grpc.CallOption) (*PostValidateOrderResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PostValidateOrderResponse)
+	err := c.cc.Invoke(ctx, OrderProtoService_PostValidateOrder_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderProtoServiceClient) GetHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetHistoryResponse)
+	err := c.cc.Invoke(ctx, OrderProtoService_GetHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *orderProtoServiceClient) PostAdminCancel(ctx context.Context, in *PostAdminCancelRequest, opts ...grpc.CallOption) (*PostAdminCancelResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PostAdminCancelResponse)
+	err := c.cc.Invoke(ctx, OrderProtoService_PostAdminCancel_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderProtoServiceServer is the server API for OrderProtoService service.
 // All implementations must embed UnimplementedOrderProtoServiceServer
 // for forward compatibility.
 //
 // Order service definition
 type OrderProtoServiceServer interface {
+	GetOrders(context.Context, *GetOrdersRequest) (*GetOrdersResponse, error)
+	GetOrder(context.Context, *GetOrderRequest) (*GetOrderResponse, error)
+	PostOrder(context.Context, *PostOrderRequest) (*PostOrderResponse, error)
+	DeleteOrder(context.Context, *DeleteOrderRequest) (*DeleteOrderResponse, error)
+	DeleteOrders(context.Context, *DeleteOrdersRequest) (*DeleteOrdersResponse, error)
+	PostValidateOrder(context.Context, *PostValidateOrderRequest) (*PostValidateOrderResponse, error)
+	GetHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error)
+	PostAdminCancel(context.Context, *PostAdminCancelRequest) (*PostAdminCancelResponse, error)
 	mustEmbedUnimplementedOrderProtoServiceServer()
 }
 
@@ -47,6 +157,30 @@ type OrderProtoServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedOrderProtoServiceServer struct{}
 
+func (UnimplementedOrderProtoServiceServer) GetOrders(context.Context, *GetOrdersRequest) (*GetOrdersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrders not implemented")
+}
+func (UnimplementedOrderProtoServiceServer) GetOrder(context.Context, *GetOrderRequest) (*GetOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrder not implemented")
+}
+func (UnimplementedOrderProtoServiceServer) PostOrder(context.Context, *PostOrderRequest) (*PostOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostOrder not implemented")
+}
+func (UnimplementedOrderProtoServiceServer) DeleteOrder(context.Context, *DeleteOrderRequest) (*DeleteOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrder not implemented")
+}
+func (UnimplementedOrderProtoServiceServer) DeleteOrders(context.Context, *DeleteOrdersRequest) (*DeleteOrdersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrders not implemented")
+}
+func (UnimplementedOrderProtoServiceServer) PostValidateOrder(context.Context, *PostValidateOrderRequest) (*PostValidateOrderResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostValidateOrder not implemented")
+}
+func (UnimplementedOrderProtoServiceServer) GetHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHistory not implemented")
+}
+func (UnimplementedOrderProtoServiceServer) PostAdminCancel(context.Context, *PostAdminCancelRequest) (*PostAdminCancelResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostAdminCancel not implemented")
+}
 func (UnimplementedOrderProtoServiceServer) mustEmbedUnimplementedOrderProtoServiceServer() {}
 func (UnimplementedOrderProtoServiceServer) testEmbeddedByValue()                           {}
 
@@ -68,13 +202,190 @@ func RegisterOrderProtoServiceServer(s grpc.ServiceRegistrar, srv OrderProtoServ
 	s.RegisterService(&OrderProtoService_ServiceDesc, srv)
 }
 
+func _OrderProtoService_GetOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrdersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderProtoServiceServer).GetOrders(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderProtoService_GetOrders_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderProtoServiceServer).GetOrders(ctx, req.(*GetOrdersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderProtoService_GetOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderProtoServiceServer).GetOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderProtoService_GetOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderProtoServiceServer).GetOrder(ctx, req.(*GetOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderProtoService_PostOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderProtoServiceServer).PostOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderProtoService_PostOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderProtoServiceServer).PostOrder(ctx, req.(*PostOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderProtoService_DeleteOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderProtoServiceServer).DeleteOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderProtoService_DeleteOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderProtoServiceServer).DeleteOrder(ctx, req.(*DeleteOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderProtoService_DeleteOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOrdersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderProtoServiceServer).DeleteOrders(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderProtoService_DeleteOrders_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderProtoServiceServer).DeleteOrders(ctx, req.(*DeleteOrdersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderProtoService_PostValidateOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostValidateOrderRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderProtoServiceServer).PostValidateOrder(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderProtoService_PostValidateOrder_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderProtoServiceServer).PostValidateOrder(ctx, req.(*PostValidateOrderRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderProtoService_GetHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderProtoServiceServer).GetHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderProtoService_GetHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderProtoServiceServer).GetHistory(ctx, req.(*GetHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _OrderProtoService_PostAdminCancel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostAdminCancelRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderProtoServiceServer).PostAdminCancel(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderProtoService_PostAdminCancel_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderProtoServiceServer).PostAdminCancel(ctx, req.(*PostAdminCancelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OrderProtoService_ServiceDesc is the grpc.ServiceDesc for OrderProtoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OrderProtoService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "order.OrderProtoService",
 	HandlerType: (*OrderProtoServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "order.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetOrders",
+			Handler:    _OrderProtoService_GetOrders_Handler,
+		},
+		{
+			MethodName: "GetOrder",
+			Handler:    _OrderProtoService_GetOrder_Handler,
+		},
+		{
+			MethodName: "PostOrder",
+			Handler:    _OrderProtoService_PostOrder_Handler,
+		},
+		{
+			MethodName: "DeleteOrder",
+			Handler:    _OrderProtoService_DeleteOrder_Handler,
+		},
+		{
+			MethodName: "DeleteOrders",
+			Handler:    _OrderProtoService_DeleteOrders_Handler,
+		},
+		{
+			MethodName: "PostValidateOrder",
+			Handler:    _OrderProtoService_PostValidateOrder_Handler,
+		},
+		{
+			MethodName: "GetHistory",
+			Handler:    _OrderProtoService_GetHistory_Handler,
+		},
+		{
+			MethodName: "PostAdminCancel",
+			Handler:    _OrderProtoService_PostAdminCancel_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "order.proto",
 }

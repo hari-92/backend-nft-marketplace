@@ -14,6 +14,7 @@ const (
 	Token  ServiceID = "token"
 	Pair   ServiceID = "pair"
 	Pnl    ServiceID = "pnl"
+	Order  ServiceID = "order"
 )
 
 func (s ServiceID) String() string {
@@ -40,10 +41,15 @@ func PnlClient(cc grpc.ClientConnInterface) interface{} {
 	return pb.NewPnlProtoServiceClient(cc)
 }
 
+func OrderClient(cc grpc.ClientConnInterface) interface{} {
+	return pb.NewOrderProtoServiceClient(cc)
+}
+
 var RegisterGrpcClient = map[ServiceID]func(cc grpc.ClientConnInterface) interface{}{
 	User:   UserClient,
 	Wallet: WalletClient,
 	Token:  TokenClient,
 	Pair:   PairClient,
 	Pnl:    PnlClient,
+	Order:  OrderClient,
 }
