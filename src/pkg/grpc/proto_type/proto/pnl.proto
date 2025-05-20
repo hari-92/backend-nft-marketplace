@@ -6,5 +6,97 @@ option go_package = "./";
 
 // Pnl service definition
 service PnlProtoService {
-    // Add your pnl service methods here
+    rpc GetRealized(GetRealizedRequest) returns (GetRealizedResponse) {}
+    rpc GetUnrealized(GetUnrealizedRequest) returns (GetUnrealizedResponse) {}
+    rpc GetSummary(GetSummaryRequest) returns (GetSummaryResponse) {}
+    rpc GetPortfolio(GetPortfolioRequest) returns (GetPortfolioResponse) {}
+    rpc PostRecalculate(PostRecalculateRequest) returns (PostRecalculateResponse) {}
+    rpc GetHistory(GetHistoryRequest) returns (GetHistoryResponse) {}
+    rpc PostValidate(PostValidateRequest) returns (PostValidateResponse) {}
+}
+
+message GetRealizedRequest {
+    string user_id = 1;
+}
+
+message GetRealizedResponse {
+    double realized_pnl = 1;
+}
+
+message GetUnrealizedRequest {
+    string user_id = 1;
+}
+
+message GetUnrealizedResponse {
+    double unrealized_pnl = 1;
+}
+
+message GetSummaryRequest {
+    string user_id = 1;
+}
+
+message GetSummaryResponse {
+    double total_pnl = 1;
+    double realized_pnl = 2;
+    double unrealized_pnl = 3;
+}
+
+message GetPortfolioRequest {
+    string user_id = 1;
+}
+
+message GetPortfolioResponse {
+    double total_pnl = 1;
+    double realized_pnl = 2;
+    double unrealized_pnl = 3;
+}
+
+message PostRecalculateRequest {
+    string user_id = 1;
+}
+
+message PostRecalculateResponse {
+    string message = 1;
+}
+
+message GetHistoryRequest {
+    string user_id = 1;
+}
+
+message GetHistoryResponse {
+    repeated PnlHistory history = 1;
+}
+
+message PnlHistory {
+    string id = 1;
+    string user_id = 2;
+    string pair_id = 3;
+    double realized_pnl = 4;
+    double unrealized_pnl = 5;
+    string created_at = 6;
+}
+
+message PostValidateRequest {
+    string user_id = 1;
+}
+
+message PostValidateResponse {
+    string message = 1;
+}
+
+message GetPnlPairRequest {
+    string pair_id = 1;
+}
+
+message GetPnlPairResponse {
+    double realized_pnl = 1;
+    double unrealized_pnl = 2;
+}
+
+message GetExportRequest {
+    string user_id = 1;
+}
+
+message GetExportResponse {
+    string message = 1;
 }

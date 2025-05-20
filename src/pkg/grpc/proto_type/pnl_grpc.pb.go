@@ -7,7 +7,10 @@
 package __
 
 import (
+	context "context"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -15,12 +18,29 @@ import (
 // Requires gRPC-Go v1.64.0 or later.
 const _ = grpc.SupportPackageIsVersion9
 
+const (
+	PnlProtoService_GetRealized_FullMethodName     = "/pnl.PnlProtoService/GetRealized"
+	PnlProtoService_GetUnrealized_FullMethodName   = "/pnl.PnlProtoService/GetUnrealized"
+	PnlProtoService_GetSummary_FullMethodName      = "/pnl.PnlProtoService/GetSummary"
+	PnlProtoService_GetPortfolio_FullMethodName    = "/pnl.PnlProtoService/GetPortfolio"
+	PnlProtoService_PostRecalculate_FullMethodName = "/pnl.PnlProtoService/PostRecalculate"
+	PnlProtoService_GetHistory_FullMethodName      = "/pnl.PnlProtoService/GetHistory"
+	PnlProtoService_PostValidate_FullMethodName    = "/pnl.PnlProtoService/PostValidate"
+)
+
 // PnlProtoServiceClient is the client API for PnlProtoService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
 // Pnl service definition
 type PnlProtoServiceClient interface {
+	GetRealized(ctx context.Context, in *GetRealizedRequest, opts ...grpc.CallOption) (*GetRealizedResponse, error)
+	GetUnrealized(ctx context.Context, in *GetUnrealizedRequest, opts ...grpc.CallOption) (*GetUnrealizedResponse, error)
+	GetSummary(ctx context.Context, in *GetSummaryRequest, opts ...grpc.CallOption) (*GetSummaryResponse, error)
+	GetPortfolio(ctx context.Context, in *GetPortfolioRequest, opts ...grpc.CallOption) (*GetPortfolioResponse, error)
+	PostRecalculate(ctx context.Context, in *PostRecalculateRequest, opts ...grpc.CallOption) (*PostRecalculateResponse, error)
+	GetHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error)
+	PostValidate(ctx context.Context, in *PostValidateRequest, opts ...grpc.CallOption) (*PostValidateResponse, error)
 }
 
 type pnlProtoServiceClient struct {
@@ -31,12 +51,89 @@ func NewPnlProtoServiceClient(cc grpc.ClientConnInterface) PnlProtoServiceClient
 	return &pnlProtoServiceClient{cc}
 }
 
+func (c *pnlProtoServiceClient) GetRealized(ctx context.Context, in *GetRealizedRequest, opts ...grpc.CallOption) (*GetRealizedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetRealizedResponse)
+	err := c.cc.Invoke(ctx, PnlProtoService_GetRealized_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pnlProtoServiceClient) GetUnrealized(ctx context.Context, in *GetUnrealizedRequest, opts ...grpc.CallOption) (*GetUnrealizedResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetUnrealizedResponse)
+	err := c.cc.Invoke(ctx, PnlProtoService_GetUnrealized_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pnlProtoServiceClient) GetSummary(ctx context.Context, in *GetSummaryRequest, opts ...grpc.CallOption) (*GetSummaryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSummaryResponse)
+	err := c.cc.Invoke(ctx, PnlProtoService_GetSummary_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pnlProtoServiceClient) GetPortfolio(ctx context.Context, in *GetPortfolioRequest, opts ...grpc.CallOption) (*GetPortfolioResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPortfolioResponse)
+	err := c.cc.Invoke(ctx, PnlProtoService_GetPortfolio_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pnlProtoServiceClient) PostRecalculate(ctx context.Context, in *PostRecalculateRequest, opts ...grpc.CallOption) (*PostRecalculateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PostRecalculateResponse)
+	err := c.cc.Invoke(ctx, PnlProtoService_PostRecalculate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pnlProtoServiceClient) GetHistory(ctx context.Context, in *GetHistoryRequest, opts ...grpc.CallOption) (*GetHistoryResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetHistoryResponse)
+	err := c.cc.Invoke(ctx, PnlProtoService_GetHistory_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pnlProtoServiceClient) PostValidate(ctx context.Context, in *PostValidateRequest, opts ...grpc.CallOption) (*PostValidateResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PostValidateResponse)
+	err := c.cc.Invoke(ctx, PnlProtoService_PostValidate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PnlProtoServiceServer is the server API for PnlProtoService service.
 // All implementations must embed UnimplementedPnlProtoServiceServer
 // for forward compatibility.
 //
 // Pnl service definition
 type PnlProtoServiceServer interface {
+	GetRealized(context.Context, *GetRealizedRequest) (*GetRealizedResponse, error)
+	GetUnrealized(context.Context, *GetUnrealizedRequest) (*GetUnrealizedResponse, error)
+	GetSummary(context.Context, *GetSummaryRequest) (*GetSummaryResponse, error)
+	GetPortfolio(context.Context, *GetPortfolioRequest) (*GetPortfolioResponse, error)
+	PostRecalculate(context.Context, *PostRecalculateRequest) (*PostRecalculateResponse, error)
+	GetHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error)
+	PostValidate(context.Context, *PostValidateRequest) (*PostValidateResponse, error)
 	mustEmbedUnimplementedPnlProtoServiceServer()
 }
 
@@ -47,6 +144,27 @@ type PnlProtoServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPnlProtoServiceServer struct{}
 
+func (UnimplementedPnlProtoServiceServer) GetRealized(context.Context, *GetRealizedRequest) (*GetRealizedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRealized not implemented")
+}
+func (UnimplementedPnlProtoServiceServer) GetUnrealized(context.Context, *GetUnrealizedRequest) (*GetUnrealizedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUnrealized not implemented")
+}
+func (UnimplementedPnlProtoServiceServer) GetSummary(context.Context, *GetSummaryRequest) (*GetSummaryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSummary not implemented")
+}
+func (UnimplementedPnlProtoServiceServer) GetPortfolio(context.Context, *GetPortfolioRequest) (*GetPortfolioResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPortfolio not implemented")
+}
+func (UnimplementedPnlProtoServiceServer) PostRecalculate(context.Context, *PostRecalculateRequest) (*PostRecalculateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostRecalculate not implemented")
+}
+func (UnimplementedPnlProtoServiceServer) GetHistory(context.Context, *GetHistoryRequest) (*GetHistoryResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHistory not implemented")
+}
+func (UnimplementedPnlProtoServiceServer) PostValidate(context.Context, *PostValidateRequest) (*PostValidateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PostValidate not implemented")
+}
 func (UnimplementedPnlProtoServiceServer) mustEmbedUnimplementedPnlProtoServiceServer() {}
 func (UnimplementedPnlProtoServiceServer) testEmbeddedByValue()                         {}
 
@@ -68,13 +186,168 @@ func RegisterPnlProtoServiceServer(s grpc.ServiceRegistrar, srv PnlProtoServiceS
 	s.RegisterService(&PnlProtoService_ServiceDesc, srv)
 }
 
+func _PnlProtoService_GetRealized_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRealizedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PnlProtoServiceServer).GetRealized(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PnlProtoService_GetRealized_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PnlProtoServiceServer).GetRealized(ctx, req.(*GetRealizedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PnlProtoService_GetUnrealized_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUnrealizedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PnlProtoServiceServer).GetUnrealized(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PnlProtoService_GetUnrealized_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PnlProtoServiceServer).GetUnrealized(ctx, req.(*GetUnrealizedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PnlProtoService_GetSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSummaryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PnlProtoServiceServer).GetSummary(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PnlProtoService_GetSummary_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PnlProtoServiceServer).GetSummary(ctx, req.(*GetSummaryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PnlProtoService_GetPortfolio_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPortfolioRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PnlProtoServiceServer).GetPortfolio(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PnlProtoService_GetPortfolio_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PnlProtoServiceServer).GetPortfolio(ctx, req.(*GetPortfolioRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PnlProtoService_PostRecalculate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostRecalculateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PnlProtoServiceServer).PostRecalculate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PnlProtoService_PostRecalculate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PnlProtoServiceServer).PostRecalculate(ctx, req.(*PostRecalculateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PnlProtoService_GetHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PnlProtoServiceServer).GetHistory(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PnlProtoService_GetHistory_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PnlProtoServiceServer).GetHistory(ctx, req.(*GetHistoryRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PnlProtoService_PostValidate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostValidateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PnlProtoServiceServer).PostValidate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PnlProtoService_PostValidate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PnlProtoServiceServer).PostValidate(ctx, req.(*PostValidateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PnlProtoService_ServiceDesc is the grpc.ServiceDesc for PnlProtoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PnlProtoService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "pnl.PnlProtoService",
 	HandlerType: (*PnlProtoServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "pnl.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetRealized",
+			Handler:    _PnlProtoService_GetRealized_Handler,
+		},
+		{
+			MethodName: "GetUnrealized",
+			Handler:    _PnlProtoService_GetUnrealized_Handler,
+		},
+		{
+			MethodName: "GetSummary",
+			Handler:    _PnlProtoService_GetSummary_Handler,
+		},
+		{
+			MethodName: "GetPortfolio",
+			Handler:    _PnlProtoService_GetPortfolio_Handler,
+		},
+		{
+			MethodName: "PostRecalculate",
+			Handler:    _PnlProtoService_PostRecalculate_Handler,
+		},
+		{
+			MethodName: "GetHistory",
+			Handler:    _PnlProtoService_GetHistory_Handler,
+		},
+		{
+			MethodName: "PostValidate",
+			Handler:    _PnlProtoService_PostValidate_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "pnl.proto",
 }
