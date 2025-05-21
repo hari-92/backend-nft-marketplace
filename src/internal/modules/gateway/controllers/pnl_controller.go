@@ -1,6 +1,13 @@
 package gateway_controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"fmt"
+
+	"github.com/gin-gonic/gin"
+	gatewayInstance "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/instance"
+	gatewayRequest "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/requests/pnl"
+	pb "gitlab.com/hari-92/nft-market-server/pkg/grpc/proto_type"
+)
 
 type PnlController struct {
 }
@@ -11,8 +18,22 @@ func NewPnlController() *PnlController {
 
 // GetRealized: Get the realized PnL of a user (GET /pnl/realized)
 func (p *PnlController) GetRealized(ctx *gin.Context) {
-	// TODO: Implement this
-	ctx.JSON(200, gin.H{"message": "Get Pnl Realized"})
+	// TODO: build request
+	getRealizedRequest := gatewayRequest.GetRealizedRequest{
+		UserID: 1,
+	}
+	if err := ctx.ShouldBindJSON(&getRealizedRequest); err != nil {
+		ctx.JSON(400, gin.H{"message": "Bad Request", "error": err.Error()})
+		return
+	}
+	res, err := gatewayInstance.PnlRpcPortGateway.GetRealized(ctx, &pb.GetRealizedRequest{
+		UserId: fmt.Sprintf("%d", getRealizedRequest.UserID),
+	})
+	if err != nil {
+		ctx.JSON(500, gin.H{"message": "Server Internal Error", "error": err.Error()})
+		return
+	}
+	ctx.JSON(200, gin.H{"message": "Get Pnl Realized", "data": res})
 }
 
 // GetUnrealized: Get the unrealized PnL of a user (GET /pnl/unrealized)
