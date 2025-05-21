@@ -1,7 +1,7 @@
 package gateway_routers
 
 func (p RegisterRoutersIn) RegisterPnlRoutes() {
-	pnlRouter := p.Engine.Group("/pnl")
+	pnlRouter := p.Engine.Group("/v1/pnl")
 
 	// User
 	pnlRouter.GET("/realized", p.PnlController.GetRealized)

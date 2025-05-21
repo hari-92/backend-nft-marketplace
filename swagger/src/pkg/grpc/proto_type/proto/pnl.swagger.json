@@ -15,7 +15,7 @@
       "name": "PnlProtoService"
     }
   ],
-  "host": "localhost:8080",
+  "host": "localhost:7979",
   "schemes": [
     "http",
     "https"
@@ -27,6 +27,37 @@
     "application/json"
   ],
   "paths": {
+    "/v1/pnl/export/{userId}": {
+      "get": {
+        "description": "Export PNL for a user",
+        "operationId": "PnlProtoService_GetExport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pnlGetExportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PnlProtoService"
+        ]
+      }
+    },
     "/v1/pnl/history/{userId}": {
       "get": {
         "description": "Get PNL history for a user",
@@ -48,6 +79,37 @@
         "parameters": [
           {
             "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PnlProtoService"
+        ]
+      }
+    },
+    "/v1/pnl/pair/{pairId}": {
+      "get": {
+        "description": "Get PNL for a pair",
+        "operationId": "PnlProtoService_GetPnlPair",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pnlGetPnlPairResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "pairId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -246,6 +308,14 @@
     }
   },
   "definitions": {
+    "pnlGetExportResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "pnlGetPnlHistoryResponse": {
       "type": "object",
       "properties": {
@@ -256,6 +326,19 @@
             "$ref": "#/definitions/pnlPnlHistory"
           },
           "description": "List of PNL history records"
+        }
+      }
+    },
+    "pnlGetPnlPairResponse": {
+      "type": "object",
+      "properties": {
+        "realizedPnl": {
+          "type": "number",
+          "format": "double"
+        },
+        "unrealizedPnl": {
+          "type": "number",
+          "format": "double"
         }
       }
     },
