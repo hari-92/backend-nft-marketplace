@@ -1,8 +1,10 @@
-diff:
-	atlas migrate diff --env local
+diff-mysql:
+	atlas migrate diff --env mysql
+diff-postgres:
+	atlas migrate diff --env postgres
 
-apply:
-	atlas migrate apply --env local
+apply-mysql:
+	atlas migrate apply --env mysql
 
 hash:
 	atlas migrate hash
