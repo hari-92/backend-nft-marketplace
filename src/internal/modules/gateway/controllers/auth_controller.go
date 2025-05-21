@@ -18,6 +18,7 @@ func NewAuthController(
 	}
 }
 
+// Login (POST /auth/login)
 func (c *AuthController) Login(ctx *gin.Context) {
 	res, err := c.authService.Login(&gatewayRequest.Login{})
 	if err != nil {
@@ -27,6 +28,7 @@ func (c *AuthController) Login(ctx *gin.Context) {
 	ctx.JSON(200, gin.H{"message": "Login successfully", "data": res})
 }
 
+// Register (POST /auth/register)
 func (c *AuthController) Register(ctx *gin.Context) {
 	res, err := c.authService.Register(&gatewayRequest.Register{})
 	if err != nil {
@@ -36,6 +38,7 @@ func (c *AuthController) Register(ctx *gin.Context) {
 	ctx.JSON(200, gin.H{"message": "Register successfully", "data": res})
 }
 
+// Logout (POST /auth/logout)
 func (c *AuthController) Logout(ctx *gin.Context) {
 	res, err := c.authService.Logout(&gatewayRequest.Logout{})
 	if err != nil {
@@ -43,4 +46,14 @@ func (c *AuthController) Logout(ctx *gin.Context) {
 		return
 	}
 	ctx.JSON(200, gin.H{"message": "Logout successfully", "data": res})
+}
+
+// GoogleCallback callback from google oauth (GET /auth/callback/google)
+func (c *AuthController) GoogleCallback(ctx *gin.Context) {
+	res, err := c.authService.GoogleCallback(&gatewayRequest.GoogleCallbackRequest{})
+	if err != nil {
+		ctx.JSON(500, gin.H{"message": "Server Internal Error", "error": err.Error()})
+		return
+	}
+	ctx.JSON(200, gin.H{"message": "Google Callback successfully", "data": res})
 }
