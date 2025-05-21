@@ -24,7 +24,6 @@ func (p *PnlController) GetRealized(ctx *gin.Context) {
 		ctx.JSON(500, gin.H{"message": "Server Internal Error", "error": err.Error()})
 		return
 	}
-
 	ctx.JSON(200, gin.H{"message": "Get Pnl Realized", "data": res})
 }
 
