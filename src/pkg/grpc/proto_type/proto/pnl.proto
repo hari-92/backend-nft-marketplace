@@ -4,15 +4,83 @@ package pnl;
 
 option go_package = "./";
 
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+    info: {
+        title: "PNL Service API";
+        version: "1.0";
+        description: "API for PNL (Profit and Loss) calculations";
+        contact: {
+            name: "API Support";
+            url: "https://github.com/your-repo";
+            email: "support@example.com"
+        }
+    }
+    host: "localhost:8080"
+    schemes: HTTP
+    schemes: HTTPS
+};
+
 // Pnl service definition
 service PnlProtoService {
-    rpc GetRealized(GetRealizedRequest) returns (GetRealizedResponse) {}
-    rpc GetUnrealized(GetUnrealizedRequest) returns (GetUnrealizedResponse) {}
-    rpc GetSummary(GetSummaryRequest) returns (GetSummaryResponse) {}
-    rpc GetPortfolio(GetPortfolioRequest) returns (GetPortfolioResponse) {}
-    rpc PostRecalculate(PostRecalculateRequest) returns (PostRecalculateResponse) {}
-    rpc GetHistory(GetPnlHistoryRequest) returns (GetPnlHistoryResponse) {}
-    rpc PostValidate(PostValidateRequest) returns (PostValidateResponse) {}
+    rpc GetRealized(GetRealizedRequest) returns (GetRealizedResponse) {
+        option (google.api.http) = {
+            get: "/v1/pnl/realized/{user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Get realized PNL for a user"
+        };
+    }
+    rpc GetUnrealized(GetUnrealizedRequest) returns (GetUnrealizedResponse) {
+        option (google.api.http) = {
+            get: "/v1/pnl/unrealized/{user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Get unrealized PNL for a user"
+        };
+    }
+    rpc GetSummary(GetSummaryRequest) returns (GetSummaryResponse) {
+        option (google.api.http) = {
+            get: "/v1/pnl/summary/{user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Get PNL summary for a user"
+        };
+    }
+    rpc GetPortfolio(GetPortfolioRequest) returns (GetPortfolioResponse) {
+        option (google.api.http) = {
+            get: "/v1/pnl/portfolio/{user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Get portfolio PNL for a user"
+        };
+    }
+    rpc PostRecalculate(PostRecalculateRequest) returns (PostRecalculateResponse) {
+        option (google.api.http) = {
+            post: "/v1/pnl/recalculate/{user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Recalculate PNL for a user"
+        };
+    }
+    rpc GetHistory(GetPnlHistoryRequest) returns (GetPnlHistoryResponse) {
+        option (google.api.http) = {
+            get: "/v1/pnl/history/{user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Get PNL history for a user"
+        };
+    }
+    rpc PostValidate(PostValidateRequest) returns (PostValidateResponse) {
+        option (google.api.http) = {
+            post: "/v1/pnl/validate/{user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Validate PNL for a user"
+        };
+    }
 }
 
 message GetRealizedRequest {
@@ -64,7 +132,9 @@ message GetPnlHistoryRequest {
 }
 
 message GetPnlHistoryResponse {
-    repeated PnlHistory history = 1;
+    repeated PnlHistory history = 1 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "List of PNL history records"
+    }];
 }
 
 message PnlHistory {

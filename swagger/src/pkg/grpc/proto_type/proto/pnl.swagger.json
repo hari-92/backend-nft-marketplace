@@ -1,0 +1,384 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "PNL Service API",
+    "description": "API for PNL (Profit and Loss) calculations",
+    "version": "1.0",
+    "contact": {
+      "name": "API Support",
+      "url": "https://github.com/your-repo",
+      "email": "support@example.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "PnlProtoService"
+    }
+  ],
+  "host": "localhost:8080",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/pnl/history/{userId}": {
+      "get": {
+        "description": "Get PNL history for a user",
+        "operationId": "PnlProtoService_GetHistory",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pnlGetPnlHistoryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PnlProtoService"
+        ]
+      }
+    },
+    "/v1/pnl/portfolio/{userId}": {
+      "get": {
+        "description": "Get portfolio PNL for a user",
+        "operationId": "PnlProtoService_GetPortfolio",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pnlGetPortfolioResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PnlProtoService"
+        ]
+      }
+    },
+    "/v1/pnl/realized/{userId}": {
+      "get": {
+        "description": "Get realized PNL for a user",
+        "operationId": "PnlProtoService_GetRealized",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pnlGetRealizedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PnlProtoService"
+        ]
+      }
+    },
+    "/v1/pnl/recalculate/{userId}": {
+      "post": {
+        "description": "Recalculate PNL for a user",
+        "operationId": "PnlProtoService_PostRecalculate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pnlPostRecalculateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PnlProtoService"
+        ]
+      }
+    },
+    "/v1/pnl/summary/{userId}": {
+      "get": {
+        "description": "Get PNL summary for a user",
+        "operationId": "PnlProtoService_GetSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pnlGetSummaryResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PnlProtoService"
+        ]
+      }
+    },
+    "/v1/pnl/unrealized/{userId}": {
+      "get": {
+        "description": "Get unrealized PNL for a user",
+        "operationId": "PnlProtoService_GetUnrealized",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pnlGetUnrealizedResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PnlProtoService"
+        ]
+      }
+    },
+    "/v1/pnl/validate/{userId}": {
+      "post": {
+        "description": "Validate PNL for a user",
+        "operationId": "PnlProtoService_PostValidate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pnlPostValidateResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PnlProtoService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "pnlGetPnlHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/pnlPnlHistory"
+          },
+          "description": "List of PNL history records"
+        }
+      }
+    },
+    "pnlGetPortfolioResponse": {
+      "type": "object",
+      "properties": {
+        "totalPnl": {
+          "type": "number",
+          "format": "double"
+        },
+        "realizedPnl": {
+          "type": "number",
+          "format": "double"
+        },
+        "unrealizedPnl": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "pnlGetRealizedResponse": {
+      "type": "object",
+      "properties": {
+        "realizedPnl": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "pnlGetSummaryResponse": {
+      "type": "object",
+      "properties": {
+        "totalPnl": {
+          "type": "number",
+          "format": "double"
+        },
+        "realizedPnl": {
+          "type": "number",
+          "format": "double"
+        },
+        "unrealizedPnl": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "pnlGetUnrealizedResponse": {
+      "type": "object",
+      "properties": {
+        "unrealizedPnl": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "pnlPnlHistory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "pairId": {
+          "type": "string"
+        },
+        "realizedPnl": {
+          "type": "number",
+          "format": "double"
+        },
+        "unrealizedPnl": {
+          "type": "number",
+          "format": "double"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "pnlPostRecalculateResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "pnlPostValidateResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
