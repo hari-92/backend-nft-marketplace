@@ -18,7 +18,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
             email: "support@example.com"
         }
     }
-    host: "localhost:8080"
+    host: "localhost:7979"
     schemes: HTTP
     schemes: HTTPS
 };
@@ -79,6 +79,22 @@ service PnlProtoService {
         };
         option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
             description: "Validate PNL for a user"
+        };
+    }
+    rpc GetPnlPair(GetPnlPairRequest) returns (GetPnlPairResponse) {
+        option (google.api.http) = {
+            get: "/v1/pnl/pair/{pair_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Get PNL for a pair"
+        };
+    }
+    rpc GetExport(GetExportRequest) returns (GetExportResponse) {
+        option (google.api.http) = {
+            get: "/v1/pnl/export/{user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Export PNL for a user"
         };
     }
 }

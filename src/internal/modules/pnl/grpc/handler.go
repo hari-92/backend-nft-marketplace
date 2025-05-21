@@ -1,6 +1,11 @@
 package pnl_grpc
 
-import pb "gitlab.com/hari-92/nft-market-server/pkg/grpc/proto_type"
+import (
+	"context"
+	"fmt"
+
+	pb "gitlab.com/hari-92/nft-market-server/pkg/grpc/proto_type"
+)
 
 type Handler struct {
 	pb.UnimplementedPnlProtoServiceServer
@@ -8,4 +13,9 @@ type Handler struct {
 
 func NewGrpcHandler() *Handler {
 	return &Handler{}
+}
+
+func (h *Handler) GetExport(ctx context.Context, in *pb.GetExportRequest) (*pb.GetExportResponse, error) {
+	fmt.Println("pnl_grpc GetExport")
+	return nil, nil
 }

@@ -991,7 +991,7 @@ const file_pnl_proto_rawDesc = "" +
 	"\x10GetExportRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"-\n" +
 	"\x11GetExportResponse\x12\x18\n" +
-	"\amessage\x18\x01 \x01(\tR\amessage2\x85\x04\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage2\x84\x05\n" +
 	"\x0fPnlProtoService\x12B\n" +
 	"\vGetRealized\x12\x17.pnl.GetRealizedRequest\x1a\x18.pnl.GetRealizedResponse\"\x00\x12H\n" +
 	"\rGetUnrealized\x12\x19.pnl.GetUnrealizedRequest\x1a\x1a.pnl.GetUnrealizedResponse\"\x00\x12?\n" +
@@ -1001,7 +1001,10 @@ const file_pnl_proto_rawDesc = "" +
 	"\x0fPostRecalculate\x12\x1b.pnl.PostRecalculateRequest\x1a\x1c.pnl.PostRecalculateResponse\"\x00\x12E\n" +
 	"\n" +
 	"GetHistory\x12\x19.pnl.GetPnlHistoryRequest\x1a\x1a.pnl.GetPnlHistoryResponse\"\x00\x12E\n" +
-	"\fPostValidate\x12\x18.pnl.PostValidateRequest\x1a\x19.pnl.PostValidateResponse\"\x00B\x04Z\x02./b\x06proto3"
+	"\fPostValidate\x12\x18.pnl.PostValidateRequest\x1a\x19.pnl.PostValidateResponse\"\x00\x12?\n" +
+	"\n" +
+	"GetPnlPair\x12\x16.pnl.GetPnlPairRequest\x1a\x17.pnl.GetPnlPairResponse\"\x00\x12<\n" +
+	"\tGetExport\x12\x15.pnl.GetExportRequest\x1a\x16.pnl.GetExportResponse\"\x00B\x04Z\x02./b\x06proto3"
 
 var (
 	file_pnl_proto_rawDescOnce sync.Once
@@ -1046,15 +1049,19 @@ var file_pnl_proto_depIdxs = []int32{
 	8,  // 5: pnl.PnlProtoService.PostRecalculate:input_type -> pnl.PostRecalculateRequest
 	10, // 6: pnl.PnlProtoService.GetHistory:input_type -> pnl.GetPnlHistoryRequest
 	13, // 7: pnl.PnlProtoService.PostValidate:input_type -> pnl.PostValidateRequest
-	1,  // 8: pnl.PnlProtoService.GetRealized:output_type -> pnl.GetRealizedResponse
-	3,  // 9: pnl.PnlProtoService.GetUnrealized:output_type -> pnl.GetUnrealizedResponse
-	5,  // 10: pnl.PnlProtoService.GetSummary:output_type -> pnl.GetSummaryResponse
-	7,  // 11: pnl.PnlProtoService.GetPortfolio:output_type -> pnl.GetPortfolioResponse
-	9,  // 12: pnl.PnlProtoService.PostRecalculate:output_type -> pnl.PostRecalculateResponse
-	11, // 13: pnl.PnlProtoService.GetHistory:output_type -> pnl.GetPnlHistoryResponse
-	14, // 14: pnl.PnlProtoService.PostValidate:output_type -> pnl.PostValidateResponse
-	8,  // [8:15] is the sub-list for method output_type
-	1,  // [1:8] is the sub-list for method input_type
+	15, // 8: pnl.PnlProtoService.GetPnlPair:input_type -> pnl.GetPnlPairRequest
+	17, // 9: pnl.PnlProtoService.GetExport:input_type -> pnl.GetExportRequest
+	1,  // 10: pnl.PnlProtoService.GetRealized:output_type -> pnl.GetRealizedResponse
+	3,  // 11: pnl.PnlProtoService.GetUnrealized:output_type -> pnl.GetUnrealizedResponse
+	5,  // 12: pnl.PnlProtoService.GetSummary:output_type -> pnl.GetSummaryResponse
+	7,  // 13: pnl.PnlProtoService.GetPortfolio:output_type -> pnl.GetPortfolioResponse
+	9,  // 14: pnl.PnlProtoService.PostRecalculate:output_type -> pnl.PostRecalculateResponse
+	11, // 15: pnl.PnlProtoService.GetHistory:output_type -> pnl.GetPnlHistoryResponse
+	14, // 16: pnl.PnlProtoService.PostValidate:output_type -> pnl.PostValidateResponse
+	16, // 17: pnl.PnlProtoService.GetPnlPair:output_type -> pnl.GetPnlPairResponse
+	18, // 18: pnl.PnlProtoService.GetExport:output_type -> pnl.GetExportResponse
+	10, // [10:19] is the sub-list for method output_type
+	1,  // [1:10] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
 	1,  // [1:1] is the sub-list for extension extendee
 	0,  // [0:1] is the sub-list for field type_name
