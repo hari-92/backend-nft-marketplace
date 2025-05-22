@@ -80,3 +80,8 @@ That's it! You have now successfully run migration for Gorm using Atlas.
 2. If you adjust the data in the seed file, you may need to delete the existing seed data in the database before applying the seed data again. Ensure that the data in the seed file is consistent with the data in the database.
 
 3. The timestamp of the seed data is based on the time when the seed data is generated. And must beyond the timestamp of the last migration. If you want to apply the seed data to the database, you need to make sure that the timestamp of the seed data is greater than the timestamp of the last migration. You can check the timestamp of the last migration in the `atlas_migrations` table. If not you can delete the seed data in the database and regenerate the seed data.
+
+4. If you want to generate migration for different database, you can use the following command:
+```atlas migrate diff name --env postgres
+
+atlas migrate diff name --env mysql```
