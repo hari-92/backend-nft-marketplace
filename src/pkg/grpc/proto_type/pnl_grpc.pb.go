@@ -26,6 +26,8 @@ const (
 	PnlProtoService_PostRecalculate_FullMethodName = "/pnl.PnlProtoService/PostRecalculate"
 	PnlProtoService_GetHistory_FullMethodName      = "/pnl.PnlProtoService/GetHistory"
 	PnlProtoService_PostValidate_FullMethodName    = "/pnl.PnlProtoService/PostValidate"
+	PnlProtoService_GetPnlPair_FullMethodName      = "/pnl.PnlProtoService/GetPnlPair"
+	PnlProtoService_GetExport_FullMethodName       = "/pnl.PnlProtoService/GetExport"
 )
 
 // PnlProtoServiceClient is the client API for PnlProtoService service.
@@ -41,6 +43,8 @@ type PnlProtoServiceClient interface {
 	PostRecalculate(ctx context.Context, in *PostRecalculateRequest, opts ...grpc.CallOption) (*PostRecalculateResponse, error)
 	GetHistory(ctx context.Context, in *GetPnlHistoryRequest, opts ...grpc.CallOption) (*GetPnlHistoryResponse, error)
 	PostValidate(ctx context.Context, in *PostValidateRequest, opts ...grpc.CallOption) (*PostValidateResponse, error)
+	GetPnlPair(ctx context.Context, in *GetPnlPairRequest, opts ...grpc.CallOption) (*GetPnlPairResponse, error)
+	GetExport(ctx context.Context, in *GetExportRequest, opts ...grpc.CallOption) (*GetExportResponse, error)
 }
 
 type pnlProtoServiceClient struct {
@@ -121,6 +125,26 @@ func (c *pnlProtoServiceClient) PostValidate(ctx context.Context, in *PostValida
 	return out, nil
 }
 
+func (c *pnlProtoServiceClient) GetPnlPair(ctx context.Context, in *GetPnlPairRequest, opts ...grpc.CallOption) (*GetPnlPairResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPnlPairResponse)
+	err := c.cc.Invoke(ctx, PnlProtoService_GetPnlPair_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *pnlProtoServiceClient) GetExport(ctx context.Context, in *GetExportRequest, opts ...grpc.CallOption) (*GetExportResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetExportResponse)
+	err := c.cc.Invoke(ctx, PnlProtoService_GetExport_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PnlProtoServiceServer is the server API for PnlProtoService service.
 // All implementations must embed UnimplementedPnlProtoServiceServer
 // for forward compatibility.
@@ -134,6 +158,8 @@ type PnlProtoServiceServer interface {
 	PostRecalculate(context.Context, *PostRecalculateRequest) (*PostRecalculateResponse, error)
 	GetHistory(context.Context, *GetPnlHistoryRequest) (*GetPnlHistoryResponse, error)
 	PostValidate(context.Context, *PostValidateRequest) (*PostValidateResponse, error)
+	GetPnlPair(context.Context, *GetPnlPairRequest) (*GetPnlPairResponse, error)
+	GetExport(context.Context, *GetExportRequest) (*GetExportResponse, error)
 	mustEmbedUnimplementedPnlProtoServiceServer()
 }
 
@@ -164,6 +190,12 @@ func (UnimplementedPnlProtoServiceServer) GetHistory(context.Context, *GetPnlHis
 }
 func (UnimplementedPnlProtoServiceServer) PostValidate(context.Context, *PostValidateRequest) (*PostValidateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PostValidate not implemented")
+}
+func (UnimplementedPnlProtoServiceServer) GetPnlPair(context.Context, *GetPnlPairRequest) (*GetPnlPairResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPnlPair not implemented")
+}
+func (UnimplementedPnlProtoServiceServer) GetExport(context.Context, *GetExportRequest) (*GetExportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetExport not implemented")
 }
 func (UnimplementedPnlProtoServiceServer) mustEmbedUnimplementedPnlProtoServiceServer() {}
 func (UnimplementedPnlProtoServiceServer) testEmbeddedByValue()                         {}
@@ -312,6 +344,42 @@ func _PnlProtoService_PostValidate_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PnlProtoService_GetPnlPair_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPnlPairRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PnlProtoServiceServer).GetPnlPair(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PnlProtoService_GetPnlPair_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PnlProtoServiceServer).GetPnlPair(ctx, req.(*GetPnlPairRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PnlProtoService_GetExport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetExportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PnlProtoServiceServer).GetExport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PnlProtoService_GetExport_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PnlProtoServiceServer).GetExport(ctx, req.(*GetExportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PnlProtoService_ServiceDesc is the grpc.ServiceDesc for PnlProtoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -346,6 +414,14 @@ var PnlProtoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PostValidate",
 			Handler:    _PnlProtoService_PostValidate_Handler,
+		},
+		{
+			MethodName: "GetPnlPair",
+			Handler:    _PnlProtoService_GetPnlPair_Handler,
+		},
+		{
+			MethodName: "GetExport",
+			Handler:    _PnlProtoService_GetExport_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

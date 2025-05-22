@@ -6,3 +6,26 @@ app:
   grpcServer:
     host: 0.0.0.0
     port: 9000
+  datasource:
+    # SQL driver. Supports: mysql, postgres, sqlite
+    driver: mysql
+
+    # When dsn is provided, it will override all above connection configs
+#    dsn: root:secret@tcp(mysql:3306)/trading?parseTime=true
+    dsn: root:secret@tcp(localhost:3306)/trading?parseTime=true
+
+    # The maximum number of open connections to the database.
+    # Default 10 connections
+    maxOpenConns: 10
+
+    # The maximum amount of time a connection may be reused.
+    # Default 30m
+    connMaxLifetime: 30m
+
+    # The maximum number of connections in the idle connection pool.
+    # Default 2
+    maxIdleConns: 2
+
+    # The maximum amount of time a connection may be idle.
+    # Default 10m
+    connMaxIdleTime: 10m
