@@ -14,7 +14,7 @@ locals {
 
 env "mysql" {
   src = data.external_schema.gorm.url
-  dev = "docker://mysql/8/dev"
+  dev = local.mysql_url
   url = local.mysql_url
   migration {
     dir = "file://migrations/mysql"
