@@ -9,6 +9,7 @@ import (
 
 type IUserRpcPorts interface {
 	HelloWorld(s string) (string, error)
+	GetOneUser(ctx context.Context, request *pb.GetOneUserRequest) (*pb.GetOneUserResponse, error)
 }
 
 type userRpcPorts struct {
@@ -24,4 +25,12 @@ func (u *userRpcPorts) HelloWorld(s string) (string, error) {
 		return "", err
 	}
 	return res.GetMessage(), nil
+}
+
+func (u *userRpcPorts) GetOneUser(ctx context.Context, request *pb.GetOneUserRequest) (*pb.GetOneUserResponse, error) {
+	res, err := discovery_client.GetUserClient().GetOneUser(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
 }

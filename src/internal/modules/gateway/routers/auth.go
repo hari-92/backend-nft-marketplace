@@ -1,7 +1,7 @@
 package gateway_routers
 
 func (p RegisterRoutersIn) RegisterAuthRoutes() {
-	group := p.Engine.Group("/auth")
+	group := p.Engine.Group("/api/v1/auth")
 
 	// Guest
 	group.POST("/login", p.AuthController.Login)

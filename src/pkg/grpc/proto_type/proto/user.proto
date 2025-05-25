@@ -8,6 +8,9 @@ option go_package = "./";
 service UserProtoService {
   // HelloWorld API endpoint
   rpc HelloWorld (HelloWorldRequest) returns (HelloWorldResponse) {}
+  rpc GetOneUser (GetOneUserRequest) returns (GetOneUserResponse) {}
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
 }
 
 // Request message for HelloWorld
@@ -18,4 +21,35 @@ message HelloWorldRequest {
 // Response message for HelloWorld
 message HelloWorldResponse {
   string message = 1;
+}
+
+message GetOneUserRequest {
+  uint32 id = 1;
+  string email = 2;
+}
+
+message GetOneUserResponse {
+  uint32 id = 1;
+  string email = 2;
+}
+
+message CreateUserRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message CreateUserResponse {
+  uint32 id = 1;
+  string email = 2;
+}
+
+message UpdateUserRequest {
+  uint32 id = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message UpdateUserResponse {
+  uint32 id = 1;
+  string email = 2;
 }
