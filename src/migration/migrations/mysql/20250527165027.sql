@@ -74,11 +74,11 @@ CREATE TABLE `users` (
   `phone_number` varchar(20) NULL,
   `lang` varchar(2) NULL DEFAULT "en",
   `is_set_lang` bool NULL DEFAULT 0,
-  `last_login_at` datetime NULL,
+  `last_login_at` datetime(3) NULL,
+  `test` varchar(100) NULL,
   PRIMARY KEY (`id`),
   INDEX `idx_users_deleted_at` (`deleted_at`),
   UNIQUE INDEX `uni_users_email` (`email`),
-  UNIQUE INDEX `uni_users_google_id` (`google_id`),
   UNIQUE INDEX `uni_users_username` (`username`)
 ) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;
 -- Create "wallets" table
