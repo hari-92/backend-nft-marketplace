@@ -10,7 +10,7 @@ import (
 type UserRepository interface {
 	GetOne(filter *userFilters.UserFilter) (*userModels.User, error)
 	GetMany(filter *userFilters.UserFilter) ([]*userModels.User, error)
-	Create(model *userModels.User) error
+	Create(model *userModels.User) (*userModels.User, error)
 	Update(filter *userFilters.UserFilter, model *userModels.User) error
 }
 
@@ -42,8 +42,12 @@ func (r *userRepository) GetMany(filter *userFilters.UserFilter) ([]*userModels.
 	return users, nil
 }
 
-func (r *userRepository) Create(model *userModels.User) error {
-	return r.db.Create(model).Error
+func (r *userRepository) Create(model *userModels.User) (*userModels.User, error) {
+	err := r.db.Create(&model).Error
+	if err != nil {
+		return nil, err
+	}
+	return model, nil
 }
 
 func (r *userRepository) Update(filter *userFilters.UserFilter, model *userModels.User) error {

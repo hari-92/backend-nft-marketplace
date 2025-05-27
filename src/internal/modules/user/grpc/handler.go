@@ -32,10 +32,32 @@ func (h *Handler) HelloWorld(ctx context.Context, req *pb.HelloWorldRequest) (*p
 	}, nil
 }
 
+func (h *Handler) IsExistUser(ctx context.Context, req *pb.IsExistUserRequest) (*pb.IsExistUserResponse, error) {
+	res, err := h.userService.IsExist(h.pbToRequestConverter.FromIsExistUserToGetUserRequest(req))
+	if err != nil {
+		return nil, err
+	}
+	return &pb.IsExistUserResponse{
+		IsExist: res,
+	}, nil
+}
+
 func (h *Handler) GetOneUser(ctx context.Context, req *pb.GetOneUserRequest) (*pb.GetOneUserResponse, error) {
 	res, err := h.userService.GetUser(h.pbToRequestConverter.FromGetOneUserToGetUserRequest(req))
 	if err != nil {
 		return nil, err
 	}
 	return h.responseToPbConverter.FromGetUserToGetOneUserPb(res), nil
+}
+
+func (h *Handler) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
+	res, err := h.userService.CreateUser(h.pbToRequestConverter.FromCreateUserToCreateUserRequest(req))
+	if err != nil {
+		return nil, err
+	}
+	return h.responseToPbConverter.FromCreateUserResponseToCreateUserPb(res), nil
+}
+
+func (h *Handler) UpdateUser(ctx context.Context, req *pb.UpdateUserRequest) (*pb.UpdateUserResponse, error) {
+	return nil, nil
 }

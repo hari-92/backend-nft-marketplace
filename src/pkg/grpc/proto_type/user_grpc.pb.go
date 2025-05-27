@@ -19,10 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserProtoService_HelloWorld_FullMethodName = "/user.UserProtoService/HelloWorld"
-	UserProtoService_GetOneUser_FullMethodName = "/user.UserProtoService/GetOneUser"
-	UserProtoService_CreateUser_FullMethodName = "/user.UserProtoService/CreateUser"
-	UserProtoService_UpdateUser_FullMethodName = "/user.UserProtoService/UpdateUser"
+	UserProtoService_HelloWorld_FullMethodName  = "/user.UserProtoService/HelloWorld"
+	UserProtoService_GetOneUser_FullMethodName  = "/user.UserProtoService/GetOneUser"
+	UserProtoService_CreateUser_FullMethodName  = "/user.UserProtoService/CreateUser"
+	UserProtoService_UpdateUser_FullMethodName  = "/user.UserProtoService/UpdateUser"
+	UserProtoService_IsExistUser_FullMethodName = "/user.UserProtoService/IsExistUser"
 )
 
 // UserProtoServiceClient is the client API for UserProtoService service.
@@ -36,6 +37,7 @@ type UserProtoServiceClient interface {
 	GetOneUser(ctx context.Context, in *GetOneUserRequest, opts ...grpc.CallOption) (*GetOneUserResponse, error)
 	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error)
+	IsExistUser(ctx context.Context, in *IsExistUserRequest, opts ...grpc.CallOption) (*IsExistUserResponse, error)
 }
 
 type userProtoServiceClient struct {
@@ -86,6 +88,16 @@ func (c *userProtoServiceClient) UpdateUser(ctx context.Context, in *UpdateUserR
 	return out, nil
 }
 
+func (c *userProtoServiceClient) IsExistUser(ctx context.Context, in *IsExistUserRequest, opts ...grpc.CallOption) (*IsExistUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsExistUserResponse)
+	err := c.cc.Invoke(ctx, UserProtoService_IsExistUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserProtoServiceServer is the server API for UserProtoService service.
 // All implementations must embed UnimplementedUserProtoServiceServer
 // for forward compatibility.
@@ -97,6 +109,7 @@ type UserProtoServiceServer interface {
 	GetOneUser(context.Context, *GetOneUserRequest) (*GetOneUserResponse, error)
 	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error)
+	IsExistUser(context.Context, *IsExistUserRequest) (*IsExistUserResponse, error)
 	mustEmbedUnimplementedUserProtoServiceServer()
 }
 
@@ -118,6 +131,9 @@ func (UnimplementedUserProtoServiceServer) CreateUser(context.Context, *CreateUs
 }
 func (UnimplementedUserProtoServiceServer) UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
+}
+func (UnimplementedUserProtoServiceServer) IsExistUser(context.Context, *IsExistUserRequest) (*IsExistUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsExistUser not implemented")
 }
 func (UnimplementedUserProtoServiceServer) mustEmbedUnimplementedUserProtoServiceServer() {}
 func (UnimplementedUserProtoServiceServer) testEmbeddedByValue()                          {}
@@ -212,6 +228,24 @@ func _UserProtoService_UpdateUser_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserProtoService_IsExistUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsExistUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserProtoServiceServer).IsExistUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserProtoService_IsExistUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserProtoServiceServer).IsExistUser(ctx, req.(*IsExistUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserProtoService_ServiceDesc is the grpc.ServiceDesc for UserProtoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -234,6 +268,10 @@ var UserProtoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateUser",
 			Handler:    _UserProtoService_UpdateUser_Handler,
+		},
+		{
+			MethodName: "IsExistUser",
+			Handler:    _UserProtoService_IsExistUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

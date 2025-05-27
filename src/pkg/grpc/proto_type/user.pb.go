@@ -431,6 +431,94 @@ func (x *UpdateUserResponse) GetEmail() string {
 	return ""
 }
 
+type IsExistUserRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsExistUserRequest) Reset() {
+	*x = IsExistUserRequest{}
+	mi := &file_user_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsExistUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsExistUserRequest) ProtoMessage() {}
+
+func (x *IsExistUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsExistUserRequest.ProtoReflect.Descriptor instead.
+func (*IsExistUserRequest) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *IsExistUserRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+type IsExistUserResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	IsExist       bool                   `protobuf:"varint,1,opt,name=is_exist,json=isExist,proto3" json:"is_exist,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsExistUserResponse) Reset() {
+	*x = IsExistUserResponse{}
+	mi := &file_user_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsExistUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsExistUserResponse) ProtoMessage() {}
+
+func (x *IsExistUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsExistUserResponse.ProtoReflect.Descriptor instead.
+func (*IsExistUserResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *IsExistUserResponse) GetIsExist() bool {
+	if x != nil {
+		return x.IsExist
+	}
+	return false
+}
+
 var File_user_proto protoreflect.FileDescriptor
 
 const file_user_proto_rawDesc = "" +
@@ -459,7 +547,11 @@ const file_user_proto_rawDesc = "" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword\":\n" +
 	"\x12UpdateUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email2\x9e\x02\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email\"0\n" +
+	"\x12IsExistUserRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\"0\n" +
+	"\x13IsExistUserResponse\x12\x19\n" +
+	"\bis_exist\x18\x01 \x01(\bR\aisExist2\xe4\x02\n" +
 	"\x10UserProtoService\x12A\n" +
 	"\n" +
 	"HelloWorld\x12\x17.user.HelloWorldRequest\x1a\x18.user.HelloWorldResponse\"\x00\x12A\n" +
@@ -468,7 +560,8 @@ const file_user_proto_rawDesc = "" +
 	"\n" +
 	"CreateUser\x12\x17.user.CreateUserRequest\x1a\x18.user.CreateUserResponse\"\x00\x12A\n" +
 	"\n" +
-	"UpdateUser\x12\x17.user.UpdateUserRequest\x1a\x18.user.UpdateUserResponse\"\x00B\x04Z\x02./b\x06proto3"
+	"UpdateUser\x12\x17.user.UpdateUserRequest\x1a\x18.user.UpdateUserResponse\"\x00\x12D\n" +
+	"\vIsExistUser\x12\x18.user.IsExistUserRequest\x1a\x19.user.IsExistUserResponse\"\x00B\x04Z\x02./b\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -482,28 +575,32 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_user_proto_goTypes = []any{
-	(*HelloWorldRequest)(nil),  // 0: user.HelloWorldRequest
-	(*HelloWorldResponse)(nil), // 1: user.HelloWorldResponse
-	(*GetOneUserRequest)(nil),  // 2: user.GetOneUserRequest
-	(*GetOneUserResponse)(nil), // 3: user.GetOneUserResponse
-	(*CreateUserRequest)(nil),  // 4: user.CreateUserRequest
-	(*CreateUserResponse)(nil), // 5: user.CreateUserResponse
-	(*UpdateUserRequest)(nil),  // 6: user.UpdateUserRequest
-	(*UpdateUserResponse)(nil), // 7: user.UpdateUserResponse
+	(*HelloWorldRequest)(nil),   // 0: user.HelloWorldRequest
+	(*HelloWorldResponse)(nil),  // 1: user.HelloWorldResponse
+	(*GetOneUserRequest)(nil),   // 2: user.GetOneUserRequest
+	(*GetOneUserResponse)(nil),  // 3: user.GetOneUserResponse
+	(*CreateUserRequest)(nil),   // 4: user.CreateUserRequest
+	(*CreateUserResponse)(nil),  // 5: user.CreateUserResponse
+	(*UpdateUserRequest)(nil),   // 6: user.UpdateUserRequest
+	(*UpdateUserResponse)(nil),  // 7: user.UpdateUserResponse
+	(*IsExistUserRequest)(nil),  // 8: user.IsExistUserRequest
+	(*IsExistUserResponse)(nil), // 9: user.IsExistUserResponse
 }
 var file_user_proto_depIdxs = []int32{
 	0, // 0: user.UserProtoService.HelloWorld:input_type -> user.HelloWorldRequest
 	2, // 1: user.UserProtoService.GetOneUser:input_type -> user.GetOneUserRequest
 	4, // 2: user.UserProtoService.CreateUser:input_type -> user.CreateUserRequest
 	6, // 3: user.UserProtoService.UpdateUser:input_type -> user.UpdateUserRequest
-	1, // 4: user.UserProtoService.HelloWorld:output_type -> user.HelloWorldResponse
-	3, // 5: user.UserProtoService.GetOneUser:output_type -> user.GetOneUserResponse
-	5, // 6: user.UserProtoService.CreateUser:output_type -> user.CreateUserResponse
-	7, // 7: user.UserProtoService.UpdateUser:output_type -> user.UpdateUserResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	8, // 4: user.UserProtoService.IsExistUser:input_type -> user.IsExistUserRequest
+	1, // 5: user.UserProtoService.HelloWorld:output_type -> user.HelloWorldResponse
+	3, // 6: user.UserProtoService.GetOneUser:output_type -> user.GetOneUserResponse
+	5, // 7: user.UserProtoService.CreateUser:output_type -> user.CreateUserResponse
+	7, // 8: user.UserProtoService.UpdateUser:output_type -> user.UpdateUserResponse
+	9, // 9: user.UserProtoService.IsExistUser:output_type -> user.IsExistUserResponse
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -520,7 +617,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

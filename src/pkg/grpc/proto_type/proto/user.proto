@@ -11,6 +11,7 @@ service UserProtoService {
   rpc GetOneUser (GetOneUserRequest) returns (GetOneUserResponse) {}
   rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {}
   rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc IsExistUser (IsExistUserRequest) returns (IsExistUserResponse) {}
 }
 
 // Request message for HelloWorld
@@ -52,4 +53,12 @@ message UpdateUserRequest {
 message UpdateUserResponse {
   uint32 id = 1;
   string email = 2;
+}
+
+message IsExistUserRequest {
+  string username = 1;
+}
+
+message IsExistUserResponse {
+  bool is_exist = 1;
 }

@@ -11,13 +11,24 @@ func NewResponseToPbConverter() *ResponseToPbConverter {
 	return &ResponseToPbConverter{}
 }
 
-func (c *ResponseToPbConverter) FromGetUserToGetOneUserPb(proto *userResponses.GetUserResponse) *pb.GetOneUserResponse {
-	if proto == nil {
+func (c *ResponseToPbConverter) FromGetUserToGetOneUserPb(res *userResponses.GetUserResponse) *pb.GetOneUserResponse {
+	if res == nil {
 		return nil
 	}
 
 	return &pb.GetOneUserResponse{
-		Id:    proto.ID,
-		Email: proto.Email,
+		Id:    res.ID,
+		Email: res.Email,
+	}
+}
+
+func (c *ResponseToPbConverter) FromCreateUserResponseToCreateUserPb(res *userResponses.CreateUserResponse) *pb.CreateUserResponse {
+	if res == nil {
+		return nil
+	}
+
+	return &pb.CreateUserResponse{
+		Id:    res.ID,
+		Email: res.Email,
 	}
 }

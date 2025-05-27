@@ -21,3 +21,13 @@ func (c *ModelToResponseConverter) ToGetUserResponse(model *userModels.User) *us
 		Email: model.Email,
 	}
 }
+
+func (c *ModelToResponseConverter) ToCreateUserResponse(model *userModels.User) *userResponses.CreateUserResponse {
+	if model == nil {
+		return nil
+	}
+
+	return &userResponses.CreateUserResponse{
+		ID: uint32(model.ID),
+	}
+}

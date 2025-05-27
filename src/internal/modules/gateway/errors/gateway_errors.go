@@ -6,10 +6,12 @@ const (
 	GatewayErrorCodeUnknown = iota * errors.BaseErrorCodeGateway
 	GatewayErrorCodeUnauthorized
 	GatewayErrorCodeInvalidRequest
+	GatewayErrorCodeUserAlreadyExists
 )
 
 var (
-	GatewayErrorUnknown        = errors.NewAppError(GatewayErrorCodeUnknown, "Unknown error")
-	GatewayErrorUnauthorized   = errors.NewAppError(GatewayErrorCodeUnauthorized, "Unauthorized access")
-	GatewayErrorInvalidRequest = errors.NewAppError(GatewayErrorCodeInvalidRequest, "Invalid request")
+	GatewayErrorUnknown           = errors.NewAppError(GatewayErrorCodeUnknown, "Unknown error")
+	GatewayErrorUnauthorized      = errors.NewAppError(GatewayErrorCodeUnauthorized, "Unauthorized access")
+	GatewayErrorInvalidRequest    = errors.NewAppError(GatewayErrorCodeInvalidRequest, "Invalid request")
+	GatewayErrorUserAlreadyExists = errors.NewAppError(GatewayErrorCodeUserAlreadyExists, "User already exists")
 )
