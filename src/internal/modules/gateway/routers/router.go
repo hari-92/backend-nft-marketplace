@@ -1,11 +1,13 @@
 package gateway_routers
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/golibs-starter/golib"
 	golibgin "github.com/golibs-starter/golib-gin"
 	"github.com/golibs-starter/golib/log"
 	"github.com/golibs-starter/golib/web/actuator"
+	common_producers "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers"
 	gatewayControllers "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/controllers"
 	"go.uber.org/fx"
 )
@@ -40,6 +42,22 @@ func RegisterRoutes(p RegisterRoutersIn) {
 
 	group.GET("/actuator/health", gin.WrapF(p.Actuator.Health))
 	group.GET("/actuator/info", gin.WrapF(p.Actuator.Info))
+
+	group.POST("/test-publish-event", func(c *gin.Context) {
+		fmt.Println("Test publish event called")
+		var req common_producers.TestPublishEvent
+		if err := c.ShouldBindJSON(&req); err != nil {
+			log.Error("Failed to bind JSON for TestPublishEvent:", err)
+			c.JSON(400, gin.H{
+				"error": "Invalid request data",
+			})
+			return
+		}
+		common_producers.GetProducerHubInstance().TestPublishEvent(&req)
+		c.JSON(200, gin.H{
+			"message": "Test publish event called successfully",
+		})
+	})
 
 	p.RegisterUserRoutes()
 	p.RegisterAuthRoutes()
