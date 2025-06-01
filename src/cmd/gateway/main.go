@@ -14,6 +14,7 @@ func main() {
 		bootstrap.WithApi(),
 		bootstrap.WithGrpcServer(),
 		//bootstrap.WithDatabase(),
+		bootstrap.WithKafkaOnlyProducer(),
 		gateway.NewProvider(),
 		discovery_client.Provider(),
 		commonProducers.Provider(),

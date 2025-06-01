@@ -48,13 +48,15 @@ func GetProducerHubInstance() IProducerHub {
 }
 
 func publishEvent[T base.IKafkaEvent](ctx context.Context, msg T) {
-	pubsub.Publish(kafka.Event[T]{
+	ev := kafka.Event[T]{
 		AbstractEvent: event.NewAbstractEvent(ctx, msg.Name()),
 		PayloadData:   msg,
-	})
+	}
+	pubsub.Publish(ev)
 }
 
 func (p *ProducerHub) TestPublishEvent(event *TestPublishEvent) {
 	fmt.Println("Publishing TestPublishEvent event:", event)
-	publishEvent(context.Background(), event)
+	ctx := context.Background()
+	publishEvent(ctx, event)
 }
