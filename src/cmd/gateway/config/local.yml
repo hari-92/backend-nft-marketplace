@@ -40,6 +40,12 @@ app:
         TestPublishEvent:
           topicName: trading.gateway.test-publish-event
           transactional: false
+        UserCreatedEvent:
+          topicName: trading.gateway.user-created-event
+          transactional: false
+        TrackUserLoginEvent:
+          topicName: trading.gateway.track-user-login-event
+          transactional: false
     consumer:
       handlerMappings:
         TestPublishConsumer:

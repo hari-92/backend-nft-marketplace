@@ -1,6 +1,6 @@
-package gateway_response
+package user_requests
 
-type Register struct {
+type VerifyUserRequest struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 }
