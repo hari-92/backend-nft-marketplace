@@ -9,10 +9,10 @@ import (
 )
 
 type TokenController struct {
-	tokenService tokenServices.TokenService
+	tokenService tokenServices.ITokenService
 }
 
-func NewTokenController(tokenService tokenServices.TokenService) *TokenController {
+func NewTokenController(tokenService tokenServices.ITokenService) *TokenController {
 	return &TokenController{
 		tokenService: tokenService,
 	}

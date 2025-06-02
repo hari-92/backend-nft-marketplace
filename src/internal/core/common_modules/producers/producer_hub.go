@@ -7,6 +7,7 @@ import (
 	kafka "gitlab.com/hari-92/nft-market-server/internal/core/adapter"
 	"gitlab.com/hari-92/nft-market-server/internal/core/base"
 	commonProducersEventGateway "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/gateway"
+	commonProducersEvent "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/tokens"
 	"sync"
 )
 
@@ -17,6 +18,9 @@ type IProducerHub interface {
 	TestPublishEvent(event *commonProducersEventGateway.TestPublishEvent)
 	TrackUserLoginEvent(event *commonProducersEventGateway.TrackUserLoginEvent)
 	UserCreatedEvent(event *commonProducersEventGateway.UserCreatedEvent)
+
+	// Token event
+	InitTokenEvent(event *commonProducersEvent.InitTokenEvent)
 }
 
 func NewCommonProducerHub() {
@@ -56,4 +60,8 @@ func (p *ProducerHub) TrackUserLoginEvent(event *commonProducersEventGateway.Tra
 func (p *ProducerHub) UserCreatedEvent(event *commonProducersEventGateway.UserCreatedEvent) {
 	ctx := context.Background()
 	publishEvent(ctx, event)
+}
+
+func (p *ProducerHub) InitTokenEvent(event *commonProducersEvent.InitTokenEvent) {
+	publishEvent(context.Background(), event)
 }

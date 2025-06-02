@@ -30,3 +30,14 @@ app:
     # The maximum amount of time a connection may be idle.
     # Default 10m
     connMaxIdleTime: 10m
+  kafka:
+    #    topic_name define: project->service->action
+    #    bootstrapServers: kafka:9092
+    bootstrapServers: localhost:29092
+    clientId: trading.token-client
+    producer:
+      commitMode: AUTO_COMMIT_IMMEDIATELY
+      eventMappings:
+        InitTokenEvent:
+          topicName: trading.token.init-token
+          transactional: false

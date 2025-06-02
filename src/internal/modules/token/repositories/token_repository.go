@@ -10,7 +10,7 @@ import (
 type TokenRepository interface {
 	FindOne(filter *tokenFilters.TokenFilter) (*tokenModels.Token, error)
 	FindMany(filter *tokenFilters.TokenFilter) ([]*tokenModels.Token, error)
-	Create(model *tokenModels.Token) error
+	Create(model *tokenModels.Token) (*tokenModels.Token, error)
 	Update(filter *tokenFilters.TokenFilter, model *tokenModels.Token) error
 }
 
@@ -42,8 +42,13 @@ func (r *tokenRepository) FindMany(filter *tokenFilters.TokenFilter) ([]*tokenMo
 	return tokens, nil
 }
 
-func (r *tokenRepository) Create(model *tokenModels.Token) error {
-	return r.db.Create(model).Error
+func (r *tokenRepository) Create(model *tokenModels.Token) (*tokenModels.Token, error) {
+	err := r.db.Create(model).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return model, nil
 }
 
 func (r *tokenRepository) Update(filter *tokenFilters.TokenFilter, model *tokenModels.Token) error {

@@ -199,7 +199,13 @@ func (x *GetTokenResponse) GetTokenId() string {
 
 type PostTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	Address       string                 `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+	Symbol        string                 `protobuf:"bytes,2,opt,name=symbol,proto3" json:"symbol,omitempty"`
+	Decimals      int32                  `protobuf:"varint,3,opt,name=decimals,proto3" json:"decimals,omitempty"`
+	TotalSupply   uint64                 `protobuf:"varint,4,opt,name=total_supply,json=totalSupply,proto3" json:"total_supply,omitempty"`
+	Name          string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
+	Description   string                 `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
+	ChainId       int32                  `protobuf:"varint,7,opt,name=chain_id,json=chainId,proto3" json:"chain_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -234,16 +240,58 @@ func (*PostTokenRequest) Descriptor() ([]byte, []int) {
 	return file_token_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *PostTokenRequest) GetTokenId() string {
+func (x *PostTokenRequest) GetAddress() string {
 	if x != nil {
-		return x.TokenId
+		return x.Address
 	}
 	return ""
 }
 
+func (x *PostTokenRequest) GetSymbol() string {
+	if x != nil {
+		return x.Symbol
+	}
+	return ""
+}
+
+func (x *PostTokenRequest) GetDecimals() int32 {
+	if x != nil {
+		return x.Decimals
+	}
+	return 0
+}
+
+func (x *PostTokenRequest) GetTotalSupply() uint64 {
+	if x != nil {
+		return x.TotalSupply
+	}
+	return 0
+}
+
+func (x *PostTokenRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *PostTokenRequest) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *PostTokenRequest) GetChainId() int32 {
+	if x != nil {
+		return x.ChainId
+	}
+	return 0
+}
+
 type PostTokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -278,11 +326,11 @@ func (*PostTokenResponse) Descriptor() ([]byte, []int) {
 	return file_token_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *PostTokenResponse) GetTokenId() string {
+func (x *PostTokenResponse) GetId() uint32 {
 	if x != nil {
-		return x.TokenId
+		return x.Id
 	}
-	return ""
+	return 0
 }
 
 type PutTokenRequest struct {
@@ -561,11 +609,17 @@ const file_token_proto_rawDesc = "" +
 	"\x0fGetTokenRequest\x12\x19\n" +
 	"\btoken_id\x18\x01 \x01(\tR\atokenId\"-\n" +
 	"\x10GetTokenResponse\x12\x19\n" +
-	"\btoken_id\x18\x01 \x01(\tR\atokenId\"-\n" +
-	"\x10PostTokenRequest\x12\x19\n" +
-	"\btoken_id\x18\x01 \x01(\tR\atokenId\".\n" +
-	"\x11PostTokenResponse\x12\x19\n" +
-	"\btoken_id\x18\x01 \x01(\tR\atokenId\",\n" +
+	"\btoken_id\x18\x01 \x01(\tR\atokenId\"\xd4\x01\n" +
+	"\x10PostTokenRequest\x12\x18\n" +
+	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x16\n" +
+	"\x06symbol\x18\x02 \x01(\tR\x06symbol\x12\x1a\n" +
+	"\bdecimals\x18\x03 \x01(\x05R\bdecimals\x12!\n" +
+	"\ftotal_supply\x18\x04 \x01(\x04R\vtotalSupply\x12\x12\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x12 \n" +
+	"\vdescription\x18\x06 \x01(\tR\vdescription\x12\x19\n" +
+	"\bchain_id\x18\a \x01(\x05R\achainId\"#\n" +
+	"\x11PostTokenResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\",\n" +
 	"\x0fPutTokenRequest\x12\x19\n" +
 	"\btoken_id\x18\x01 \x01(\tR\atokenId\"-\n" +
 	"\x10PutTokenResponse\x12\x19\n" +
