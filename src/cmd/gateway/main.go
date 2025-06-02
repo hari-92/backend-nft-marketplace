@@ -12,7 +12,7 @@ func main() {
 		bootstrap.WithDefaultOptions(),
 		bootstrap.WithApi(),
 		bootstrap.WithGrpcServer(),
-		//bootstrap.WithDatabase(),
+		bootstrap.WithDatabase(),
 		bootstrap.WithKafka(),
 		gateway.NewProvider(),
 		discovery_client.Provider(),
