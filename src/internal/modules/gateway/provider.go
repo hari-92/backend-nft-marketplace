@@ -1,6 +1,9 @@
 package gateway
 
 import (
+	golibmsg "github.com/golibs-starter/golib-message-bus"
+	commonProducers "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers"
+	gateway_consumers "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/consumers"
 	gatewayControllers "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/controllers"
 	gatewayGrpc "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/grpc"
 	gatewayInstance "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/instance"
@@ -27,6 +30,12 @@ func NewProvider() fx.Option {
 		// Provide router handler
 		fx.Invoke(gatewayRouters.RegisterRoutes),
 		fx.Invoke(gatewayRouters.RegisterHandler),
+
+		// Provide consumers
+		golibmsg.ProvideConsumer(gateway_consumers.NewTestPublishConsumer),
+
+		// Provide common producers
+		commonProducers.Provider(),
 
 		fx.Provide(gatewayGrpc.NewGrpcHandler),
 		fx.Provide(gatewayGrpc.NewGrpcServer),
