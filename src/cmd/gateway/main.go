@@ -13,6 +13,7 @@ func main() {
 		bootstrap.WithApi(),
 		bootstrap.WithGrpcServer(),
 		bootstrap.WithDatabase(),
+		bootstrap.WithKafka(),
 		gateway.NewProvider(),
 		discovery_client.Provider(),
 	).Run()
