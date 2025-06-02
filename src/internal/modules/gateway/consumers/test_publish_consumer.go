@@ -41,6 +41,5 @@ func (c TestPublishConsumer) HandlerFunc(message *core.ConsumerMessage) {
 func (c TestPublishConsumer) Close() {}
 
 func NewTestPublishConsumer() core.ConsumerHandler {
-	log.Info("[TestPublishConsumer] NewTestPublishConsumer called")
 	return &TestPublishConsumer{}
 }
