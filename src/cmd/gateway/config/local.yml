@@ -40,9 +40,9 @@ app:
         TestPublishEvent:
           topicName: trading.gateway.test-publish-event
           transactional: false
-#    consumer:
-#      handlerMappings:
-#        TrackingLoginConsumer:
-#          topic: trading.user.tracking-login
-#          groupId: trading.user.tracking-login
-#          enable: true
+    consumer:
+      handlerMappings:
+        TestPublishConsumer:
+          topic: trading.gateway.test-publish-event
+          groupId: trading.gateway.test-publish-event
+          enable: true

@@ -2,33 +2,19 @@ package common_producers
 
 import (
 	"context"
-	"fmt"
 	"github.com/golibs-starter/golib/pubsub"
 	"github.com/golibs-starter/golib/web/event"
 	kafka "gitlab.com/hari-92/nft-market-server/internal/core/adapter"
 	"gitlab.com/hari-92/nft-market-server/internal/core/base"
+	commonProducersEventGateway "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/gateway"
 	"sync"
 )
 
 var instanceProducerHub IProducerHub
 var once sync.Once
 
-type TestPublishEvent struct {
-	UserID   uint32 `json:"user_id"`
-	UserName string `json:"user_name"`
-	Message  string `json:"message"`
-}
-
-func (t TestPublishEvent) Name() string {
-	return "TestPublishEvent"
-}
-
-func (t TestPublishEvent) Data() interface{} {
-	return &t
-}
-
 type IProducerHub interface {
-	TestPublishEvent(event *TestPublishEvent)
+	TestPublishEvent(event *commonProducersEventGateway.TestPublishEvent)
 }
 
 func NewCommonProducerHub() {
@@ -55,8 +41,7 @@ func publishEvent[T base.IKafkaEvent](ctx context.Context, msg T) {
 	pubsub.Publish(ev)
 }
 
-func (p *ProducerHub) TestPublishEvent(event *TestPublishEvent) {
-	fmt.Println("Publishing TestPublishEvent event:", event)
+func (p *ProducerHub) TestPublishEvent(event *commonProducersEventGateway.TestPublishEvent) {
 	ctx := context.Background()
 	publishEvent(ctx, event)
 }
