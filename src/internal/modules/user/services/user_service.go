@@ -3,6 +3,7 @@ package user_services
 import (
 	"errors"
 	userConverters "gitlab.com/hari-92/nft-market-server/internal/modules/user/converters"
+	userRrrors "gitlab.com/hari-92/nft-market-server/internal/modules/user/errors"
 	userRepositories "gitlab.com/hari-92/nft-market-server/internal/modules/user/repositories"
 	userRequests "gitlab.com/hari-92/nft-market-server/internal/modules/user/requests"
 	userResponses "gitlab.com/hari-92/nft-market-server/internal/modules/user/responses"
@@ -13,6 +14,7 @@ type UserService interface {
 	IsExist(req *userRequests.IsExistUserRequest) (bool, error)
 	GetUser(req *userRequests.GetUserRequest) (*userResponses.GetUserResponse, error)
 	CreateUser(req *userRequests.CreateUserRequest) (*userResponses.CreateUserResponse, error)
+	Verify(req *userRequests.VerifyUserRequest) (*userResponses.VerifyUserResponse, error)
 }
 
 type userService struct {
@@ -61,4 +63,17 @@ func (u *userService) CreateUser(req *userRequests.CreateUserRequest) (*userResp
 		return nil, err
 	}
 	return u.modelToResponseConverter.ToCreateUserResponse(user), nil
+}
+
+func (u *userService) Verify(req *userRequests.VerifyUserRequest) (*userResponses.VerifyUserResponse, error) {
+	user, err := u.userRepository.Verify(req.Username, req.Password)
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, userRrrors.UserErrorNotFound
+		}
+		return nil, err
+	}
+	return &userResponses.VerifyUserResponse{
+		ID: uint32(user.ID),
+	}, nil
 }

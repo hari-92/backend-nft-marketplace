@@ -9,6 +9,15 @@ type CreateUserPayload struct {
 }
 
 type CreateUserResponse struct {
-	Id    uint32 `json:"id"`
+	ID    uint32 `json:"id"`
 	Email string `json:"email"`
+}
+
+type LoginUserPayload struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type LoginUserResponse struct {
+	ID uint32 `json:"id"`
 }

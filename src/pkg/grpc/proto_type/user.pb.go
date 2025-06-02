@@ -519,6 +519,102 @@ func (x *IsExistUserResponse) GetIsExist() bool {
 	return false
 }
 
+type LoginRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoginRequest) Reset() {
+	*x = LoginRequest{}
+	mi := &file_user_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginRequest) ProtoMessage() {}
+
+func (x *LoginRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
+func (*LoginRequest) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *LoginRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type LoginResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoginResponse) Reset() {
+	*x = LoginResponse{}
+	mi := &file_user_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginResponse) ProtoMessage() {}
+
+func (x *LoginResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginResponse.ProtoReflect.Descriptor instead.
+func (*LoginResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *LoginResponse) GetId() uint32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
 var File_user_proto protoreflect.FileDescriptor
 
 const file_user_proto_rawDesc = "" +
@@ -551,7 +647,12 @@ const file_user_proto_rawDesc = "" +
 	"\x12IsExistUserRequest\x12\x1a\n" +
 	"\busername\x18\x01 \x01(\tR\busername\"0\n" +
 	"\x13IsExistUserResponse\x12\x19\n" +
-	"\bis_exist\x18\x01 \x01(\bR\aisExist2\xe4\x02\n" +
+	"\bis_exist\x18\x01 \x01(\bR\aisExist\"F\n" +
+	"\fLoginRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"\x1f\n" +
+	"\rLoginResponse\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id2\x98\x03\n" +
 	"\x10UserProtoService\x12A\n" +
 	"\n" +
 	"HelloWorld\x12\x17.user.HelloWorldRequest\x1a\x18.user.HelloWorldResponse\"\x00\x12A\n" +
@@ -561,7 +662,8 @@ const file_user_proto_rawDesc = "" +
 	"CreateUser\x12\x17.user.CreateUserRequest\x1a\x18.user.CreateUserResponse\"\x00\x12A\n" +
 	"\n" +
 	"UpdateUser\x12\x17.user.UpdateUserRequest\x1a\x18.user.UpdateUserResponse\"\x00\x12D\n" +
-	"\vIsExistUser\x12\x18.user.IsExistUserRequest\x1a\x19.user.IsExistUserResponse\"\x00B\x04Z\x02./b\x06proto3"
+	"\vIsExistUser\x12\x18.user.IsExistUserRequest\x1a\x19.user.IsExistUserResponse\"\x00\x122\n" +
+	"\x05Login\x12\x12.user.LoginRequest\x1a\x13.user.LoginResponse\"\x00B\x04Z\x02./b\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -575,7 +677,7 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_user_proto_goTypes = []any{
 	(*HelloWorldRequest)(nil),   // 0: user.HelloWorldRequest
 	(*HelloWorldResponse)(nil),  // 1: user.HelloWorldResponse
@@ -587,23 +689,27 @@ var file_user_proto_goTypes = []any{
 	(*UpdateUserResponse)(nil),  // 7: user.UpdateUserResponse
 	(*IsExistUserRequest)(nil),  // 8: user.IsExistUserRequest
 	(*IsExistUserResponse)(nil), // 9: user.IsExistUserResponse
+	(*LoginRequest)(nil),        // 10: user.LoginRequest
+	(*LoginResponse)(nil),       // 11: user.LoginResponse
 }
 var file_user_proto_depIdxs = []int32{
-	0, // 0: user.UserProtoService.HelloWorld:input_type -> user.HelloWorldRequest
-	2, // 1: user.UserProtoService.GetOneUser:input_type -> user.GetOneUserRequest
-	4, // 2: user.UserProtoService.CreateUser:input_type -> user.CreateUserRequest
-	6, // 3: user.UserProtoService.UpdateUser:input_type -> user.UpdateUserRequest
-	8, // 4: user.UserProtoService.IsExistUser:input_type -> user.IsExistUserRequest
-	1, // 5: user.UserProtoService.HelloWorld:output_type -> user.HelloWorldResponse
-	3, // 6: user.UserProtoService.GetOneUser:output_type -> user.GetOneUserResponse
-	5, // 7: user.UserProtoService.CreateUser:output_type -> user.CreateUserResponse
-	7, // 8: user.UserProtoService.UpdateUser:output_type -> user.UpdateUserResponse
-	9, // 9: user.UserProtoService.IsExistUser:output_type -> user.IsExistUserResponse
-	5, // [5:10] is the sub-list for method output_type
-	0, // [0:5] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: user.UserProtoService.HelloWorld:input_type -> user.HelloWorldRequest
+	2,  // 1: user.UserProtoService.GetOneUser:input_type -> user.GetOneUserRequest
+	4,  // 2: user.UserProtoService.CreateUser:input_type -> user.CreateUserRequest
+	6,  // 3: user.UserProtoService.UpdateUser:input_type -> user.UpdateUserRequest
+	8,  // 4: user.UserProtoService.IsExistUser:input_type -> user.IsExistUserRequest
+	10, // 5: user.UserProtoService.Login:input_type -> user.LoginRequest
+	1,  // 6: user.UserProtoService.HelloWorld:output_type -> user.HelloWorldResponse
+	3,  // 7: user.UserProtoService.GetOneUser:output_type -> user.GetOneUserResponse
+	5,  // 8: user.UserProtoService.CreateUser:output_type -> user.CreateUserResponse
+	7,  // 9: user.UserProtoService.UpdateUser:output_type -> user.UpdateUserResponse
+	9,  // 10: user.UserProtoService.IsExistUser:output_type -> user.IsExistUserResponse
+	11, // 11: user.UserProtoService.Login:output_type -> user.LoginResponse
+	6,  // [6:12] is the sub-list for method output_type
+	0,  // [0:6] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_user_proto_init() }
@@ -617,7 +723,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

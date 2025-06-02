@@ -12,6 +12,7 @@ type IUserRpcPorts interface {
 	HelloWorld(s string) (string, error)
 	IsExistUser(username string) (bool, error)
 	CreateUser(user *commonDto.CreateUserPayload) (*commonDto.CreateUserResponse, error)
+	Login(username, password string) (*commonDto.LoginUserResponse, error)
 }
 
 type userRpcPorts struct {
@@ -58,7 +59,24 @@ func (u *userRpcPorts) CreateUser(user *commonDto.CreateUserPayload) (*commonDto
 	}
 
 	return &commonDto.CreateUserResponse{
-		Id:    res.GetId(),
+		ID:    res.GetId(),
 		Email: res.GetEmail(),
+	}, nil
+}
+
+func (u *userRpcPorts) Login(username, password string) (*commonDto.LoginUserResponse, error) {
+	res, err := discovery_client.GetUserClient().Login(
+		context.Background(),
+		&pb.LoginRequest{
+			Username: username,
+			Password: password,
+		},
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return &commonDto.LoginUserResponse{
+		ID: res.GetId(),
 	}, nil
 }

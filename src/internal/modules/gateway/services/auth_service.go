@@ -2,6 +2,8 @@ package gateway_services
 
 import (
 	commonDto "gitlab.com/hari-92/nft-market-server/internal/core/common_dto"
+	common_producers "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers"
+	commonProducersEventGateway "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/gateway"
 	gatewayErrors "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/errors"
 	gatewayInstance "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/instance"
 	gatewayRequest "gitlab.com/hari-92/nft-market-server/internal/modules/gateway/requests/auth"
@@ -23,8 +25,16 @@ type authService struct {
 }
 
 func (s *authService) Login(request *gatewayRequest.Login) (response *gatewayResponse.Login, err error) {
+	user, err := gatewayInstance.UserRpcPortGateway.Login(request.Username, request.Password)
+	if err != nil {
+		return nil, err
+	}
+	common_producers.GetProducerHubInstance().TrackUserLoginEvent(&commonProducersEventGateway.TrackUserLoginEvent{
+		UserID: user.ID,
+	})
 	return &gatewayResponse.Login{
-		AccessToken: "",
+		AccessToken:  "",
+		RefreshToken: "",
 	}, nil
 }
 
@@ -54,6 +64,10 @@ func (s *authService) Register(req *gatewayRequest.Register) (response *gatewayR
 			RefreshToken string
 		}{AccessToken: x.Email, RefreshToken: x.Email}
 	}
+
+	common_producers.GetProducerHubInstance().UserCreatedEvent(&commonProducersEventGateway.UserCreatedEvent{
+		UserID: user.ID,
+	})
 
 	return &gatewayResponse.RegisterResponse{
 		AccessToken:  getToken(user).AccessToken,

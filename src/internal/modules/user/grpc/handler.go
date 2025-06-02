@@ -61,3 +61,11 @@ func (h *Handler) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*p
 func (h *Handler) UpdateUser(ctx context.Context, req *pb.UpdateUserRequest) (*pb.UpdateUserResponse, error) {
 	return nil, nil
 }
+
+func (h *Handler) Login(ctx context.Context, req *pb.LoginRequest) (*pb.LoginResponse, error) {
+	res, err := h.userService.Verify(h.pbToRequestConverter.FromLoginToVerifyUserRequest(req))
+	if err != nil {
+		return nil, err
+	}
+	return h.responseToPbConverter.FromVerifyUserResponseToLoginPb(res), nil
+}

@@ -32,3 +32,13 @@ func (c *ResponseToPbConverter) FromCreateUserResponseToCreateUserPb(res *userRe
 		Email: res.Email,
 	}
 }
+
+func (c *ResponseToPbConverter) FromVerifyUserResponseToLoginPb(res *userResponses.VerifyUserResponse) *pb.LoginResponse {
+	if res == nil {
+		return nil
+	}
+
+	return &pb.LoginResponse{
+		Id: res.ID,
+	}
+}

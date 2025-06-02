@@ -7,6 +7,7 @@ const (
 	GatewayErrorCodeUnauthorized
 	GatewayErrorCodeInvalidRequest
 	GatewayErrorCodeUserAlreadyExists
+	GatewayErrorCodeLoginFailed
 )
 
 var (
@@ -14,4 +15,5 @@ var (
 	GatewayErrorUnauthorized      = errors.NewAppError(GatewayErrorCodeUnauthorized, "Unauthorized access")
 	GatewayErrorInvalidRequest    = errors.NewAppError(GatewayErrorCodeInvalidRequest, "Invalid request")
 	GatewayErrorUserAlreadyExists = errors.NewAppError(GatewayErrorCodeUserAlreadyExists, "User already exists")
+	GatewayErrorLoginFailed       = errors.NewAppError(GatewayErrorCodeLoginFailed, "Login failed, please check your credentials")
 )

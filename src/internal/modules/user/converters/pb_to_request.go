@@ -42,3 +42,14 @@ func (c *PbToRequestConverter) FromCreateUserToCreateUserRequest(proto *pb.Creat
 		Password: proto.Password,
 	}
 }
+
+func (c *PbToRequestConverter) FromLoginToVerifyUserRequest(proto *pb.LoginRequest) *userRequests.VerifyUserRequest {
+	if proto == nil {
+		return nil
+	}
+
+	return &userRequests.VerifyUserRequest{
+		Username: proto.Username,
+		Password: proto.Password,
+	}
+}

@@ -12,6 +12,7 @@ type UserRepository interface {
 	GetMany(filter *userFilters.UserFilter) ([]*userModels.User, error)
 	Create(model *userModels.User) (*userModels.User, error)
 	Update(filter *userFilters.UserFilter, model *userModels.User) error
+	Verify(username, password string) (*userModels.User, error)
 }
 
 func NewUserRepository(db *gorm.DB) UserRepository {
@@ -56,4 +57,13 @@ func (r *userRepository) Update(filter *userFilters.UserFilter, model *userModel
 		return err
 	}
 	return nil
+}
+
+func (r *userRepository) Verify(username, password string) (*userModels.User, error) {
+	var user userModels.User
+	err := r.db.Where("email = ? AND password = ?", username, password).First(&user).Error
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
 }

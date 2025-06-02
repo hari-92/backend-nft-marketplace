@@ -15,6 +15,8 @@ var once sync.Once
 
 type IProducerHub interface {
 	TestPublishEvent(event *commonProducersEventGateway.TestPublishEvent)
+	TrackUserLoginEvent(event *commonProducersEventGateway.TrackUserLoginEvent)
+	UserCreatedEvent(event *commonProducersEventGateway.UserCreatedEvent)
 }
 
 func NewCommonProducerHub() {
@@ -42,6 +44,16 @@ func publishEvent[T base.IKafkaEvent](ctx context.Context, msg T) {
 }
 
 func (p *ProducerHub) TestPublishEvent(event *commonProducersEventGateway.TestPublishEvent) {
+	ctx := context.Background()
+	publishEvent(ctx, event)
+}
+
+func (p *ProducerHub) TrackUserLoginEvent(event *commonProducersEventGateway.TrackUserLoginEvent) {
+	ctx := context.Background()
+	publishEvent(ctx, event)
+}
+
+func (p *ProducerHub) UserCreatedEvent(event *commonProducersEventGateway.UserCreatedEvent) {
 	ctx := context.Background()
 	publishEvent(ctx, event)
 }
