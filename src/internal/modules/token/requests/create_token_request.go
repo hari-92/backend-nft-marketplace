@@ -7,5 +7,5 @@ type CreateToken struct {
 	Description string
 	Decimals    int
 	TotalSupply uint64
-	ChainID     int
+	ChainID     uint32
 }

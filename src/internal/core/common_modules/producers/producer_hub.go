@@ -2,13 +2,14 @@ package common_producers
 
 import (
 	"context"
+	"sync"
+
 	"github.com/golibs-starter/golib/pubsub"
 	"github.com/golibs-starter/golib/web/event"
 	kafka "gitlab.com/hari-92/nft-market-server/internal/core/adapter"
 	"gitlab.com/hari-92/nft-market-server/internal/core/base"
 	commonProducersEventGateway "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/gateway"
-	commonProducersEvent "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/tokens"
-	"sync"
+	commonProducersEvent "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/token"
 )
 
 var instanceProducerHub IProducerHub

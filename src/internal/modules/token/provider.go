@@ -21,10 +21,11 @@ func NewProvider() fx.Option {
 		fx.Provide(tokenRepositories.NewTokenRepository),
 
 		// Provide common producers
-		fx.Provide(commonProducers.Provider),
+		commonProducers.Provider(),
 
 		// Provide grpc server
 		fx.Provide(tokenGrpc.NewGrpcServer),
 		fx.Provide(tokenGrpc.NewHandler),
+		fx.Invoke(func(s *tokenGrpc.Server) {}),
 	)
 }

@@ -1,7 +1,7 @@
 package gateway_routers
 
 func (p RegisterRoutersIn) RegisterTokenRoutes() {
-	tokenRouter := p.Engine.Group("/tokens")
+	tokenRouter := p.Engine.Group("/api/v1/tokens")
 
 	// Guest
 	tokenRouter.GET("/", p.TokenController.GetTokens)

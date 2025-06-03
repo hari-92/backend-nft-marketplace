@@ -111,7 +111,7 @@ func (x *GetTokensResponse) GetTokenId() string {
 
 type GetTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	TokenId       uint32                 `protobuf:"varint,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -146,16 +146,16 @@ func (*GetTokenRequest) Descriptor() ([]byte, []int) {
 	return file_token_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetTokenRequest) GetTokenId() string {
+func (x *GetTokenRequest) GetTokenId() uint32 {
 	if x != nil {
 		return x.TokenId
 	}
-	return ""
+	return 0
 }
 
 type GetTokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TokenId       string                 `protobuf:"bytes,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
+	TokenId       uint32                 `protobuf:"varint,1,opt,name=token_id,json=tokenId,proto3" json:"token_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -190,11 +190,11 @@ func (*GetTokenResponse) Descriptor() ([]byte, []int) {
 	return file_token_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetTokenResponse) GetTokenId() string {
+func (x *GetTokenResponse) GetTokenId() uint32 {
 	if x != nil {
 		return x.TokenId
 	}
-	return ""
+	return 0
 }
 
 type PostTokenRequest struct {
@@ -607,9 +607,9 @@ const file_token_proto_rawDesc = "" +
 	"\x11GetTokensResponse\x12\x19\n" +
 	"\btoken_id\x18\x01 \x01(\tR\atokenId\",\n" +
 	"\x0fGetTokenRequest\x12\x19\n" +
-	"\btoken_id\x18\x01 \x01(\tR\atokenId\"-\n" +
+	"\btoken_id\x18\x01 \x01(\rR\atokenId\"-\n" +
 	"\x10GetTokenResponse\x12\x19\n" +
-	"\btoken_id\x18\x01 \x01(\tR\atokenId\"\xd4\x01\n" +
+	"\btoken_id\x18\x01 \x01(\rR\atokenId\"\xd4\x01\n" +
 	"\x10PostTokenRequest\x12\x18\n" +
 	"\aaddress\x18\x01 \x01(\tR\aaddress\x12\x16\n" +
 	"\x06symbol\x18\x02 \x01(\tR\x06symbol\x12\x1a\n" +

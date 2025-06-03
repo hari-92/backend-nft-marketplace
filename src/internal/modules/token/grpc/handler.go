@@ -29,12 +29,18 @@ func (h *Handler) GetTokens(ctx context.Context, req *pb.GetTokensRequest) (*pb.
 }
 
 func (h *Handler) GetToken(ctx context.Context, req *pb.GetTokenRequest) (*pb.GetTokenResponse, error) {
-	fmt.Println("token_grpc GetToken")
-	return &pb.GetTokenResponse{}, nil
+	token, err := h.tokenService.GetToken(&tokenRequests.GetTokenRequest{
+		ID: req.TokenId,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &pb.GetTokenResponse{
+		TokenId: uint32(token.ID),
+	}, nil
 }
 
 func (h *Handler) PostToken(ctx context.Context, req *pb.PostTokenRequest) (*pb.PostTokenResponse, error) {
-	fmt.Println("token_grpc PostToken")
 	token, err := h.tokenService.CreateToken(&tokenRequests.CreateToken{
 		Address:     req.Address,
 		Symbol:      req.Symbol,
@@ -42,7 +48,7 @@ func (h *Handler) PostToken(ctx context.Context, req *pb.PostTokenRequest) (*pb.
 		Description: req.Description,
 		Decimals:    int(req.Decimals),
 		TotalSupply: uint64(req.TotalSupply),
-		ChainID:     int(req.ChainId),
+		ChainID:     uint32(req.ChainId),
 	})
 	if err != nil {
 		return nil, err

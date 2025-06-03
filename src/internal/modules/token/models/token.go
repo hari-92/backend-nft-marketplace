@@ -10,6 +10,6 @@ type Token struct {
 	Description string `json:"description" gorm:"type:text"`
 	Decimals    int    `json:"decimals" gorm:"type:int;not null"`
 	TotalSupply uint64 `json:"total_supply" gorm:"type:bigint;not null"`
-	ChainID     int    `json:"chain_id" gorm:"type:int;not null"`
+	ChainID     uint32 `json:"chain_id" gorm:"type:int;not null"`
 	IsActive    bool   `json:"is_active" gorm:"type:boolean;default:false"`
 }

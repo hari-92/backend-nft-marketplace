@@ -43,7 +43,7 @@ func (r *tokenRepository) FindMany(filter *tokenFilters.TokenFilter) ([]*tokenMo
 }
 
 func (r *tokenRepository) Create(model *tokenModels.Token) (*tokenModels.Token, error) {
-	err := r.db.Create(model).Error
+	err := r.db.Create(&model).Error
 	if err != nil {
 		return nil, err
 	}

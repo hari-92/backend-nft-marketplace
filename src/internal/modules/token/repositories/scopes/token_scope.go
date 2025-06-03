@@ -7,7 +7,7 @@ import (
 
 func TokenScope(filter *tokenFilters.TokenFilter) func(db *gorm.DB) *gorm.DB {
 	return func(db *gorm.DB) *gorm.DB {
-		if filter.Id != "" {
+		if filter.Id != 0 {
 			db = db.Where("id = ?", filter.Id)
 		}
 		if filter.Symbol != "" {

@@ -1,7 +1,7 @@
 package token_filters
 
 type TokenFilter struct {
-	Id            string   `json:"id"`
+	Id            uint32   `json:"id"`
 	Address       string   `json:"address"`
 	Symbol        string   `json:"symbol"`
 	InSymbols     []string `json:"in_symbols"`
