@@ -17,19 +17,29 @@ func NewTokenController() *TokenController {
 
 // GetTokens Get all and paginated tokens (GET /api/v1/tokens)
 func (t *TokenController) GetTokens(ctx *gin.Context) {
-	// TODO: Implement this
-	ctx.JSON(200, gin.H{"message": "Get Tokens"})
+	chainId := ctx.Query("chain_id")
+	chainIdUint, err := strconv.ParseUint(chainId, 10, 32)
+	if err != nil {
+		ctx.JSON(400, gin.H{"message": "Bad Request", "error": "Chain ID is not a valid uint32"})
+		return
+	}
+	tokens, err := rpc_ports.NewTokenRpcPorts().GetTokens(ctx, &pb.GetTokensRequest{ChainId: uint32(chainIdUint)})
+	if err != nil {
+		ctx.JSON(500, gin.H{"message": "Server Internal Error", "error": err.Error()})
+		return
+	}
+	ctx.JSON(200, gin.H{"message": "Get Tokens", "data": tokens})
 }
 
-// GetToken Get a token by id (GET /api/v1/tokens/:token_id)
+// GetToken Get a token by id (GET /api/v1/tokens/:id)
 func (t *TokenController) GetToken(ctx *gin.Context) {
-	tokenID := ctx.Param("token_id")
-	tokenIDUint, err := strconv.ParseUint(tokenID, 10, 32)
+	id := ctx.Param("id")
+	idUint, err := strconv.ParseUint(id, 10, 32)
 	if err != nil {
 		ctx.JSON(400, gin.H{"message": "Bad Request", "error": "Token ID is not a valid uint32"})
 		return
 	}
-	token, err := rpc_ports.NewTokenRpcPorts().GetToken(ctx, &pb.GetTokenRequest{TokenId: uint32(tokenIDUint)})
+	token, err := rpc_ports.NewTokenRpcPorts().GetToken(ctx, &pb.GetTokenRequest{Id: uint32(idUint)})
 	if err != nil {
 		ctx.JSON(500, gin.H{"message": "Server Internal Error", "error": err.Error()})
 		return
@@ -52,20 +62,58 @@ func (t *TokenController) PostToken(ctx *gin.Context) {
 	ctx.JSON(200, gin.H{"message": "Post Token", "data": res})
 }
 
-// PutToken Update token info (PUT /api/v1/tokens/:token_id)
+// PutToken Update token info (PUT /api/v1/tokens/:id)
 func (t *TokenController) PutToken(ctx *gin.Context) {
-	// TODO: Implement this
-	ctx.JSON(200, gin.H{"message": "Put Token"})
+	id := ctx.Param("id")
+	idUint, err := strconv.ParseUint(id, 10, 32)
+	if err != nil {
+		ctx.JSON(400, gin.H{"message": "Bad Request", "error": "Token ID is not a valid uint32"})
+		return
+	}
+	var req pb.PutTokenRequest
+	if err := ctx.ShouldBindJSON(&req); err != nil {
+		ctx.JSON(400, gin.H{"message": "Bad Request", "error": err.Error()})
+		return
+	}
+	req.Id = uint32(idUint)
+	res, err := rpc_ports.NewTokenRpcPorts().PutToken(ctx, &req)
+	if err != nil {
+		ctx.JSON(500, gin.H{"message": "Server Internal Error", "error": err.Error()})
+		return
+	}
+	ctx.JSON(200, gin.H{"message": "Put Token", "data": res})
 }
 
-// DeleteToken Delete a token (DELETE /api/v1/tokens/:token_id)
+// DeleteToken Delete a token (DELETE /api/v1/tokens/:id)
 func (t *TokenController) DeleteToken(ctx *gin.Context) {
-	// TODO: Implement this
-	ctx.JSON(200, gin.H{"message": "Delete Token"})
+	id := ctx.Param("id")
+	idUint, err := strconv.ParseUint(id, 10, 32)
+	if err != nil {
+		ctx.JSON(400, gin.H{"message": "Bad Request", "error": "Token ID is not a valid uint32"})
+		return
+	}
+	req := pb.DeleteTokenRequest{
+		Id: uint32(idUint),
+	}
+	res, err := rpc_ports.NewTokenRpcPorts().DeleteToken(ctx, &req)
+	if err != nil {
+		ctx.JSON(500, gin.H{"message": "Server Internal Error", "error": err.Error()})
+		return
+	}
+	ctx.JSON(200, gin.H{"message": "Delete Token", "data": res})
 }
 
 // PostValidateToken Validate a token (POST /api/v1/tokens/validate)
 func (t *TokenController) PostValidateToken(ctx *gin.Context) {
-	// TODO: Implement this
-	ctx.JSON(200, gin.H{"message": "Post Validate Token"})
+	var req pb.PostValidateTokenRequest
+	if err := ctx.ShouldBindJSON(&req); err != nil {
+		ctx.JSON(400, gin.H{"message": "Bad Request", "error": err.Error()})
+		return
+	}
+	res, err := rpc_ports.NewTokenRpcPorts().PostValidateToken(ctx, &req)
+	if err != nil {
+		ctx.JSON(500, gin.H{"message": "Server Internal Error", "error": err.Error()})
+		return
+	}
+	ctx.JSON(200, gin.H{"message": "Post Validate Token", "data": res})
 }

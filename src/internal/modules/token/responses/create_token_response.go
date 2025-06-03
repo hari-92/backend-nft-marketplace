@@ -1,5 +1,5 @@
 package token_responses
 
-type CreateToken struct {
+type CreateTokenResponse struct {
 	ID uint
 }

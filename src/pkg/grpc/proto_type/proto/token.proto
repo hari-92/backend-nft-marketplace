@@ -15,19 +15,38 @@ service TokenProtoService {
 }
 
 message GetTokensRequest {
-    string token_id = 1;
+    uint32 chain_id = 1;
 }
 
 message GetTokensResponse {
-    string token_id = 1;
+    message Token {
+        uint32 id = 1;
+        string address = 2;
+        string symbol = 3;
+        int32 decimals = 4;
+        uint64 total_supply = 5;
+        string name = 6;
+        string description = 7;
+        uint32 chain_id = 8;
+    }
+    repeated Token tokens = 1;
 }
 
 message GetTokenRequest {
-    uint32 token_id = 1;
+    uint32 id = 1;
+    string address = 2;
+    string symbol = 3;
 }
 
 message GetTokenResponse {
-    uint32 token_id = 1;
+    uint32 id = 1;
+    string address = 2;
+    string symbol = 3;
+    int32 decimals = 4;
+    uint64 total_supply = 5;
+    string name = 6;
+    string description = 7;
+    uint32 chain_id = 8;
 }
 
 message PostTokenRequest {
@@ -37,7 +56,7 @@ message PostTokenRequest {
     uint64 total_supply = 4;
     string name = 5;
     string description = 6;
-    int32 chain_id = 7;
+    uint32 chain_id = 7;
 }
 
 message PostTokenResponse {
@@ -45,25 +64,30 @@ message PostTokenResponse {
 }
 
 message PutTokenRequest {
-    string token_id = 1;
+    uint32 id = 1;
+    optional string address = 2;
+    optional string symbol = 3;
+    optional string name = 4;
+    optional string description = 5;
+    optional uint32 chain_id = 6;
 }
 
 message PutTokenResponse {
-    string token_id = 1;
+    uint32 id = 1;
 }
 
 message DeleteTokenRequest {
-    string token_id = 1;
+    uint32 id = 1;
 }
 
 message DeleteTokenResponse {
-    string token_id = 1;
+    uint32 id = 1;
 }
 
 message PostValidateTokenRequest {
-    string token_id = 1;
+    uint32 id = 1;
 }
 
 message PostValidateTokenResponse {
-    string token_id = 1;
+    uint32 id = 1;
 }

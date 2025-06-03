@@ -1,6 +1,6 @@
 package token_requests
 
-type CreateToken struct {
+type CreateTokenRequest struct {
 	Address     string
 	Symbol      string
 	Name        string

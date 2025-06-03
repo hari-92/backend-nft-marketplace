@@ -1,5 +1,5 @@
 package token_requests
 
-type GetTokens struct {
-	UserID uint `json:"user_id" binding:"required"`
+type GetTokensRequest struct {
+	ChainID uint32 `json:"chain_id" binding:"required"`
 }
