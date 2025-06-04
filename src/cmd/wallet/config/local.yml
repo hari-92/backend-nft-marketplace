@@ -11,8 +11,8 @@ app:
     driver: mysql
 
     # When dsn is provided, it will override all above connection configs
-    dsn: root:secret@tcp(mysql:3306)/trading?parseTime=true
-    #    dsn: root:secret@tcp(localhost:3306)/db?parseTime=true
+#    dsn: root:secret@tcp(mysql:3306)/trading?parseTime=true
+    dsn: root:secret@tcp(localhost:3306)/trading?parseTime=true
 
     # The maximum number of open connections to the database.
     # Default 10 connections
@@ -29,3 +29,14 @@ app:
     # The maximum amount of time a connection may be idle.
     # Default 10m
     connMaxIdleTime: 10m
+  kafka:
+    #    topic_name define: project->service->action
+    #    bootstrapServers: kafka:9092
+    bootstrapServers: localhost:29092
+    clientId: trading.wallet-client
+    consumer:
+      handlerMappings:
+        UserCreatedConsumer:
+          topic: trading.gateway.user-created-event
+          groupId: trading.gateway.user-created-event
+          enable: true
