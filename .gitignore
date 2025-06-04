@@ -8,6 +8,9 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/dataSources.xml
+.idea/modules.xml
+.idea/vcs.xml
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -47,7 +50,7 @@ cmake-build-*/
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml
 
-.idea/*
+#.idea/*
 
 # File-based project format
 *.iws

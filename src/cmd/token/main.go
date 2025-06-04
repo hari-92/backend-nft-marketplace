@@ -12,6 +12,7 @@ func main() {
 		bootstrap.WithApi(),
 		bootstrap.WithGrpcServer(),
 		bootstrap.WithDatabase(),
+		bootstrap.WithKafkaOnlyProducer(),
 		token.NewProvider(),
 	).Run()
 }
