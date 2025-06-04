@@ -4,121 +4,90 @@ package token;
 
 option go_package = "./";
 
-import "google/api/annotations.proto";
-import "protoc-gen-openapiv2/options/annotations.proto";
-
-option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-    info: {
-        title: "Token Service API";
-        version: "1.0";
-        description: "API for Token Service";
-        contact: {
-            name: "API Support";
-            url: "https://github.com/your-repo";
-            email: "support@example.com"
-        }
-    }
-    host: "localhost:7979"
-    schemes: HTTP
-    schemes: HTTPS
-};
-
 // Token service definition
 service TokenProtoService {
-    rpc GetTokens(GetTokensRequest) returns (GetTokensResponse) {
-        option (google.api.http) = {
-            get: "/v1/tokens"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            description: "Get all tokens"
-        };
-    }
-    rpc GetToken(GetTokenRequest) returns (GetTokenResponse) {
-        option (google.api.http) = {
-            get: "/v1/tokens/{token_id}"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            description: "Get a token by ID"
-        };
-    }
-    rpc PostToken(PostTokenRequest) returns (PostTokenResponse) {
-        option (google.api.http) = {
-            post: "/v1/tokens"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            description: "Create a new token"
-        };
-    }
-    rpc PutToken(PutTokenRequest) returns (PutTokenResponse) {
-        option (google.api.http) = {
-            put: "/v1/tokens/{token_id}"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            description: "Update a token"
-        };
-    }
-    rpc DeleteToken(DeleteTokenRequest) returns (DeleteTokenResponse) {
-        option (google.api.http) = {
-            delete: "/v1/tokens/{token_id}"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            description: "Delete a token"
-        };
-    }
-    rpc PostValidateToken(PostValidateTokenRequest) returns (PostValidateTokenResponse) {
-        option (google.api.http) = {
-            post: "/v1/tokens/validate"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            description: "Validate a token"
-        };
-    }
+    rpc GetTokens(GetTokensRequest) returns (GetTokensResponse) {}
+    rpc GetToken(GetTokenRequest) returns (GetTokenResponse) {}
+    rpc PostToken(PostTokenRequest) returns (PostTokenResponse) {}
+    rpc PutToken(PutTokenRequest) returns (PutTokenResponse) {}
+    rpc DeleteToken(DeleteTokenRequest) returns (DeleteTokenResponse) {}
+    rpc PostValidateToken(PostValidateTokenRequest) returns (PostValidateTokenResponse) {}
 }
 
 message GetTokensRequest {
-    string token_id = 1;
+    uint32 chain_id = 1;
 }
 
 message GetTokensResponse {
-    string token_id = 1;
+    message Token {
+        uint32 id = 1;
+        string address = 2;
+        string symbol = 3;
+        int32 decimals = 4;
+        uint64 total_supply = 5;
+        string name = 6;
+        string description = 7;
+        uint32 chain_id = 8;
+    }
+    repeated Token tokens = 1;
 }
 
 message GetTokenRequest {
-    string token_id = 1;
+    uint32 id = 1;
+    string address = 2;
+    string symbol = 3;
 }
 
 message GetTokenResponse {
-    string token_id = 1;
+    uint32 id = 1;
+    string address = 2;
+    string symbol = 3;
+    int32 decimals = 4;
+    uint64 total_supply = 5;
+    string name = 6;
+    string description = 7;
+    uint32 chain_id = 8;
 }
 
 message PostTokenRequest {
-    string token_id = 1;
+    string address = 1;
+    string symbol = 2;
+    int32 decimals = 3;
+    uint64 total_supply = 4;
+    string name = 5;
+    string description = 6;
+    uint32 chain_id = 7;
 }
 
 message PostTokenResponse {
-    string token_id = 1;
+    uint32 id = 1;
 }
 
 message PutTokenRequest {
-    string token_id = 1;
+    uint32 id = 1;
+    optional string address = 2;
+    optional string symbol = 3;
+    optional string name = 4;
+    optional string description = 5;
+    optional uint32 chain_id = 6;
 }
 
 message PutTokenResponse {
-    string token_id = 1;
+    uint32 id = 1;
 }
 
 message DeleteTokenRequest {
-    string token_id = 1;
+    uint32 id = 1;
 }
 
 message DeleteTokenResponse {
-    string token_id = 1;
+    uint32 id = 1;
 }
 
 message PostValidateTokenRequest {
-    string token_id = 1;
+    uint32 id = 1;
 }
 
 message PostValidateTokenResponse {
-    string token_id = 1;
+    uint32 id = 1;
 }

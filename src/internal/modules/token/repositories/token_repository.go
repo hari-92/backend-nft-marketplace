@@ -10,8 +10,9 @@ import (
 type TokenRepository interface {
 	FindOne(filter *tokenFilters.TokenFilter) (*tokenModels.Token, error)
 	FindMany(filter *tokenFilters.TokenFilter) ([]*tokenModels.Token, error)
-	Create(model *tokenModels.Token) error
-	Update(filter *tokenFilters.TokenFilter, model *tokenModels.Token) error
+	Create(model *tokenModels.Token) (*tokenModels.Token, error)
+	Update(filter *tokenFilters.TokenFilter, update interface{}) (*tokenModels.Token, error)
+	Save(model *tokenModels.Token) (*tokenModels.Token, error)
 }
 
 type tokenRepository struct {
@@ -42,10 +43,30 @@ func (r *tokenRepository) FindMany(filter *tokenFilters.TokenFilter) ([]*tokenMo
 	return tokens, nil
 }
 
-func (r *tokenRepository) Create(model *tokenModels.Token) error {
-	return r.db.Create(model).Error
+func (r *tokenRepository) Create(model *tokenModels.Token) (*tokenModels.Token, error) {
+	err := r.db.Create(&model).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return model, nil
 }
 
-func (r *tokenRepository) Update(filter *tokenFilters.TokenFilter, model *tokenModels.Token) error {
-	return r.db.Scopes(tokenScopes.TokenScope(filter)).Updates(model).Error
+func (r *tokenRepository) Update(filter *tokenFilters.TokenFilter, update interface{}) (*tokenModels.Token, error) {
+	var model *tokenModels.Token
+	err := r.db.Scopes(tokenScopes.TokenScope(filter)).Updates(update).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return model, nil
+}
+
+func (r *tokenRepository) Save(model *tokenModels.Token) (*tokenModels.Token, error) {
+	err := r.db.Save(&model).Error
+	if err != nil {
+		return nil, err
+	}
+
+	return model, nil
 }
