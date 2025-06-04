@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="787687f2-3a6d-433f-ae26-460234263f53" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="787687f2-3a6d-433f-ae26-460234263f53" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -98,22 +95,6 @@
       <set>
         <option value="GoApplicationRunConfiguration" />
       </set>
-    </option>
-    <option name="hiddenConfigurations">
-      <map>
-        <entry key="GoApplicationRunConfiguration">
-          <value>
-            <set>
-              <option value="candle" />
-              <option value="order" />
-              <option value="pair" />
-              <option value="pnl" />
-              <option value="user" />
-              <option value="wallet" />
-            </set>
-          </value>
-        </entry>
-      </map>
     </option>
   </component>
   <component name="RunManager" selected="Makefile Target.proto">
