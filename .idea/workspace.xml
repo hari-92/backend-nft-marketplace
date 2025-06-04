@@ -4,27 +4,58 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="84b4ad1d-e106-4efa-b61a-448cb9999f6c" name="Changes" comment="" />
+    <list default="true" id="787687f2-3a6d-433f-ae26-460234263f53" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/trading-go.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/trading-go.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
   <component name="GOROOT" url="file://$USER_HOME$/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.23.4.linux-amd64" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
-  <component name="ProjectId" id="2y3Bw6xejj44I8s9QClcyJY5R8I" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+    &quot;associatedIndex&quot;: 7
+    }</component>
+  <component name="ProjectId" id="2uAwSUs1hSxpE4fUenb4MasC7At" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Docker.docker-compose.yml.gateway: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.mysql: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "Go Build.discovery.executor": "Debug",
+    "Go Build.gateway.executor": "Debug",
+    "Go Build.go build gitlab.com/hari-92/nft-market-server/cmd/gateway.executor": "Run",
+    "Go Build.go build main.go.executor": "Debug",
+    "Go Build.pnl.executor": "Debug",
+    "Go Build.token.executor": "Debug",
+    "Go Build.user.executor": "Debug",
+    "Go Build.wallet.executor": "Debug",
+    "Makefile Target.apply-mysql.executor": "Run",
+    "Makefile Target.diff-mysql.executor": "Run",
+    "Makefile Target.diff.executor": "Run",
+    "Makefile Target.proto.executor": "Run",
     "RunOnceActivity.GoLinterPluginOnboarding": "true",
     "RunOnceActivity.GoLinterPluginStorageMigration": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -36,25 +67,242 @@
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/home/hari",
-    "nodejs_package_manager_path": "npm"
+    "last_opened_file_path": "/home/hari/Desktop/trading/trading-go",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-gosdk-3b128438d3f6-34ac7aa8f6ab-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-251.23774.430" />
-        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-GO-251.23774.430" />
-      </set>
-    </attachedChunks>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/cmd" />
+      <recent name="$PROJECT_DIR$/src/internal/modules/gateway" />
+      <recent name="$PROJECT_DIR$/src/internal/modules/gateway/grpc" />
+      <recent name="$PROJECT_DIR$/src/internal/core/common_modules/discovery_client" />
+      <recent name="$PROJECT_DIR$/src/internal/modules/discovery" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/internal/modules/gateway/grpc" />
+      <recent name="$PROJECT_DIR$/src/pkg" />
+    </key>
   </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="GoApplicationRunConfiguration" />
+      </set>
+    </option>
+    <option name="hiddenConfigurations">
+      <map>
+        <entry key="GoApplicationRunConfiguration">
+          <value>
+            <set>
+              <option value="candle" />
+              <option value="order" />
+              <option value="pair" />
+              <option value="pnl" />
+              <option value="user" />
+              <option value="wallet" />
+            </set>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Makefile Target.proto">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="candle" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$/src/cmd/candle" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <package value="gitlab.com/hari-92/nft-market-server/cmd/gateway" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/cmd/candle/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="discovery" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$/src/cmd/discovery" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <package value="gitlab.com/hari-92/nft-market-server/cmd/gateway" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/cmd/discovery/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="gateway" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$/src/cmd/gateway" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <package value="gitlab.com/hari-92/nft-market-server/cmd/gateway" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/cmd/gateway/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="order" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$/src/cmd/order" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <package value="gitlab.com/hari-92/nft-market-server/cmd/gateway" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/cmd/order/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pair" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$/src/cmd/pair" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <package value="gitlab.com/hari-92/nft-market-server/cmd/gateway" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/cmd/pair/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pnl" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$/src/cmd/pnl" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <package value="gitlab.com/hari-92/nft-market-server/cmd/gateway" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/cmd/pnl/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="token" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$/src/cmd/token" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <package value="gitlab.com/hari-92/nft-market-server/cmd/gateway" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/cmd/token/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="user" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$/src/cmd/user" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <package value="gitlab.com/hari-92/nft-market-server/cmd/gateway" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/cmd/user/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="wallet" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$/src/cmd/wallet" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <package value="gitlab.com/hari-92/nft-market-server/cmd/gateway" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/src/cmd/wallet/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="trading-go" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="DIRECTORY" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+    <configuration name="apply-mysql" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/src/migration/Makefile" target="apply-mysql" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="diff-mysql" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/src/migration/Makefile" target="diff-mysql" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="diff" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/src/migration/Makefile" target="diff" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="proto" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="proto" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.mysql: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="mysql" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
+      <item itemvalue="Go Build.discovery" />
+      <item itemvalue="Go Build.gateway" />
+      <item itemvalue="Go Build.user" />
+      <item itemvalue="Go Build.wallet" />
+      <item itemvalue="Go Build.pnl" />
+      <item itemvalue="Go Build.candle" />
+      <item itemvalue="Go Build.token" />
+      <item itemvalue="Go Build.order" />
+      <item itemvalue="Go Build.pair" />
+      <item itemvalue="Makefile Target.proto" />
+      <item itemvalue="Makefile Target.apply-mysql" />
+      <item itemvalue="Makefile Target.diff" />
+      <item itemvalue="Makefile Target.diff-mysql" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Makefile Target.proto" />
+        <item itemvalue="Docker.docker-compose.yml.mysql: Compose Deployment" />
+        <item itemvalue="Makefile Target.apply-mysql" />
+        <item itemvalue="Makefile Target.diff-mysql" />
+        <item itemvalue="Makefile Target.diff" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="84b4ad1d-e106-4efa-b61a-448cb9999f6c" name="Changes" comment="" />
-      <created>1749053612259</created>
+      <changelist id="787687f2-3a6d-433f-ae26-460234263f53" name="Changes" comment="" />
+      <created>1746633183568</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1749053612259</updated>
+      <updated>1746633183568</updated>
     </task>
     <servers />
   </component>
