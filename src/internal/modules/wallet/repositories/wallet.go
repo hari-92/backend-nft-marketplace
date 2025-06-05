@@ -1,12 +1,17 @@
 package wallet_repositories
 
 import (
-	wallet_models "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/models"
+	walletFilters "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/filters"
+	walletModels "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/models"
+	walletScopes "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/repositories/scopes"
 	"gorm.io/gorm"
 )
 
 type IWalletRepository interface {
-	GetBalance(userID uint32) ([]*wallet_models.Wallet, error)
+	GetBalance(userID uint32) ([]*walletModels.Wallet, error)
+	GetOne(filter *walletFilters.WalletFilter) (*walletModels.Wallet, error)
+	GetMany(filter *walletFilters.WalletFilter) ([]*walletModels.Wallet, error)
+	Create(wallet *walletModels.Wallet) (*walletModels.Wallet, error)
 }
 
 func NewWalletRepository(
@@ -21,60 +26,34 @@ type WalletRepository struct {
 	db *gorm.DB
 }
 
-func (w *WalletRepository) GetBalance(userID uint32) ([]*wallet_models.Wallet, error) {
-	// Create mock data with 10 different tokens
-	mockWallets := []*wallet_models.Wallet{
-		{
-			UserID:  userID,
-			TokenID: 1,
-			Balance: 1000.50,
-		},
-		{
-			UserID:  userID,
-			TokenID: 2,
-			Balance: 500.75,
-		},
-		{
-			UserID:  userID,
-			TokenID: 3,
-			Balance: 2500.25,
-		},
-		{
-			UserID:  userID,
-			TokenID: 4,
-			Balance: 750.00,
-		},
-		{
-			UserID:  userID,
-			TokenID: 5,
-			Balance: 1500.80,
-		},
-		{
-			UserID:  userID,
-			TokenID: 6,
-			Balance: 3000.00,
-		},
-		{
-			UserID:  userID,
-			TokenID: 7,
-			Balance: 800.50,
-		},
-		{
-			UserID:  userID,
-			TokenID: 8,
-			Balance: 1200.25,
-		},
-		{
-			UserID:  userID,
-			TokenID: 9,
-			Balance: 950.75,
-		},
-		{
-			UserID:  userID,
-			TokenID: 10,
-			Balance: 2000.00,
-		},
+func (w *WalletRepository) GetOne(filter *walletFilters.WalletFilter) (*walletModels.Wallet, error) {
+	var wallet walletModels.Wallet
+	if err := w.db.Model(&wallet).Scopes(walletScopes.WalletScope(filter)).First(&wallet).Error; err != nil {
+		return nil, err
 	}
 
+	return &wallet, nil
+}
+
+func (w *WalletRepository) GetMany(filter *walletFilters.WalletFilter) ([]*walletModels.Wallet, error) {
+	var wallets []*walletModels.Wallet
+	if err := w.db.Model(&walletModels.Wallet{}).Scopes(walletScopes.WalletScope(filter)).Find(&wallets).Error; err != nil {
+		return nil, err
+	}
+
+	return wallets, nil
+}
+
+func (w *WalletRepository) GetBalance(userID uint32) ([]*walletModels.Wallet, error) {
+	// Create mock data with 10 different tokens
+	var mockWallets []*walletModels.Wallet
+
 	return mockWallets, nil
+}
+
+func (w *WalletRepository) Create(wallet *walletModels.Wallet) (*walletModels.Wallet, error) {
+	if err := w.db.Create(&wallet).Error; err != nil {
+		return nil, err
+	}
+	return wallet, nil
 }

@@ -19,7 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	WalletProtoService_GetBalance_FullMethodName = "/wallet.WalletProtoService/GetBalance"
+	WalletProtoService_GetBalance_FullMethodName        = "/wallet.WalletProtoService/GetBalance"
+	WalletProtoService_GetWallets_FullMethodName        = "/wallet.WalletProtoService/GetWallets"
+	WalletProtoService_GetWalletByUserID_FullMethodName = "/wallet.WalletProtoService/GetWalletByUserID"
 )
 
 // WalletProtoServiceClient is the client API for WalletProtoService service.
@@ -29,6 +31,8 @@ const (
 // Wallet service definition
 type WalletProtoServiceClient interface {
 	GetBalance(ctx context.Context, in *GetBalanceRequest, opts ...grpc.CallOption) (*GetBalanceResponse, error)
+	GetWallets(ctx context.Context, in *GetWalletsRequest, opts ...grpc.CallOption) (*GetWalletsResponse, error)
+	GetWalletByUserID(ctx context.Context, in *GetWalletByUserIDRequest, opts ...grpc.CallOption) (*GetWalletByUserIDResponse, error)
 }
 
 type walletProtoServiceClient struct {
@@ -49,6 +53,26 @@ func (c *walletProtoServiceClient) GetBalance(ctx context.Context, in *GetBalanc
 	return out, nil
 }
 
+func (c *walletProtoServiceClient) GetWallets(ctx context.Context, in *GetWalletsRequest, opts ...grpc.CallOption) (*GetWalletsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWalletsResponse)
+	err := c.cc.Invoke(ctx, WalletProtoService_GetWallets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *walletProtoServiceClient) GetWalletByUserID(ctx context.Context, in *GetWalletByUserIDRequest, opts ...grpc.CallOption) (*GetWalletByUserIDResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetWalletByUserIDResponse)
+	err := c.cc.Invoke(ctx, WalletProtoService_GetWalletByUserID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WalletProtoServiceServer is the server API for WalletProtoService service.
 // All implementations must embed UnimplementedWalletProtoServiceServer
 // for forward compatibility.
@@ -56,6 +80,8 @@ func (c *walletProtoServiceClient) GetBalance(ctx context.Context, in *GetBalanc
 // Wallet service definition
 type WalletProtoServiceServer interface {
 	GetBalance(context.Context, *GetBalanceRequest) (*GetBalanceResponse, error)
+	GetWallets(context.Context, *GetWalletsRequest) (*GetWalletsResponse, error)
+	GetWalletByUserID(context.Context, *GetWalletByUserIDRequest) (*GetWalletByUserIDResponse, error)
 	mustEmbedUnimplementedWalletProtoServiceServer()
 }
 
@@ -68,6 +94,12 @@ type UnimplementedWalletProtoServiceServer struct{}
 
 func (UnimplementedWalletProtoServiceServer) GetBalance(context.Context, *GetBalanceRequest) (*GetBalanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBalance not implemented")
+}
+func (UnimplementedWalletProtoServiceServer) GetWallets(context.Context, *GetWalletsRequest) (*GetWalletsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWallets not implemented")
+}
+func (UnimplementedWalletProtoServiceServer) GetWalletByUserID(context.Context, *GetWalletByUserIDRequest) (*GetWalletByUserIDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWalletByUserID not implemented")
 }
 func (UnimplementedWalletProtoServiceServer) mustEmbedUnimplementedWalletProtoServiceServer() {}
 func (UnimplementedWalletProtoServiceServer) testEmbeddedByValue()                            {}
@@ -108,6 +140,42 @@ func _WalletProtoService_GetBalance_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WalletProtoService_GetWallets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWalletsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WalletProtoServiceServer).GetWallets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WalletProtoService_GetWallets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WalletProtoServiceServer).GetWallets(ctx, req.(*GetWalletsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WalletProtoService_GetWalletByUserID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWalletByUserIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WalletProtoServiceServer).GetWalletByUserID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WalletProtoService_GetWalletByUserID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WalletProtoServiceServer).GetWalletByUserID(ctx, req.(*GetWalletByUserIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WalletProtoService_ServiceDesc is the grpc.ServiceDesc for WalletProtoService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -118,6 +186,14 @@ var WalletProtoService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetBalance",
 			Handler:    _WalletProtoService_GetBalance_Handler,
+		},
+		{
+			MethodName: "GetWallets",
+			Handler:    _WalletProtoService_GetWallets_Handler,
+		},
+		{
+			MethodName: "GetWalletByUserID",
+			Handler:    _WalletProtoService_GetWalletByUserID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

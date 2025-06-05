@@ -1,8 +1,10 @@
 package wallet
 
 import (
+	"github.com/golibs-starter/golib"
 	golibmsg "github.com/golibs-starter/golib-message-bus"
 	commonProducers "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers"
+	core_properties "gitlab.com/hari-92/nft-market-server/internal/core/properties"
 	walletConsumers "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/consumers"
 	walletControllers "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/controllers"
 	walletGrpc "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/grpc"
@@ -13,6 +15,9 @@ import (
 
 func NewProvider() fx.Option {
 	return fx.Options(
+		// Provide properties
+		golib.ProvideProps(core_properties.NewSecretKeyProperties),
+
 		// Provide controllers
 		fx.Provide(walletControllers.NewWalletController),
 
