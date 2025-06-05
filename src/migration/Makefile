@@ -20,5 +20,5 @@ hash:
 
 reset-mysql:
 	@echo "Cleaning up migration files..."
-	@rm -f migrations/*.sql
+	@rm -f migrations/mysql/*
 	@echo "Done! Now you can run 'make diff-mysql' to create new migration"

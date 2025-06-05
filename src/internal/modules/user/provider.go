@@ -16,6 +16,7 @@ func NewProvider() fx.Option {
 		fx.Provide(userServices.NewUserService),
 		// Provide repositories
 		fx.Provide(userRepositories.NewUserRepository),
+		fx.Provide(userRepositories.NewUserTokenRepository),
 
 		// Provide grpc handlers
 		fx.Provide(userGrpc.NewGrpcHandler),

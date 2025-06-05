@@ -12,6 +12,7 @@ type IWalletRepository interface {
 	GetOne(filter *walletFilters.WalletFilter) (*walletModels.Wallet, error)
 	GetMany(filter *walletFilters.WalletFilter) ([]*walletModels.Wallet, error)
 	Create(wallet *walletModels.Wallet) (*walletModels.Wallet, error)
+	CreateMany(wallets []*walletModels.Wallet) error
 }
 
 func NewWalletRepository(
@@ -56,4 +57,8 @@ func (w *WalletRepository) Create(wallet *walletModels.Wallet) (*walletModels.Wa
 		return nil, err
 	}
 	return wallet, nil
+}
+
+func (w *WalletRepository) CreateMany(wallets []*walletModels.Wallet) error {
+	return w.db.Model(&walletModels.Wallet{}).CreateInBatches(wallets, len(wallets)).Error
 }
