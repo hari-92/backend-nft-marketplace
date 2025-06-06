@@ -56,10 +56,24 @@ CREATE TABLE `tokens` (
   `description` text NULL,
   `decimals` bigint NOT NULL,
   `total_supply` bigint NOT NULL,
-  `chain_id` bigint NOT NULL,
+  `chain_id` int NOT NULL,
   `is_active` bool NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `idx_tokens_deleted_at` (`deleted_at`)
+) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- Create "user_tokens" table
+CREATE TABLE `user_tokens` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(3) NULL,
+  `updated_at` datetime(3) NULL,
+  `deleted_at` datetime(3) NULL,
+  `user_id` int unsigned NOT NULL,
+  `token_id` int unsigned NOT NULL,
+  `wallet_id` int unsigned NOT NULL,
+  `balance` decimal(18,8) NOT NULL DEFAULT 0.00000000,
+  `locked_balance` decimal(18,8) NOT NULL DEFAULT 0.00000000,
+  PRIMARY KEY (`id`),
+  INDEX `idx_user_tokens_deleted_at` (`deleted_at`)
 ) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;
 -- Create "users" table
 CREATE TABLE `users` (
@@ -75,7 +89,6 @@ CREATE TABLE `users` (
   `lang` varchar(2) NULL DEFAULT "en",
   `is_set_lang` bool NULL DEFAULT 0,
   `last_login_at` datetime(3) NULL,
-  `test` varchar(100) NULL,
   PRIMARY KEY (`id`),
   INDEX `idx_users_deleted_at` (`deleted_at`),
   UNIQUE INDEX `uni_users_email` (`email`),
@@ -88,10 +101,9 @@ CREATE TABLE `wallets` (
   `updated_at` datetime(3) NULL,
   `deleted_at` datetime(3) NULL,
   `user_id` int unsigned NOT NULL,
-  `token_id` int unsigned NOT NULL,
-  `balance` decimal(18,8) NOT NULL DEFAULT 0.00000000,
-  `locked_balance` decimal(18,8) NOT NULL DEFAULT 0.00000000,
   `address` longtext NOT NULL,
+  `encrypted_private_key` longtext NOT NULL,
+  `struct_address_type` longtext NOT NULL,
   `chain_id` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `idx_wallets_deleted_at` (`deleted_at`)

@@ -17,6 +17,7 @@ import (
 func main() {
 	stmts, err := gormschema.New("mysql").Load(
 		userModels.User{},
+		userModels.UserToken{},
 		tokenModels.Token{},
 		walletModels.Wallet{},
 		pairModels.Pair{},

@@ -40,3 +40,4 @@ app:
           topic: trading.gateway.user-created-event
           groupId: trading.gateway.user-created-event
           enable: true
+  secret_key: hari-secret-key

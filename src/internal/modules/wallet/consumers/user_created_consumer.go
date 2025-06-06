@@ -5,6 +5,8 @@ import (
 	"github.com/golibs-starter/golib/log"
 	"github.com/golibs-starter/golib/web/event"
 	jsoniter "github.com/json-iterator/go"
+	wallet_requests "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/requests"
+	wallet_services "gitlab.com/hari-92/nft-market-server/internal/modules/wallet/services"
 )
 
 type UserCreated struct {
@@ -24,6 +26,7 @@ func (u UserCreatedEvent) String() string {
 }
 
 type UserCreatedConsumer struct {
+	walletService wallet_services.IWalletService
 }
 
 func (u UserCreatedConsumer) HandlerFunc(message *core.ConsumerMessage) {
@@ -32,12 +35,23 @@ func (u UserCreatedConsumer) HandlerFunc(message *core.ConsumerMessage) {
 		log.Errorf("UserCreatedConsumer json unmarshal err: %s", err)
 		return
 	}
+	res, err := u.walletService.CreateWallet(&wallet_requests.CreateWalletRequest{
+		UserID: eventData.PayloadData.UserID,
+	})
+	if err != nil {
+		log.Errorf("UserCreatedConsumer CreateWallet error: %s", err)
+		return
+	}
 
-	log.Infof("UserCreatedConsumer event: %v", eventData)
+	log.Info("UserCreatedConsumer eventData and CreateWallet", eventData, res)
 }
 
 func (u UserCreatedConsumer) Close() {}
 
-func NewUserCreatedConsumer() core.ConsumerHandler {
-	return &UserCreatedConsumer{}
+func NewUserCreatedConsumer(
+	walletService wallet_services.IWalletService,
+) core.ConsumerHandler {
+	return &UserCreatedConsumer{
+		walletService: walletService,
+	}
 }

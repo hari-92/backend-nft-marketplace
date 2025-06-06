@@ -7,11 +7,8 @@ import (
 
 func ToWalletProtoList(wallets []*walletModels.Wallet) []*pb.Wallet {
 	protoWallets := make([]*pb.Wallet, len(wallets))
-	for i, wallet := range wallets {
-		protoWallets[i] = &pb.Wallet{
-			TokenId: wallet.TokenID,
-			Balance: wallet.Balance,
-		}
+	for i := range wallets {
+		protoWallets[i] = &pb.Wallet{}
 	}
 	return protoWallets
 }
