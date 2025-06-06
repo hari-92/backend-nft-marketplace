@@ -22,15 +22,18 @@ const (
 )
 
 type Candle struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pair          string                 `protobuf:"bytes,1,opt,name=pair,proto3" json:"pair,omitempty"`
-	TimeFrame     string                 `protobuf:"bytes,2,opt,name=time_frame,json=timeFrame,proto3" json:"time_frame,omitempty"`
-	Open          string                 `protobuf:"bytes,3,opt,name=open,proto3" json:"open,omitempty"`
-	High          string                 `protobuf:"bytes,4,opt,name=high,proto3" json:"high,omitempty"`
-	Low           string                 `protobuf:"bytes,5,opt,name=low,proto3" json:"low,omitempty"`
-	Close         string                 `protobuf:"bytes,6,opt,name=close,proto3" json:"close,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	OpenTime         uint64                 `protobuf:"varint,1,opt,name=open_time,json=openTime,proto3" json:"open_time,omitempty"`
+	Open             float64                `protobuf:"fixed64,2,opt,name=open,proto3" json:"open,omitempty"`
+	High             float64                `protobuf:"fixed64,3,opt,name=high,proto3" json:"high,omitempty"`
+	Low              float64                `protobuf:"fixed64,4,opt,name=low,proto3" json:"low,omitempty"`
+	Close            float64                `protobuf:"fixed64,5,opt,name=close,proto3" json:"close,omitempty"`
+	Volume           float64                `protobuf:"fixed64,6,opt,name=volume,proto3" json:"volume,omitempty"`
+	CloseTime        uint64                 `protobuf:"varint,7,opt,name=close_time,json=closeTime,proto3" json:"close_time,omitempty"`
+	QuoteAssetVolume float64                `protobuf:"fixed64,8,opt,name=quote_asset_volume,json=quoteAssetVolume,proto3" json:"quote_asset_volume,omitempty"`
+	NumberOfTrades   uint64                 `protobuf:"varint,9,opt,name=number_of_trades,json=numberOfTrades,proto3" json:"number_of_trades,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *Candle) Reset() {
@@ -63,52 +66,75 @@ func (*Candle) Descriptor() ([]byte, []int) {
 	return file_candle_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Candle) GetPair() string {
+func (x *Candle) GetOpenTime() uint64 {
 	if x != nil {
-		return x.Pair
+		return x.OpenTime
 	}
-	return ""
+	return 0
 }
 
-func (x *Candle) GetTimeFrame() string {
-	if x != nil {
-		return x.TimeFrame
-	}
-	return ""
-}
-
-func (x *Candle) GetOpen() string {
+func (x *Candle) GetOpen() float64 {
 	if x != nil {
 		return x.Open
 	}
-	return ""
+	return 0
 }
 
-func (x *Candle) GetHigh() string {
+func (x *Candle) GetHigh() float64 {
 	if x != nil {
 		return x.High
 	}
-	return ""
+	return 0
 }
 
-func (x *Candle) GetLow() string {
+func (x *Candle) GetLow() float64 {
 	if x != nil {
 		return x.Low
 	}
-	return ""
+	return 0
 }
 
-func (x *Candle) GetClose() string {
+func (x *Candle) GetClose() float64 {
 	if x != nil {
 		return x.Close
 	}
-	return ""
+	return 0
+}
+
+func (x *Candle) GetVolume() float64 {
+	if x != nil {
+		return x.Volume
+	}
+	return 0
+}
+
+func (x *Candle) GetCloseTime() uint64 {
+	if x != nil {
+		return x.CloseTime
+	}
+	return 0
+}
+
+func (x *Candle) GetQuoteAssetVolume() float64 {
+	if x != nil {
+		return x.QuoteAssetVolume
+	}
+	return 0
+}
+
+func (x *Candle) GetNumberOfTrades() uint64 {
+	if x != nil {
+		return x.NumberOfTrades
+	}
+	return 0
 }
 
 type GetCandlesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pair          string                 `protobuf:"bytes,1,opt,name=pair,proto3" json:"pair,omitempty"`
-	TimeFrame     string                 `protobuf:"bytes,2,opt,name=time_frame,json=timeFrame,proto3" json:"time_frame,omitempty"`
+	Symbol        string                 `protobuf:"bytes,1,opt,name=symbol,proto3" json:"symbol,omitempty"`
+	Interval      string                 `protobuf:"bytes,2,opt,name=interval,proto3" json:"interval,omitempty"`
+	StartTime     uint64                 `protobuf:"varint,3,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	EndTime       uint64                 `protobuf:"varint,4,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -143,18 +169,32 @@ func (*GetCandlesRequest) Descriptor() ([]byte, []int) {
 	return file_candle_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetCandlesRequest) GetPair() string {
+func (x *GetCandlesRequest) GetSymbol() string {
 	if x != nil {
-		return x.Pair
+		return x.Symbol
 	}
 	return ""
 }
 
-func (x *GetCandlesRequest) GetTimeFrame() string {
+func (x *GetCandlesRequest) GetInterval() string {
 	if x != nil {
-		return x.TimeFrame
+		return x.Interval
 	}
 	return ""
+}
+
+func (x *GetCandlesRequest) GetStartTime() uint64 {
+	if x != nil {
+		return x.StartTime
+	}
+	return 0
+}
+
+func (x *GetCandlesRequest) GetEndTime() uint64 {
+	if x != nil {
+		return x.EndTime
+	}
+	return 0
 }
 
 type GetCandlesResponse struct {
@@ -573,19 +613,24 @@ var File_candle_proto protoreflect.FileDescriptor
 
 const file_candle_proto_rawDesc = "" +
 	"\n" +
-	"\fcandle.proto\x12\x06candle\"\x8b\x01\n" +
-	"\x06Candle\x12\x12\n" +
-	"\x04pair\x18\x01 \x01(\tR\x04pair\x12\x1d\n" +
+	"\fcandle.proto\x12\x06candle\"\x84\x02\n" +
+	"\x06Candle\x12\x1b\n" +
+	"\topen_time\x18\x01 \x01(\x04R\bopenTime\x12\x12\n" +
+	"\x04open\x18\x02 \x01(\x01R\x04open\x12\x12\n" +
+	"\x04high\x18\x03 \x01(\x01R\x04high\x12\x10\n" +
+	"\x03low\x18\x04 \x01(\x01R\x03low\x12\x14\n" +
+	"\x05close\x18\x05 \x01(\x01R\x05close\x12\x16\n" +
+	"\x06volume\x18\x06 \x01(\x01R\x06volume\x12\x1d\n" +
 	"\n" +
-	"time_frame\x18\x02 \x01(\tR\ttimeFrame\x12\x12\n" +
-	"\x04open\x18\x03 \x01(\tR\x04open\x12\x12\n" +
-	"\x04high\x18\x04 \x01(\tR\x04high\x12\x10\n" +
-	"\x03low\x18\x05 \x01(\tR\x03low\x12\x14\n" +
-	"\x05close\x18\x06 \x01(\tR\x05close\"F\n" +
-	"\x11GetCandlesRequest\x12\x12\n" +
-	"\x04pair\x18\x01 \x01(\tR\x04pair\x12\x1d\n" +
+	"close_time\x18\a \x01(\x04R\tcloseTime\x12,\n" +
+	"\x12quote_asset_volume\x18\b \x01(\x01R\x10quoteAssetVolume\x12(\n" +
+	"\x10number_of_trades\x18\t \x01(\x04R\x0enumberOfTrades\"\x81\x01\n" +
+	"\x11GetCandlesRequest\x12\x16\n" +
+	"\x06symbol\x18\x01 \x01(\tR\x06symbol\x12\x1a\n" +
+	"\binterval\x18\x02 \x01(\tR\binterval\x12\x1d\n" +
 	"\n" +
-	"time_frame\x18\x02 \x01(\tR\ttimeFrame\">\n" +
+	"start_time\x18\x03 \x01(\x04R\tstartTime\x12\x19\n" +
+	"\bend_time\x18\x04 \x01(\x04R\aendTime\">\n" +
 	"\x12GetCandlesResponse\x12(\n" +
 	"\acandles\x18\x01 \x03(\v2\x0e.candle.CandleR\acandles\"J\n" +
 	"\x15GetCandleStatsRequest\x12\x12\n" +

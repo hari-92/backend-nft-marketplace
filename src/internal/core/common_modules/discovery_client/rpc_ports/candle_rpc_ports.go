@@ -3,6 +3,7 @@ package rpc_ports
 import (
 	"context"
 
+	"gitlab.com/hari-92/nft-market-server/internal/core/common_modules/discovery_client"
 	pb "gitlab.com/hari-92/nft-market-server/pkg/grpc/proto_type"
 )
 
@@ -22,8 +23,11 @@ func NewCandleRpcPorts() ICandleRpcPorts {
 }
 
 func (p *candleRpcPorts) GetCandles(ctx context.Context, request *pb.GetCandlesRequest) (*pb.GetCandlesResponse, error) {
-	// TODO: Implement this
-	return nil, nil
+	res, err := discovery_client.GetCandleClient().GetCandles(ctx, request)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
 }
 
 func (p *candleRpcPorts) GetCandleStats(ctx context.Context, request *pb.GetCandleStatsRequest) (*pb.GetCandleStatsResponse, error) {

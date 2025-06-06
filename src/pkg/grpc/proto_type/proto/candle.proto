@@ -14,17 +14,22 @@ service CandleProtoService {
 }
 
 message Candle {
-    string pair = 1;
-    string time_frame = 2;
-    string open = 3;
-    string high = 4;
-    string low = 5;
-    string close = 6;
+    uint64 open_time = 1;
+    double open = 2;
+    double high = 3;
+    double low = 4;
+    double close = 5;
+    double volume = 6;
+    uint64 close_time = 7;
+    double quote_asset_volume = 8;
+    uint64 number_of_trades = 9;
 }
 
 message GetCandlesRequest {
-    string pair = 1;
-    string time_frame = 2;
+    string symbol = 1;
+    string interval = 2;
+    uint64 start_time = 3;
+    uint64 end_time = 4;
 }
 
 message GetCandlesResponse {

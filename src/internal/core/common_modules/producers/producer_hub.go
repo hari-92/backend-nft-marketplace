@@ -2,14 +2,16 @@ package common_producers
 
 import (
 	"context"
-	"gitlab.com/hari-92/nft-market-server/internal/core/adapter/kafka"
 	"sync"
+
+	"gitlab.com/hari-92/nft-market-server/internal/core/adapter/kafka"
 
 	"github.com/golibs-starter/golib/pubsub"
 	"github.com/golibs-starter/golib/web/event"
 	"gitlab.com/hari-92/nft-market-server/internal/core/base"
+	commonProducersEventCandle "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/candle"
 	commonProducersEventGateway "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/gateway"
-	commonProducersEvent "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/token"
+	commonProducersEventToken "gitlab.com/hari-92/nft-market-server/internal/core/common_modules/producers/events/token"
 )
 
 var instanceProducerHub IProducerHub
@@ -21,7 +23,10 @@ type IProducerHub interface {
 	UserCreatedEvent(event *commonProducersEventGateway.UserCreatedEvent)
 
 	// Token event
-	InitTokenEvent(event *commonProducersEvent.InitTokenEvent)
+	InitTokenEvent(event *commonProducersEventToken.InitTokenEvent)
+
+	// Candle event
+	CreatedCandleEvent(event *commonProducersEventCandle.CreatedCandleEvent)
 }
 
 func NewCommonProducerHub() {
@@ -63,6 +68,10 @@ func (p *ProducerHub) UserCreatedEvent(event *commonProducersEventGateway.UserCr
 	publishEvent(ctx, event)
 }
 
-func (p *ProducerHub) InitTokenEvent(event *commonProducersEvent.InitTokenEvent) {
+func (p *ProducerHub) InitTokenEvent(event *commonProducersEventToken.InitTokenEvent) {
+	publishEvent(context.Background(), event)
+}
+
+func (p *ProducerHub) CreatedCandleEvent(event *commonProducersEventCandle.CreatedCandleEvent) {
 	publishEvent(context.Background(), event)
 }
