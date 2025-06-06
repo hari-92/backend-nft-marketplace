@@ -11,6 +11,8 @@ func main() {
 		bootstrap.WithDefaultOptions(),
 		bootstrap.WithApi(),
 		bootstrap.WithGrpcServer(),
+		bootstrap.WithDatabase(),
+		bootstrap.WithKafkaOnlyProducer(),
 		candle.NewProvider(),
 	).Run()
 }
